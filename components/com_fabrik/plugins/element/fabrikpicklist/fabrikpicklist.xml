@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>picklist</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Jan 2007</creationDate>
+	<copyright>(C) 2005-2007 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders dragable pick list</description>
+	<files>
+		<filename fabrikplugin="fabrikpicklist">fabrikpicklist.php</filename>
+		<filename>admin.js</filename>
+		<filename>index.html</filename>
+		<filename>javascript.js</filename>
+	</files>
+	
+	<languages folder="language" >
+			<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.element.fabrikpicklist.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikpicklist.ini</language>
+			<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.element.fabrikpicklist.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.element.fabrikpicklist.ini</language>
+		</languages>
+
+	<params>
+		<param name="allowadd" type="radio" default="0" label="EDITDROPDOWN" description="EDITDROPDOWNDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="allowadd-onlylabel" type="radio" default="0" label="ONLYADDLABEL" description="ONLYADDLABELDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+				<param name="savenewadditions" type="radio" default="0" label="SAVENEWADDITIONS" description="SAVENEWADDITIONSDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="picklist-hovercolour" type="text" size="6" default="#AFFFFD" label="HOVERCOLOUR" description="HOVERCOLOURDESCRIPTION" />
+		<param name="picklist-bghovercolour" type="text" size="6" default="#FFFFDF" label="BGHOVERCOLOUR" description="BGHOVERCOLOURDESCRIPTION" />
+	</params>
+	
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.element.fabrikpicklist.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikpicklist.ini</language>
+			<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.element.fabrikpicklist.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.element.fabrikpicklist.ini</language>
+		</languages>
+	</administration>
+</install>

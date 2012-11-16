@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="table" method="upgrade">
+	<name>Add Many</name>
+	<author>Hugh Messenger</author>
+	<creationDate>September 2011</creationDate>
+	<copyright>(C) 2005-2011 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Adds a button to the table, allowing adding to-many relationships</description>
+	<files>
+		<filename fabrikplugin="addmany">index.html</filename>
+		<filename>javascript.js</filename>
+		<folder>controllers</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+	</files>
+	<languages folder="language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.table.addmany.ini</language>
+		<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.table.addmany.ini</language>
+	</languages>
+	<administration>
+		<languages folder="administrator/language">
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.table.addmany.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.table.addmany.ini</language>
+		</languages>
+	</administration>
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+ 		<param name="addmany_access" type="fullaccesslevel" default="100" label="ACCESS"/>
+ 		<param name="addmany_button_label" default="Add many" type="text" label="PLG_TABLE_ADDMANY_BUTTON_LABEL_LABEL" size="30" description="PLG_TABLE_ADDMANY_BUTTON_LABEL_DESC" />
+		<param name="addmany_to_connection" type="connections" label="PLG_TABLE_ADDMANY_TO_CONNECTION_LABEL" description="PLG_TABLE_ADDMANY_TO_CONNECTION_DESC"/>
+		<param name="addmany_to_table" observe="addmany_to_connection" type="fabriktables" label="PLG_TABLE_ADDMANY_TO_TABLE_LABEL" description="PLG_TABLE_ADDMANY_TO_TABLE_DESC"/>
+		<param name="addmany_from_fk" type="element" connection="addmany_to_connection" table="addmany_to_table" label="PLG_TABLE_ADDMANY_FROM_FK_LABEL"  description="PLG_TABLE_ADDMANY_FROM_FK_DESC"/>
+		<param name="addmany_to_fk" type="element" connection="addmany_to_connection" table="addmany_to_table" label="PLG_TABLE_ADDMANY_TO_FK_LABEL" description="PLG_TABLE_ADDMANY_TO_FK_DESC"/>
+		<param name="addmany_from_pk" type="tablefields" valueformat="tableelement" label="PLG_TABLE_ADDMANY_FROM_PK_LABEL" description="PLG_TABLE_ADDMANY_FROM_PK_DESC" />
+		<param name="addmany_additional_parent_fields" type="text" size="100" default="" label="PLG_TABLE_ADDMANY_ADDITIONAL_PARENT_FIELDS_LABEL" description="PLG_TABLE_ADDMANY_ADDITIONAL_PARENT_FIELDS_DESC" />
+		<param name="addmany_additional_child_fields" type="text" size="100" default="" label="PLG_TABLE_ADDMANY_ADDITIONAL_CHILD_FIELDS_LABEL" description="PLG_TABLE_ADDMANY_ADDITIONAL_CHILD_FIELDS_DESC" />
+		<param name="addmany_window_width" type="text" default="300" label="PLG_TABLE_ADDMANY_WIDTH_LABEL" description="PLG_TABLE_ADDMANY_WIDTH_DESC" />
+		<param name="addmany_window_height" type="text" default="100" label="PLG_TABLE_ADDMANY_HEIGHT_LABEL" description="PLG_TABLE_ADDMANY_HEIGHT_DESC" />
+	</params>
+</install>

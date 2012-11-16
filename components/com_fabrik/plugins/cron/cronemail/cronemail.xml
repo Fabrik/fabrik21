@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="cron" method="upgrade">
+	<name>Cron Email</name>
+	<author>Rob Clayburn</author>
+	<creationDate>July 2008</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Cron email</description>
+	<files>
+		<filename fabrikplugin="cronemail">cronemail.php</filename>
+		<filename>index.html</filename>
+	</files>
+
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.cron.cronemail.ini</language>
+		</languages>
+	</administration>
+	
+	<params repeat="1" repeatcontrols="0">
+		<param name="cronemail-eval" default="0" type="radio" label="eval" description="CRONEMAILEVALDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="to" type="text" default="" size="105" label="TO" description="CRONEMAILTODESC" />
+		<param name="subject" type="text" default="" size="105" label="SUBJECT" description="CRONEMAILSUBJECTDESC" />
+		<param name="message" type="textarea" default="" rows="8" cols="60" label="MESSAGE" description="CRONEMAILMESSAGEDESC" />
+		<param name="cronemail_condition" type="textarea" cols="60" rows="5" label="Condition" description="CRONEMAILCONDITIONDESC" />
+		<param name="cronemail_mergemessages" 
+			type="radio" default="0"
+			label="PLG_CRON_EMAIL_MERGE_MESSAGES_LABEL"
+			description="PLG_CRON_EMAIL_MERGE_MESSAGES_DESC">
+			<option value="0">NO</option>
+			<option value="1">YES</option>
+		</param>
+		<param name="cronemail_message_preamble" type="textarea" default="" rows="3" cols="60" label="PLG_CRON_EMAIL_MESSAGE_PREAMBLE_LABEL" description="PLG_CRON_EMAIL_MESSAGE_PREAMBLE_DESC" />
+		<param name="cronemail_message_postamble" type="textarea" default="" rows="3" cols="60" label="PLG_CRON_EMAIL_MESSAGE_POSTAMBLE_LABEL" description="PLG_CRON_EMAIL_MESSAGE_POSTAMBLE_DESC" />
+	</params>
+	<params group="update" addpath="/administrator/components/com_fabrik/elements">
+		<param name="cronemail-updatefield" type="element" connection="connection" table="table" label="field" description="CRONEMAILFIELDDESC" />
+		<param name="cronemail-updatefield-value" type="text" size="105" label="value" description="CRONEMAILVALUEDESC" />
+		<param name="cronemail-updatefield-no-quotes" default="0" type="list" label="PLG_CRON_EMAIL_NOQUOTES_LABEL" description="PLG_CRON_EMAIL_NOQUOTES_DESC">
+			<option value="0">Text</option>
+			<option value="1">No quotes</option>
+		</param>
+	</params>
+</install>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="visualization" method="upgrade">
+	<name>slideshow</name>
+	<author>Hugh Messenger</author>
+	<creationDate>Jul 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Slideshow Viz</description>
+	<files>
+		<filename fabrikplugin="slideshow">slideshow.js</filename>
+		<filename>index.html</filename>
+		<folder>views</folder>
+		<folder>models</folder>
+		<folder>controllers</folder>
+	</files>
+	
+	<administration>
+	  <languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.visualization.slideshow.ini</language>
+		</languages>
+	</administration>
+	
+	<params addpath="/administrator/components/com_fabrik/elements">
+		<param name="slideshow_viz_type" type="radio" default="1" label="SLIDESHOWVIZTYPE" description="SLIDESHOWVIZTYPEDESC">
+			<option value="1">Normal</option>
+			<option value="2">Ken Burns</option>
+			<option value="3">Push</option>
+			<option value="4">Fold</option>
+		</param>
+		<param name="slideshow_viz_thumbnails" type="radio" default="0" label="SLIDESHOWVIZTHUMBNAILS" description="SLIDESHOWVIZTHUMBNAILSDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="slideshow_viz_connection" type="connections" label="Connection" />		
+		<param name="slideshow_viz_table" observe="slideshow_viz_connection" type="fabriktables" label="SLIDESHOWVIZTABLE" description="SLIDESHOWVIZTABLEDESC"/>
+		<param name="slideshow_viz_file" type="element" connection="slideshow_viz_connection" table="slideshow_viz_table" label="SLIDESHOWVIZFILE" description="SLIDESHOWVIZFILEDESC"/>
+		<param name="slideshow_viz_file_format" type="text" size="30" default="" label="SLIDESHOWVIZFILEFORMAT" description="SLIDESHOWVIZFILEFORMATDESC" />  
+		<param name="slideshow_viz_caption" type="element" connection="slideshow_viz_connection" table="slideshow_viz_table" label="SLIDESHOWVIZCAPTION" description="SLIDESHOWVIZCAPTIONDESC"/>
+		<param name="slideshow_viz_width" type="text" size="4" default="400" label="SLIDESHOWVIZWIDTH" description="SLIDESHOWVIZWIDTHDESC" />  
+		<param name="slideshow_viz_height" type="text" size="4" default="300" label="SLIDESHOWVIZHEIGHT" description="SLIDESHOWVIZHEIGHTDESC" />  
+		<param name="slideshow_viz_delay" type="text" size="6" default="5000" label="SLIDESHOWVIZDELAY" description="SLIDESHOWVIZDELAYDESC" />  
+		<param name="slideshow_viz_duration" type="text" size="6" default="2000" label="SLIDESHOWVIZDURATION" description="SLIDESHOWVIZDURATIONDESC" />  
+		<param name="slideshow_viz_zoom" type="text" size="6" default="50" label="SLIDESHOWVIZZOOM" description="SLIDESHOWVIZZOOMDESC" />  
+		<param name="slideshow_viz_pan" type="text" size="6" default="20" label="SLIDESHOWVIZPAN" description="SLIDESHOWVIZPANDESC" />  
+	</params>
+</install>

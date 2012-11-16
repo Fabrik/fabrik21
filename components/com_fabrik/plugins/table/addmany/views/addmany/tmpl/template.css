@@ -1,0 +1,8 @@
+.addmany ul {
+	list-style:none;
+}
+
+.addmany li{
+	background-image:none;
+	margin-top:15px;
+}

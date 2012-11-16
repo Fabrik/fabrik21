@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="table" method="upgrade">
+	<name>Change Owner</name>
+	<author>Hugh Messenger</author>
+	<creationDate>May 2012</creationDate>
+	<copyright>(C) 2005-2012 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Adds a button to the table, allowing changing of record ownership</description>
+	<files>
+		<filename fabrikplugin="chown">index.html</filename>
+		<filename>javascript.js</filename>
+		<folder>controllers</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+	</files>
+	<languages folder="language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.table.chown.ini</language>
+	</languages>
+	<administration>
+		<languages folder="administrator/language">
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.table.chown.ini</language>
+		</languages>
+	</administration>
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+ 		<param name="chown_access" type="fullaccesslevel" default="100" label="ACCESS"/>
+ 		<param name="chown_button_label" default="Change Owner" type="text" label="PLG_TABLE_CHOWN_BUTTON_LABEL_LABEL" size="30" description="PLG_TABLE_CHOWN_BUTTON_LABEL_DESC" />
+		<param name="chown_field_to_change_1" valueformat="tableelement" type="tablefields"  label="PLG_TABLE_CHOWN_FIELD_TO_CHANGE_1_LABEL" description="PLG_TABLE_CHOWN_FIELD_TO_CHANGE_1_DESC" />
+		<param name="chown_field_to_change_2" valueformat="tableelement" type="tablefields"  label="PLG_TABLE_CHOWN_FIELD_TO_CHANGE_2_LABEL" description="PLG_TABLE_CHOWN_FIELD_TO_CHANGE_2_DESC" />
+		<param name="chown_field_to_change_3" valueformat="tableelement" type="tablefields"  label="PLG_TABLE_CHOWN_FIELD_TO_CHANGE_3_LABEL" description="PLG_TABLE_CHOWN_FIELD_TO_CHANGE_3_DESC" />
+		<param name="chown_to_connection" type="connections" label="PLG_TABLE_CHOWN_TO_CONNECTION_LABEL" description="PLG_TABLE_CHOWN_TO_CONNECTION_DESC"/>
+		<param name="chown_to_table" observe="chown_to_connection" type="fabriktables" label="PLG_TABLE_CHOWN_TO_TABLE_LABEL" description="PLG_TABLE_CHOWN_TO_TABLE_DESC"/>
+		<param name="chown_to_pk" type="element" connection="chown_to_connection" table="chown_to_table" label="PLG_TABLE_CHOWN_TO_PK_LABEL"  description="PLG_TABLE_CHOWN_TO_PK_DESC"/>
+		<param name="chown_to_label" type="element" connection="chown_to_connection" table="chown_to_table" label="PLG_TABLE_CHOWN_TO_LABEL_LABEL" description="PLG_TABLE_CHOWN_TO_LABEL_DESC"/>
+		<param name="chown_to_menu_label" type="text" default="New Owner" label="PLG_TABLE_CHOWN_MENU_LABEL_LABEL" description="PLG_TABLE_CHOWN_MENU_LABEL_DESC" />
+		<param name="chown_to_intro" type="textarea" rows="3" cols="50" label="PLG_TABLE_CHOWN_INTRO_LABEL" description="PLG_TABLE_CHOWN_INTRO_DESC" />
+		<param name="chown_window_width" type="text" default="300" label="PLG_TABLE_CHOWN_WIDTH_LABEL" description="PLG_TABLE_CHOWN_WIDTH_DESC" />
+		<param name="chown_window_height" type="text" default="100" label="PLG_TABLE_CHOWN_HEIGHT_LABEL" description="PLG_TABLE_CHOWN_HEIGHT_DESC" />
+	</params>
+</install>

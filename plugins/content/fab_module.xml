@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="content" method="upgrade">
+	<name>Content - insert module</name>
+	<author>Pollen 8 Design Ltd</author>
+	<creationDate>Nov 2009</creationDate>
+	<copyright>Copyright (C) 2005 - 2009 Pollen 8 Design Ltd. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>1.0</version>
+	<description>Loads a module inside your content. Usage: {fab_module module=1} where 1 is your modules id</description>
+	<files>
+		<filename plugin="fab_module">fab_module.php</filename>
+	</files>
+	<params>
+	</params>
+</install>

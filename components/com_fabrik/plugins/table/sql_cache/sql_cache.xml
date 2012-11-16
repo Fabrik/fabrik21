@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="table" method="upgrade">
+	<name>SQL Cache</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Aug 2010</creationDate>
+	<copyright>(C) 2005-2010 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Alters table select queries to provide SELECT SQL_CACHE support</description>
+	<files>
+		<filename fabrikplugin="sql_cache">sql_cache.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<params></params>
+</install>

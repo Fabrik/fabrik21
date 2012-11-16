@@ -1,0 +1,59 @@
+/** default css **/
+
+.fabrikForm textarea,
+.fabrikForm input{
+	width:100%;
+}
+
+.fabrikForm .fabrikdate input{
+	width:80%;
+}
+.fabrikForm{
+	position:relative;
+}
+
+.fabrikError, .fabrikGroup li.fabrikError{
+background:none !important;
+border:none !important;
+}
+
+
+fieldset.fabrikGroup{
+	position:absolute;
+	padding:0 !important;
+	margin:0 !important;
+}
+
+.fabrikElement, .fabrikLabel {
+	margin:0;
+	padding:0;
+	position:absolute;
+}
+
+.fabrikActions {
+	padding-top: 15px;
+	clear: left;
+	padding-bottom: 15px;
+}
+
+.fabrikGroupRepeater {
+	float: left;
+	width: 19%;
+}
+
+/** used by password element */
+.fabrikSubLabel {
+	margin-left: -10px;
+	clear: left;
+	margin-top: 10px;
+	float: left;
+}
+
+.fabrikSubElement {
+	display: block;
+	margin-top: 10px;
+	margin-left: 100px;
+}
+
+/** added by component template generator **/
+{css}

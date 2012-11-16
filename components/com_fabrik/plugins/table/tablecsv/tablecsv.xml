@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="table" method="upgrade">
+	<name>Table CSV</name>
+	<author>Hugh Messenger</author>
+	<creationDate>September 2010</creationDate>
+	<copyright>(C) 2005-2010 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Allow processing of CSV import and export on a per row basis</description>
+	<files>
+		<filename fabrikplugin="tablecsv">tablecsv.php</filename>
+		<filename>index.html</filename>
+		<filename>scripts/index.html</filename>
+	</files>
+	
+	<administration>
+		<languages folder="administrator/language">
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.table.tablecsv.ini</language>
+		</languages>
+	</administration>
+
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="tablecsv_import_php_file" type="filelist" directory="components/com_fabrik/plugins/table/tablecsv/scripts/" hide_default="1" label="TABLECSV_IMPORT_FILE" description="TABLECSV_IMPORT_FILE_DESC" />
+		<param name="tablecsv_import_php_code" type="textarea" default="" rows="8" cols="60" label="TABLECSV_IMPORT_CODE" description="TABLECSV_IMPORT_CODE_DESC" />
+	</params>
+</install>

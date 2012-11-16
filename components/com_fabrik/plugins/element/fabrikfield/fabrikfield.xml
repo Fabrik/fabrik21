@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>field</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Dec 2006</creationDate>
+	<copyright>(C) 2005-2006 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders Fields</description>
+	<files>
+		<filename fabrikplugin="fabrikfield">fabrikfield.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<languages folder="administrator/language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikfield.ini</language>
+	</languages>
+	<params addpath="/administrator/components/com_fabrik/elements">
+		<param name="width" type="width" label="Width"/>
+		<param name="hidden" type="hidden" default="" size="3" label="HIDDEN" />
+		<param name="eval" type="eval" default="0" label="Eval" />
+		<param name="default" type="default" default="" label="Default" />
+	</params>
+	<params group="extra">
+		<param name="password" type="radio" default="0" label="PASSWORD" description="">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="maxlength" type="maxlength" size="3" default="255" label="MAXLENGTH" description=""/>
+		<param name="text_format" type="radio" default="text" label="FORMAT" description="FORMATDESC">
+			<option value="text">Text</option>
+			<option value="integer">Integer</option>
+			<option value="decimal">Decimal</option>
+		</param>
+		<param name="integer_length" type="text" default="6" size = "5" label="INTEGERLENGTH" description="INTEGERLENGTHDESC" />
+		<param name="decimal_length" type="text" default="2" size = "5" label="DECIMALLENGTH" description="DECIMALLENGTHDESC" />
+		<param name="field_use_number_format" type="radio" default="0" label="USENUMBERFORMAT" description="USENUMBERFORMATDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="field_thousand_sep" type="text" size="3" default="," label="FIELDTHOUSANDSEP" description="FIELDTHOUSANDSEPDESC" />
+		<param name="field_decimal_sep" type="text" size="3" default="." label="FIELDDECIMALSEP" description="FIELDDECIMALSEPDESC" />
+		<param name="text_format_string" type="text" default="" size = "100" label="FORMATSTRING" description="FORMATSTRINGDESC" />
+		
+		<param name="guess_linktype" type="radio" default="0" label="GUESSLINKTYPE" description="GUESSLINKTYPEDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+
+		<param name="link_target_options" type="list" default="default" label="TARGETOPTIONS" description="TARGETOPTIONSDESC">
+     	<option value="default">NOT SET</option>
+			<option value="_self">TARGETSELF</option>
+			<option value="_blank">TARGETBLANK</option>
+			<option value="_parent">TARGETPARENT</option>
+			<option value="_top">TARGETTOP</option>
+			<option value="lightbox">LIGHTBOX</option>	
+		</param>
+		
+		<param name="disable" type="radio" default="0" label="DISABLEELEMENT" description="DISABLEELEMENTDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="readonly" type="radio" default="0" label="READONLY" description="READONLYDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="autocomplete" type="radio" default="1" label="AUTOCOMPLETE" description="AUTOCOMPLETEDESC">
+				<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>		
+</install>

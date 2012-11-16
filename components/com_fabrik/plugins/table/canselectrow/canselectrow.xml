@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="table" method="upgrade">
+	<name>Can Select Row</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Sept 2010</creationDate>
+	<copyright>(C) 2005-2010 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>determines if the user can delete a row</description>
+	<files>
+		<filename fabrikplugin="canselectrow">canselectrow.php</filename>
+		<filename>index.html</filename>
+	</files>
+	
+	<administration>
+		<languages folder="administrator/language">
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.table.canselectrow.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.table.canselectrow.ini</language>
+		</languages>
+	</administration>
+	
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="canselectrow_field" 
+			type="tablefields"
+			incraw="1"
+			valueformat="tableelement"
+			label="PLG_VIEW_CANSELECTROW_ELEMENT_LABEL"
+			description="PLG_VIEW_CANSELECTROW_ELEMENT_DESC" />
+			
+		<param name="canselectrow_value" 
+			type="text"
+			size="20" 
+			label="PLG_VIEW_CANSELECTROW_VALUE_LABEL"
+			description="PLG_VIEW_CANSELECTROW_VALUE_DESC" />
+	</params>
+</install>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="validationrule" method="upgrade">
+	<name>Open provider</name>
+	<author>Rob Clayburn</author>
+	<creationDate>July 2011</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Check for the availability of a domain name via open providers API</description>
+	<files>
+		<filename fabrikplugin="openprovider">openprovider.php</filename>
+		<filename>api.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<params  repeat="1" repeatcontrols="0">
+		<param type="text"
+			size="30" 
+			name="openprovider_username"
+			label="PLG_VALIDATION_OPENPROVIDER_USERNAME_LABEL"
+			description="PLG_VALIDATION_OPENPROVIDER_USERNAME_DESC" />
+		
+		<param type="text"
+			size="30" 
+			name="openprovider_password"
+			label="PLG_VALIDATION_OPENPROVIDER_PASSWORD_LABEL"
+			description="PLG_VALIDATION_OPENPROVIDER_PASSWORD_DESC" />
+		
+		 
+		<param type="text" name="openprovider-message" size="30" label="Error message" value="" description="VALIDATIONERRORDESC" />
+		<param type="textarea" cols="30" rows="5" name="openprovider-validation_condition" label="Condition" description="VALIDATIONCONDITIONDESC"/>
+	</params>
+
+		<administration>
+		<languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.validationrule.openprovider.ini</language>
+		</languages>
+	</administration>
+		
+</install>

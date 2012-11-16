@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>YouTube video</name>
+	<author>peamak</author>
+	<creationDate>Jul 2009</creationDate>
+	<copyright>(C) 2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>pktom64@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders Videos from YouTube's URL</description>
+	<files>
+		<filename fabrikplugin="fabrikyoutube">fabrikyoutube.php</filename>
+		<filename>index.html</filename>
+		<filename>javascript.js</filename>
+	</files>
+	
+	<languages folder="administrator/language" >
+		<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.element.fabrikyoutube.ini</language>
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikyoutube.ini</language>
+		<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.element.fabrikyoutube.ini</language>
+		<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.element.fabrikyoutube.ini</language>
+		<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.element.fabrikyoutube.ini</language>
+	</languages>
+	
+	<params addpath="/administrator/components/com_fabrik/elements">
+		<param name="width" type="width" label="Width" default="60" description="" />
+		<param name="default" type="default" default="" label="Default" />
+	</params>
+	<params group="extra">
+		<param name="include_related" type="radio" default="1" label="INCLUDERELATEDVIDEOS" description="">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_border" type="radio" default="0" label="SHOWBORDER" description="">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="enable_delayed_cookies" type="radio" default="0" label="ENABLEDELAYEDCOOKIES" description="ENABLEDELAYEDCOOKIESDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="color1" type="text" size="9" default="#333333" label="COLOR1" description="COLOR1DESC" />
+		<param name="color2" type="text" size="9" default="#000000" label="COLOR2" description="COLOR2DESC" />
+		<param name="player_size" type="radio" default="medium" label="PLAYERSIZE" description="">
+			<option value="small">340x285</option>
+			<option value="medium">445x364</option>
+			<option value="normal">500x405</option>
+			<option value="big">660x525</option>
+		</param>
+		<param name="or_width_player" type="text" size="3" label="ORWIDTHPLAYER" description="ORWIDTHPLAYERDESC" />
+		<param name="or_height_player" type="text" size="3" label="ORHEIGHTPLAYER" description="ORHEIGHTPLAYERDESC" />
+		<param name="display_in_table" type="radio" default="0" label="DISPLAYINTABLE" description="DISPLAYINTABLEDESC">
+			<option value="0">Mini</option>
+			<option value="1">Display link</option>
+			<option value="2">Normal</option>
+		</param>
+		<param name="display_link" type="radio" default="0" label="DISPLAYLINK" description="DISPLAYLINKDESC">
+			<option value="0">Raw txt link</option>
+			<option value="1">Linked txt link</option>
+			<option value="2">'Watch Video' link</option>
+		</param>
+		<param name="text_link" type="text" size="12" label="TEXTLINK" default="Watch Video" description="" />
+		<param name="target_link" type="radio" default="0" label="TARGETLINK" description="TARGETLINKDESC">
+			<option value="0">Current window</option>
+			<option value="1">New window</option>
+			<option value="2">Lightbox</option>
+		</param>
+	</params>		
+</install>

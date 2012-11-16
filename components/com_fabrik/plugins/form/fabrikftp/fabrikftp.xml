@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form" method="upgrade">
+	<name>FTP</name>
+	<author>Hugh Messenger</author>
+	<creationDate>March 2011</creationDate>
+	<copyright>(C) 2005-2011 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Create a file from a form submission and ftp it</description>
+	<files>
+		<filename fabrikplugin="fabrikftp">fabrikftp.php</filename>
+		<filename>index.html</filename>
+		<folder>tmpl</folder>
+	</files>
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="ftp_host" type="text" size="97" default="" label="PLG_FORM_FTP_HOST_LABEL" description="PLG_FORM_FTP_HOST_DESC"/>
+		<param name="ftp_port" type="text" size="3" default="" label="PLG_FORM_FTP_PORT_LABEL" description="PLG_FORM_FTP_PORT_DESC"/>
+		<param name="ftp_chdir" type="text" size="97" default="" label="PLG_FORM_FTP_CHDIR_LABEL" description="PLG_FORM_FTP_CHDIR_DESC"/>
+		<param name="ftp_user" type="text" size="20" default="" label="PLG_FORM_FTP_USER_LABEL" description="PLG_FORM_FTP_USER_DESC"/>
+		<param name="ftp_password" type="text" size="20" default="" label="PLG_FORM_FTP_PASSWORD_LABEL" description="PLG_FORM_FTP_PASSWORD_DESC"/>
+		<param name="ftp_template" type="filelist" directory="components/com_fabrik/plugins/form/fabrikftp/tmpl/" hide_default="1" label="PLG_FORM_FTP_TEMPLATE_LABEL" description="PLG_FORM_FTP_TEMPLATE_DESC"/>
+		<param name="ftp_template_content" add_select="true" default="" type="sql2" query="SELECT id AS value, title AS ftp_template_content FROM #__content" label="PLG_FORM_FTP_TEMPLATE_CONTENT_LABEL" description="PLG_FORM_FTP_TEMPLATE_CONTENT_DESC" />
+		<param name="ftp_eval_filename" type="radio" default="0" label="PLG_FORM_FTP_EVAL_FILENAME_LABEL" description="PLG_FORM_FTP_EVAL_FILENAME_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="ftp_filename" type="textarea" cols="55" rows="5" label="PLG_FORM_FTP_FILENAME_LABEL" description="PLG_FORM_FTP_FILENAME_LABEL" />
+		<param name="ftp_conditon" type="textarea" cols="55" rows="5" label="Condition" description="CONDITIONDESC" />
+	</params>
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.fabrikftp.ini</language>
+		</languages>
+	</administration>
+</install>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="table" method="upgrade">
+	<name>Email Table Plus</name>
+	<author>Hugh Messenger</author>
+	<creationDate>October 2008</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh@alaweb.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Adds a button to the table, allowing users to email rows</description>
+	<files>
+		<filename fabrikplugin="emailtableplus">index.html</filename>
+		<filename>controllers/index.html</filename>
+		<filename>models/index.html</filename>
+		<filename>views/index.html</filename>
+		<filename>views/emailtableplus/index.html</filename>
+		<filename>views/emailtableplus/tmpl/index.html</filename>
+		<filename>javascript.js</filename>
+		<filename>controllers/emailtableplus.php</filename>
+		<filename>models/emailtableplus.php</filename>
+		<filename>views/emailtableplus/view.html.php</filename>
+		<filename>views/emailtableplus/tmpl/default.php</filename>
+		<filename>views/emailtableplus/tmpl/template.css</filename>
+	</files>
+	<languages folder="language" >
+                <language tag="de-DE">de-DE/de-DE.com_fabrik.plg.table.emailtableplus.ini</language>
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.table.emailtableplus.ini</language>
+                <language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.table.emailtableplus.ini</language>
+	</languages>
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+ 		<param name="emailtableplus_access" type="fullaccesslevel" default="100" label="ACCESS"/>
+		<param name="emailtableplus_field_name" type="tablefields" onlytablefields="0" default="user" label="Name Field" description="The table field that contains the recipient's name"/>
+		<param name="emailtableplus_field_email" type="tablefields" onlytablefields="0" default="email" label="Email Field" description="The table field that contains the recipient's email"/>
+                <param name="emailtableplus_use_BCC" type="radio" default="1" label="Use BCC" description="Speed up website by sending BCC emails when possible.">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                </param>
+                <param name="emailtableplus_from_user" type="radio" default="0" label="Send from user" description="Use the current user's email address to send mail. Might not work on some webhosts.">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                </param>
+	</params>
+</install>

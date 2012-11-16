@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element">
+	<name>folder</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Jan 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders Drop down / multiple select box</description>
+	<files>
+		<filename fabrikplugin="fabrikfolder">fabrikfolder.php</filename>
+		<filename>index.html</filename>
+		<filename>javascript.js</filename>
+	</files>
+	<languages folder="administrator/language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikfolder.ini</language>
+	</languages>
+	<params>
+		<param type="text" size="20" default="" name="fbfolder_path" label="PATH" description="FOLDERPATHDESC" />
+		<param name="folder_listfolders" type="radio" default="1" label="LIST_FOLDERS">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="folder_listfiles" type="radio" default="0" label="LIST_FILES">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="folder_allownone" type="radio" default="1" label="ALLOW_NONE">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+</install>

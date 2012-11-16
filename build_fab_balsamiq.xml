@@ -1,0 +1,42 @@
+<project name="fab_balsamiq" default="balsamiq.all">
+
+	<target name="balsamiq.all">
+		<property file="build_fab_balsamiq_config.ini" />
+		<echo message=" destination dir = ${cfg.destdir}, svn files ${cfg.rootdir}" />
+		<input message="Component version:" addproperty="version" />
+		<antcall target="balsamiq.refreshfiles" />
+		<antcall target="fabrik.zipcomponent" />
+		<echo message=" ... finished exporting files." />
+	</target>
+
+	<target name="fabrik.zipcomponent">
+		<move file="${cfg.destdir}/administrator/components/com_fab_balsamiq/fab_balsamiq.xml" todir="${cfg.destdir}" />
+		<zip destfile="${cfg.destdir}/com_fab_balsamiq_${version}.zip" basedir="${cfg.destdir}" />
+	</target>
+
+	<target name="balsamiq.refreshfiles">
+		<delete dir="${cfg.destdir}" />
+		<mkdir dir="${cfg.destdir}/administrator/components/com_fab_balsamiq/" />
+
+		<copy todir="${cfg.destdir}/administrator/components/com_fab_balsamiq/">
+			<fileset dir="${cfg.rootdir}/administrator/components/com_fab_balsamiq/">
+				<exclude name="**/*.zip" />
+			</fileset>
+		</copy>
+
+		<mkdir dir="${cfg.destdir}/components/com_fab_balsamiq/" />
+		<copy todir="${cfg.destdir}/components/com_fab_balsamiq/">
+			<fileset dir="${cfg.rootdir}/components/com_fab_balsamiq/">
+				<exclude name="**/*.zip" />
+			</fileset>
+		</copy>
+
+		<mkdir dir="${cfg.destdir}/administrator/language/en-GB/" />
+		<copy todir="${cfg.destdir}/administrator/language/en-GB/">
+			<fileset dir="${cfg.rootdir}/administrator/language/en-GB/">
+				<include name="*fab_balsamiq*" />
+			</fileset>
+		</copy>
+	</target>
+
+</project>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form" method="upgrade">
+	<name>Create Joomla user</name>
+	<author>Rob Clayburn</author>
+	<creationDate>June 2008</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Binds data to a Joomla user account</description>
+	<files>
+		<filename fabrikplugin="fabrikjuser">fabrikjuser.php</filename>
+		<filename>index.html</filename>
+	</files>
+	
+	<languages folder="language" >
+                <language tag="de-DE">de-DE/de-DE.com_fabrik.plg.form.fabrikjuser.ini</language>
+                <language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.fabrikjuser.ini</language>
+                <language tag="es-ES">es-ES/es-ES.com_fabrik.plg.form.fabrikjuser.ini</language>
+                <language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.form.fabrikjuser.ini</language>
+                <language tag="it-IT">it-IT/it-IT.com_fabrik.plg.form.fabrikjuser.ini</language>
+        </languages>
+	
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="juser_field_name" type="tablefields" onlytablefields="0" default="" label="NAME_FIELD" description="NAME_FIELD_DESC"/>
+		<param name="juser_field_username" type="tablefields" onlytablefields="0" default="" label="USERNAME_FIELD" description="USERNAME_FIELD_DESC"/>
+		<param name="juser_field_password" type="tablefields" onlytablefields="0" default="" label="PASSWORD_FIELD" description="PASSWORD_FIELD_DESC"/>
+		<param name="juser_field_email" type="tablefields" onlytablefields="0" default="" label="EMAIL_FIELD" description="EMAIL_FIELD_DESC"/>
+		<param name="juser_field_usertype" type="tablefields" onlytablefields="0" default="" label="USERTYPE_FIELD" description="USERTYPE_FIELD_DESC"/>
+		<param name="juser_usertype_max" type="text" size="3" default="18" label="JUSER_USERTYPE_MAX" description="JUSER_USERTYPE_MAX_DESC" />
+		<param name="juser_field_block" type="tablefields" onlytablefields="0" default="" label="BLOCK_FIELD" description="BLOCK_FIELD_DESC"/>
+		<param name="juser_field_userid" type="tablefields" onlytablefields="0" default="" label="USER_ID_FIELD" description="USER_ID_FIELD_DESC"/>
+		<param name="juser_delete_user" type="radio" default="0" label="DELETE_USERS" description="DELETE_USERS_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>		
+		<param name="juser_bypass_activation" type="radio" default="0" label="BYPASS_ACTIVATION" description="BYPASS_ACTIVATION_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="juser_bypass_registration" type="radio" default="1" label="BYPASS_REGISTRATION" description="BYPASS_REGISTRATION_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="juser_bypass_accountdetails" type="radio" default="0" label="BYPASS_J_ACCOUNT_DETAILS_EMAIL" description="BYPASS_J_ACCOUNT_DETAILS_EMAIL_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="juser_auto_login" type="radio" default="0" label="AUTO_LOGIN" description="AUTO_LOGIN_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="synchro_users" type="radio" default="0" label="SYNCRONIZE_USERES" description="SYNCRONIZE_USERES_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="juser_sync_on_edit" type="radio" default="0" label="JUSERSYNCONEDIT" description="JUSERSYNCONEDITDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+</install>

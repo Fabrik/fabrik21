@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="table" method="upgrade">
+	<name>Inject JS in table</name>
+	<author>Rob Clayburn</author>
+	<creationDate>August 2008</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Inject JS code into table template</description>
+	<files>
+		<filename fabrikplugin="tablejs">tablejs.php</filename>
+		<folder>scripts</folder>
+		<filename>index.html</filename>
+	</files>
+	
+	<administration>
+		<languages folder="administrator/language">
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.table.tablejs.ini</language>
+		</languages>
+	</administration>
+
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="table_js_access" type="fullaccesslevel" default="100" label="ACCESS" />
+		<param name="table_js_code" type="textarea" default="" rows="8" cols="60" label="JSCODE" description="JSCODEDESC" />
+		<param name="table_js_file" 
+			type="filelist" 
+			directory="components/com_fabrik/plugins/table/tablejs/scripts/" 
+			hide_default="1" 
+			label="PLG_LIST_JS_FILE_LABEL" 
+			description="PLG_LIST_JS_FILE_DESC" />
+		
+		<param name="tablejs_select_rows"
+			type="radio"
+			default="0"
+			label="PLG_LIST_JS_SELECT_ROWS_LABEL"
+			description="PLG_LIST_JS_SELECT_ROWS_DESC" >
+				<option value="0">NO</option>
+				<option value="1">YES</option>	
+		</param>
+			
+	</params>
+</install>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>Facebook recommendations</name>
+	<author>Rob Clayburn</author>
+	<creationDate>April 2010</creationDate>
+	<copyright>(C) 2005-2010 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders Facebook Recommendations widget</description>
+	<files>
+		<filename fabrikplugin="fbrecommendations">fbrecommendations.php</filename>
+		<filename>index.html</filename>
+		<filename>javascript.js</filename>
+	</files>
+
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fbrecommendations.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.element.fbrecommendations.ini</language>
+		</languages>
+	</administration>
+	
+	<params group="extra">
+		<param name="fbrecommendations_domain" type="text" label="FBRECOMMENDATIONSDOMAIN" description="FBRECOMMENDATIONSDOMAINDESC" />
+		<param name="fbrecommendations_width" type="text" size="3" default="300" label="WIDTH" />
+		<param name="fbrecommendations_height" type="text" size="3" default="300" label="HEIGHT" />
+		<param name="fbrecommendations header" type="radio" default="1" label="FBRECOMMENDATIONSHEADER">
+			<option value="0">NO</option>
+			<option value="1">YES</option>
+		</param>
+		<param name="fbrecommendations_border" type="text" size="7" label="FBRECOMMENDATIONSBORDER" />
+		<param name="fbrecommendations_font" type="list" default="arial" label="FBRECOMMENDATIONSFONT">
+			<option value="arial">arial</option>
+			<option value="lucida grande">lucida grande</option>
+			<option value="segoe ui">segoe ui</option>
+			<option value="tahoma">tahoma</option>
+			<option value="trebuchet ms">trebuchet ms</option>
+			<option value="verdana">verdana</option>
+		</param>
+		<param name="fbrecommendations_colorscheme" default="light" type="list" label="FBRECOMMENDATIONSCOLORSCHEME">
+			<option value="light">light</option>
+			<option value="dark">dark</option>
+		</param>
+		
+		<param name="fbrecommendations_locale"
+			default="en_US"
+			size="5"
+			type="text"
+			label="PLG_ELEMENT_FBRECOMMENDATIONS_LOCALE_LABEL"
+			description="PLG_ELEMENT_FBRECOMMENDATIONS_LOCALE_DESC" />
+	</params>		
+</install>

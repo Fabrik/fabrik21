@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="validationrule" method="upgrade">
+	<name>User Exists</name>
+	<author>Hugh Messenger</author>
+	<creationDate>May 2009</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Check to see if a username exists (or not) in J! users table</description>
+	<files>
+		<filename fabrikplugin="userexists">userexists.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<params  repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param type="text" name="userexists-message" size="30" label="Error message" value="" description="VALIDATIONERRORDESC" />
+		<param type="textarea" cols="30" rows="5" name="userexists-validation_condition" label="Condition" description="VALIDATIONCONDITIONDESC"/>
+		<param name="userexists_or_not" type="radio" default="fail_if_exist" label="EXISTSORNOT" description="EXISTSORNOT">
+			<option value="fail_if_exists">FAILIFUSERNAMEEXISTS</option>
+			<option value="fail_if_not_exists">FAILIFUSERNAMENOTEXISTS</option>
+		</param>
+	</params>
+	
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.validationrule.userexists.ini</language>
+			<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.validationrule.userexists.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.validationrule.userexists.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.validationrule.userexists.ini</language>
+		</languages>
+	</administration>
+</install>

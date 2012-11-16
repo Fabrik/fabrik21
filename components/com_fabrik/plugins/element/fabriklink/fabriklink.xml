@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>link</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Jan 2007</creationDate>
+	<copyright>(C) 2005-2007 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders a link</description>
+	<files>
+		<filename fabrikplugin="fabriklink">fabriklink.php</filename>
+		<filename>javascript.js</filename>
+		<filename>index.html</filename>
+	</files>
+	
+	<languages folder="administrator/language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabriklink.ini</language>
+	</languages>
+	
+	<params>
+		<param name="width" type="width" label="Width"/>
+		<param name="default" type="default" default="" label="DEFAULTLABEL" />
+		
+	</params>
+	
+	<params group="extra" addpath="/administrator/components/com_fabrik/elements">
+		<param name="link_default_url" type="text" default="http://" label="DEFAULTURL" />
+		<param name="link_target" type="list" default="0" label="LINKTARGET" description="LINKTARGETDESC">
+			<option value="_self">_self</option>
+			<option value="_blank">_blank</option>
+			<option value="_parent">_parent</option>
+			<option value="_top">_top</option>
+			<option value="mediabox">mediabox</option>
+		</param>
+		<param name="link_smart_link" type="radio" default="0" label="SMARTLINK" description="SMARTLINKDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="maxlength" type="maxlength" size="3" default="255" label="MAXLENGTH" description=""/>
+		
+		<param name="link_attribs" type="textarea"
+			label="PLG_ELEMENT_LINK_ATTRIBUTES_LABEL"
+			description="PLG_ELEMENT_LINK_ATTRIBUTES_DESC"
+			rows="4"
+			cols="25" />
+			
+	</params>
+	<params group="bitly" addpath="/administrator/components/com_fabrik/elements">
+		<param name="use_bitly" type="radio" default="0" label="USEBITLY" description="USEBITLYDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="bitly_login" type="text" size="30" default="" label="BITLYLOGIN" description="BITLYLOGINDESC"/>
+		<param name="bitly_apikey" type="text" size="40" default="" label="BITLYAPIKEY" description="BITLYAPIKEYDESC"/>
+	</params>
+</install>

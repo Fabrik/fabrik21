@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="visualization" method="upgrade">
+	<name>timeline</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Sept 2007</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Show timeline </description>
+	<files>
+		<filename fabrikplugin="timeline">timeline.js</filename>
+		<filename>index.html</filename>
+		<folder>controllers</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+	</files>
+	
+	<administration>
+	  <languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.visualization.timeline.ini</language>
+		</languages>
+	</administration>
+	
+	<params group="connection" addpath="/administrator/components/com_fabrik/elements"  description="CONNECTIONONLYFABRIKTABLES">
+		<param name="timeline_connection" type="connections" label="Connection" />
+	</params>
+	
+	<params repeatcontrols="1" repeat="1" addpath="/administrator/components/com_fabrik/elements">
+		<param name="timeline_table" observe="timeline_connection" type="fabriktables" connection_in_repeat="false" label="table"/>
+		<param name="timeline_startdate" type="element" connection_in_repeat="false" connection="timeline_connection" table="timeline_table" published="true" showintable="true" label="Start date" description="Only published elements that are set to show in the table view are listed here" />
+		<param name="timeline_enddate" type="element" connection_in_repeat="false" connection="timeline_connection" table="timeline_table" published="true" showintable="true" label="End date" description="Only published elements that are set to show in the table view are listed here" />
+		<param name="timeline_label" type="element" connection_in_repeat="false" connection="timeline_connection" table="timeline_table" published="true" showintable="true" label="Label" description="Only published elements that are set to show in the table view are listed here" />
+		<param name="timeline_detailtemplate" type="textarea" default="" rows="8" cols="40" label="FBGMDETAILTEMPLATE" description="FBGMDETAILTEMPLATEDDESC" />
+		<param name="timeline_colour"
+			type="text"
+			size="8"
+			default="#58A0DC"
+			label="PLG_VIZ_TIMELINE_COLOUR_LABEL"
+			description="PLG_VIZ_TIMELINE_COLOUR_DESC" />
+			
+		<param name="timeline_text_color"
+			type="text"
+			size="8"
+			default="#58A0DC"
+			label="PLG_VIZ_TIMELINE_TEXT_COLOUR_LABEL"
+			description="PLG_VIZ_TIMELINE_TEXT_COLOUR_DESC" />
+			
+		<param name="timeline_class"
+			connection="timeline_connection" table="timeline_table" published="true" showintable="true"
+			type="element"
+			connection_in_repeat="false"
+			label="PLG_VIZ_TIMELINE_CLASS_LABEL"
+			description="PLG_VIZ_TIMELINE_CLASS_DESC" />
+		
+	</params>
+	
+	<params group="rest">
+	</params>
+</install>

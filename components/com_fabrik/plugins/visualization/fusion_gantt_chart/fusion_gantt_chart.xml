@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="visualization" method="upgrade">
+	<name>fusion_gantt_chart</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Feb 2010</creationDate>
+	<copyright>(C) 2010 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Show fusion gantt chart</description>
+	<files>
+		<filename fabrikplugin="fusion_gantt_chart">index.html</filename>
+		<folder>controllers</folder>
+		<folder>FCCharts</folder>
+		<folder>FCclass</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+	</files>
+	<languages folder="administrator/language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.visualization.fusion_gantt_chart.ini</language>
+	</languages>
+	
+	<params group="connection" addpath="/administrator/components/com_fabrik/elements" description="CONNECTIONONLYFABRIKTABLES">
+		<param name="fusion_gantt_chart_connection" type="connections" label="Connection" />
+	</params>
+	
+	<params addpath="/administrator/components/com_fabrik/elements">
+		<param name="fusion_gantt_chart_table" type="fabriktables" connection_in_repeat="false" repeat="0" observe="fusion_gantt_chart_connection" label="Table"/>
+	</params>
+	
+	<params group="process">
+			<param name="fusion_gantt_chart_process" type="element" connection_in_repeat="false" include_calculations="1" connection="fusion_gantt_chart_connection" table="fusion_gantt_chart_table" label="PROCESS" description="PROCESSDESC" />
+			<param name="fusion_gantt_chart_process_label" type="text" size="20" label="PROCESS_LABEL" description="PROCESS_LABELDESC" />
+	</params>
+
+	<params group="tasks">
+		<param name="fusion_gantt_chart_startdate" type="element" connection_in_repeat="false" include_calculations="1" connection="fusion_gantt_chart_connection" table="fusion_gantt_chart_table" label="STARTDATE_ELEMENT" description="STARTDATE_ELEMENTDESC" />
+		<param name="fusion_gantt_chart_enddate" type="element" connection_in_repeat="false" include_calculations="1" connection="fusion_gantt_chart_connection" table="fusion_gantt_chart_table" label="ENDDATE_ELEMENT" description="ENDDATE_ELEMENTDESC" />
+		<param name="fusion_gantt_chart_label" type="element" connection_in_repeat="false" include_calculations="1" connection="fusion_gantt_chart_connection" table="fusion_gantt_chart_table" label="LABEL_ELEMENT" description="LABEL_ELEMENTDESC" />
+		<param name="fusion_gantt_chart_hover" type="element" connection_in_repeat="false" include_calculations="1" connection="fusion_gantt_chart_connection" table="fusion_gantt_chart_table" label="HOVER_ELEMENT" description="HOVER_ELEMENTDESC" />
+		<param name="fusion_gantt_chart_milestone" type="element" connection_in_repeat="false" include_calculations="1" connection="fusion_gantt_chart_connection" table="fusion_gantt_chart_table" label="MILESTONE_ELEMENT" description="MILESTONE_ELEMENTDESC" />
+		<param name="fusion_gantt_chart_connector" type="element" connection_in_repeat="false" include_calculations="1" connection="fusion_gantt_chart_connection" table="fusion_gantt_chart_table" label="CONNECTION_ELEMENT" description="CONNECTION_ELEMENTDESC" />
+	</params>
+	
+	<params group="graph_attributes">
+		<param name="fusion_gantt_chart_width" type="text" size="5" default="300" label="Width" description="enter an integer for the width (px)" />
+		<param name="fusion_gantt_chart_height" type="text" size="5" default="200" label="Height" description="enter an integer for the height (px)" />
+		<param name="fusion_gantt_chart_layout" label="template" type="folderlist" directory="/components/com_fabrik/plugins/visualization/fusion_gantt_chart/views/fusion_gantt_chart/tmpl/" />
+		<param name="fusion_gannt_chart_monthdisplay" type="list" default="int" label="MONTH_DISPLAY_TYPE" description="MONTH_DISPLAY_TYPEDESC">
+			<option value="int">Number</option>
+			<option value="str">Short string</option>
+		</param>
+	</params>
+	
+</install>

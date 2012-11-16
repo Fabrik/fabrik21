@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form" method="upgrade">
+	<name>Notification</name>
+	<author>Rob Clayburn</author>
+	<creationDate>May 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Adds notification checkbox to form, allows users to sign up for notifications</description>
+	
+	<install>
+		<sql>
+			<file charset="utf8" driver="mysql">installation/queries.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file charset="utf8" driver="mysql">installation/uninstall.sql</file>
+		</sql>
+	</uninstall>
+	
+	<languages folder="language" >
+		<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.form.fabriknotification.ini</language>
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.fabriknotification.ini</language>
+		<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.form.fabriknotification.ini</language>
+		<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.form.fabriknotification.ini</language>
+	</languages>
+	
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.fabriknotification.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.form.fabriknotification.ini</language>
+		</languages>
+	</administration>
+		
+	<files>
+		<filename fabrikplugin="fabriknotification">fabriknotification.php</filename>
+		<filename>index.html</filename>
+		<filename>javascript.js</filename>
+	</files>
+	<params repeat="1" repeatcontrols="0"  addpath="/administrator/components/com_fabrik/elements">
+		<param name="notification_ajax"
+			type="radio"
+			default="0"
+			label="PLG_CRON_NOTIFICATION_AJAX_SUBMIT_LABEL"
+			description="PLG_CRON_NOTIFICATION_AJAX_SUBMIT_DESC">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+		</param>
+	</params>
+	
+</install>

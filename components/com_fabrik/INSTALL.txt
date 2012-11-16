@@ -1,0 +1,42 @@
+//*******************************************************************************//
+!!!!! Fabrik 2.0.3 is for Joomla 1.5 ONLY, it will NOT install on Joomla 1.6 !!!!!!
+//*******************************************************************************//
+
+//*******************************************************************************//
+  Installation instructions
+//*******************************************************************************//
+
+   1. In Joomla click on Extensions->Install/Uninstall
+   2. Click on 'Browse' under Upload Package File and select the component zip file (com_fabrik_2.0.3.zip)
+   3. Click on Upload File & Install.
+   4. You should see 3 success messages.
+   5. You can now access the Fabrik Application from the Components menu.
+
+Important: Installation on some computers may take up to 1 minute. Don't browse away from 
+the page untill you see 3 comments about installation of different parts of 
+the package and a message about successful installation.
+
+//*******************************************************************************//
+If you get an error message when trying to install via uploading the zip follow 
+these instructions to install from the directory:
+//*******************************************************************************//
+
+Unzip the com_fabrik zip on your computer.
+
+   1. Upload all files it to a folder on your server e.g. /usr/home/public_html/tmp/com_fabrik
+   2. Go to your site's administration page
+   3. Select Extensions->install/uninstall
+   4. In the 'Install from Directory' section, in the 'Install directory' field enter the 
+      path to which you uploaded your files e.g. /usr/home/public_html/tmp/com_fabrik
+   5. Press the 'install' button next to the 'Install directory' field. 
+
+//*******************************************************************************//
+Upgrading
+//*******************************************************************************//
+
+To upgrade from a previous version of Fabrik 2.0.x:
+
+    * Make a back up of your site's files and database tables
+    * Look at the code announcements forum to see if anything has changed which might effect how your fabrik pages work
+    * Do NOT unistall your previous version of Fabrik
+    * Follow the same procedure as if you were installing Fabrik for the first time - (see above for instructions) 

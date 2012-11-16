@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>Facebook activity feed</name>
+	<author>Rob Clayburn</author>
+	<creationDate>April 2010</creationDate>
+	<copyright>(C) 2005-2010 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders Facebook Activity feed widget</description>
+	<files>
+		<filename fabrikplugin="fbactivityfeed">fbactivityfeed.php</filename>
+		<filename>index.html</filename>
+		<filename>javascript.js</filename>
+	</files>
+
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fbactivityfeed.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.element.fbactivityfeed.ini</language>
+		</languages>
+	</administration>
+	
+	<params group="extra">
+		<param name="opengraph_applicationid" type="text" label="APPLICATIONID" description="APPLICATIONIDDESC" />
+		<param name="fbactivityfeed_domain" type="text" label="FBACTIVITYDOMAIN" description="FBACTIVITYDOMAINDESC" />
+		<param name="fbactivityfeed_width" type="text" size="3" default="300" label="WIDTH" />
+		<param name="fbactivityfeed_height" type="text" size="3" default="300" label="HEIGHT" />
+		<param name="fbactivityfeed header" type="radio" default="true" label="FBACTIVITYHEADER">
+			<option value="0">NO</option>
+			<option value="1">YES</option>
+		</param>
+		<param name="fbactivityfeed_border" type="text" size="7" label="FBACTIVITYBORDER" />
+		<param name="fbactivityfeed_font" type="list" default="arial" label="FBACTIVITYFONT">
+			<option value="arial">arial</option>
+			<option value="lucida grande">lucida grande</option>
+			<option value="segoe ui">segoe ui</option>
+			<option value="tahoma">tahoma</option>
+			<option value="trebuchet ms">trebuchet ms</option>
+			<option value="verdana">verdana</option>
+		</param>
+		<param name="fbactivityfeed_colorscheme" default="light" type="list" label="FBACTIVITYCOLORSCHEME">
+			<option value="light">light</option>
+			<option value="dark">dark</option>
+		</param>
+		
+		<param name="fbactivity_locale"
+			default="en_US"
+			size="5"
+			type="text"
+			label="PLG_ELEMENT_FBACTIVITY_LOCALE_LABEL"
+			description="PLG_ELEMENT_FBACTIVITY_LOCALE_DESC" />
+	</params>		
+</install>

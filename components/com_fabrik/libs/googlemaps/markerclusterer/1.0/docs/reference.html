@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>MarkerClusterer v1.0 Reference</title>
+    <link rel="stylesheet" type="text/css" href="http://code.google.com/css/codesite.css"></link>
+    <link rel="stylesheet" type="text/css" href="../../util/docs/template/local_extensions.css"></link>
+  </head>
+  <body>
+    <h1>MarkerClusterer</h1>
+    <p>
+This javascript library creates and manages per-zoom-level 
+clusters for large amounts of markers (hundreds or thousands).
+This library was inspired by the <a href="http://www.maptimize.com">
+Maptimize</a> hosted clustering solution.
+<br /><br/>
+<b>How it works</b>:<br/>
+The <code>MarkerClusterer</code> will group markers into clusters according to
+their distance from a cluster's center. When a marker is added,
+the marker cluster will find a position in all the clusters, and 
+if it fails to find one, it will create a new cluster with the marker.
+The number of markers in a cluster will be displayed
+on the cluster marker. When the map viewport changes,
+<code>MarkerClusterer</code> will destroy the clusters in the viewport 
+and regroup them into new clusters.</p>
+    <p>For a description and examples of how to use this library, check out the <a href="examples.html">how-to</a>.</p>
+    
+      <h2><a name="MarkerClusterer"></a>class MarkerClusterer</h2>
+      <p></p>
+      
+        <h3>Constructor</h3>
+        <table summary="class MarkerClusterer - Constructor" width="90%">
+          
+          <tbody>
+            <tr>
+              <th>Constructor</th>
+              
+              <th>Description</th>
+            </tr>
+            
+              <tr class="odd">
+                <td><code>MarkerClusterer(<span class="type">map:GMap2</span>, <span class="type">opt_markers:Array of GMarker</span>, <span class="type">opt_opts:MarkerClustererOptions</span>)</code></td>
+                
+                <td>Creates a new MarkerClusterer to cluster markers on the map.</td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3>Methods</h3>
+        <table summary="class MarkerClusterer - Methods" width="90%">
+          
+          <tbody>
+            <tr>
+              <th>Methods</th>
+              
+                
+                  <th>Return&nbsp;Value</th>
+                
+              
+              <th>Description</th>
+            </tr>
+            
+              <tr class="odd">
+                <td><code>addMarkers(<span class="type">markers:Array of GMarker</span>)</code></td>
+                
+                  
+                    <td><code>None</code></td>
+                  
+                
+                <td>Add a set of markers.</td>
+              </tr>
+            
+              <tr class="even">
+                <td><code>clearMarkers()</code></td>
+                
+                  
+                    <td><code>None</code></td>
+                  
+                
+                <td>Remove all markers from MarkerClusterer.</td>
+              </tr>
+            
+              <tr class="odd">
+                <td><code>getTotalClusters()</code></td>
+                
+                  
+                    <td><code>int</code></td>
+                  
+                
+                <td>Get total number of clusters.</td>
+              </tr>
+            
+              <tr class="even">
+                <td><code>getTotalMarkers()</code></td>
+                
+                  
+                    <td><code>Number</code></td>
+                  
+                
+                <td>Get total number of markers.</td>
+              </tr>
+            
+              <tr class="odd">
+                <td><code>removeMarker(<span class="type">marker:GMarker</span>)</code></td>
+                
+                  
+                    <td><code>None</code></td>
+                  
+                
+                <td>Remove a marker.</td>
+              </tr>
+            
+              <tr class="even">
+                <td><code>resetViewport()</code></td>
+                
+                  
+                    <td><code>None</code></td>
+                  
+                
+                <td>Collect all markers of clusters in viewport and regroup them.</td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+    
+      <h2><a name="MarkerClustererOptions"></a>class MarkerClustererOptions</h2>
+      <p>This class represents optional arguments to the <code><a href="reference.html#MarkerClusterer">MarkerClusterer</a></code>
+constructor.  There is no constructor for this class.  Instead, this class is instantiated as a javascript object literal.</p>
+      
+        <h3>Properties</h3>
+        <table summary="class MarkerClustererOptions - Properties" width="90%">
+          
+          <tbody>
+            <tr>
+              <th>Properties</th>
+              
+                
+                  <th>Type</th>
+                
+              
+              <th>Description</th>
+            </tr>
+            
+              <tr class="odd">
+                <td><code>gridSize</code></td>
+                
+                  
+                    <td><code>Number</code></td>
+                  
+                
+                <td>The grid size of a cluster in pixel. Each
+cluster will be a square. If you want the algorithm to run faster, you can set
+this value larger.  The default value is <code>60</code>.</td>
+              </tr>
+            
+              <tr class="even">
+                <td><code>maxZoom</code></td>
+                
+                  
+                    <td><code>Number</code></td>
+                  
+                
+                <td>The max zoom level monitored by a
+marker cluster. If not given, the marker cluster assumes the maximum map
+zoom level. When maxZoom is reached or exceeded all markers will be shown
+without cluster.</td>
+              </tr>
+            
+              <tr class="odd">
+                <td><code>styles</code></td>
+                
+                  
+                    <td><code>Array of MarkerStyleOptions</code></td>
+                  
+                
+                <td>Custom styles for the cluster markers.
+The array should be ordered according to increasing cluster size,
+with the style for the smallest clusters first, and the style for the
+largest clusters last.</td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+    
+      <h2><a name="MarkerStyleOptions"></a>class MarkerStyleOptions</h2>
+      <p>An array of these is passed into the <code><a href="reference.html#MarkerClustererOptions">MarkerClustererOptions</a></code>
+styles option.  There is no constructor for this class.  Instead, this class is instantiated as a javascript object literal.</p>
+      
+        <h3>Properties</h3>
+        <table summary="class MarkerStyleOptions - Properties" width="90%">
+          
+          <tbody>
+            <tr>
+              <th>Properties</th>
+              
+                
+                  <th>Type</th>
+                
+              
+              <th>Description</th>
+            </tr>
+            
+              <tr class="odd">
+                <td><code>height</code></td>
+                
+                  
+                    <td><code>Number</code></td>
+                  
+                
+                <td>Image height.</td>
+              </tr>
+            
+              <tr class="even">
+                <td><code>height</code></td>
+                
+                  
+                    <td><code>Number</code></td>
+                  
+                
+                <td>Image width.</td>
+              </tr>
+            
+              <tr class="odd">
+                <td><code>opt_anchor</code></td>
+                
+                  
+                    <td><code>Array of Number</code></td>
+                  
+                
+                <td>Anchor for label text, like [24, 12]. 
+   If not set, the text will align center and middle.</td>
+              </tr>
+            
+              <tr class="even">
+                <td><code>opt_textColor</code></td>
+                
+                  
+                    <td><code>String</code></td>
+                  
+                
+                <td>Text color.  The default value is <code>"black"</code>.</td>
+              </tr>
+            
+              <tr class="odd">
+                <td><code>url</code></td>
+                
+                  
+                    <td><code>String</code></td>
+                  
+                
+                <td>Image url.</td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+    
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-964209-4";
+      urchinTracker();
+    </script> 
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>calculation</name>
+	<author>Hugh Messenger</author>
+	<creationDate>Nov 2008</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Performs calculations on result data, use {name} to access result data.  Rewrite of Rob's original.</description>
+	<files>
+		<filename fabrikplugin="fabrikcalc">fabrikcalc.php</filename>
+		<filename>javascript.js</filename>
+		<filename>index.html</filename>
+	</files>
+	
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.element.fabrikcalc.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikcalc.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.element.fabrikcalc.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.element.fabrikcalc.ini</language>
+		</languages>
+	</administration>
+	
+	<params addpath="/administrator/components/com_fabrik/elements">
+		<param name="hidden" type="hidden" default="" size="3" label="HIDDEN" />
+		<param name="width" type="width" label="Width"/>
+		<param name="eval" type="eval" default="0" label="Eval" />
+		<param name="default" type="default" default="" label="Default" />
+	</params>
+	<params group="extra">
+		<param name="calc_calculation" type="textarea" cols="60" rows="10" default="" label="CALCCALCULATION" description="CALCCALCULATION_DESC"/>
+		<param name="calc_format_string" type="text" default="" size="105" label="FORMATSTRING" description="FORMATSTRINGDESC" />
+		<param name="calc_on_save_only" type="radio" default="0" label="CALCONSAVEONLY" description="CALCONSAVEONLY_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		
+		<param name="calc_ajax" 
+			type="radio"
+			default="0"
+			label="PLG_ELEMENT_CALC_AJAX_LABEL"
+			description="PLG_ELEMENT_CALC_AJAX_DESC">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>	
+			
+			<param name="calc_ajax_observe"
+				type="textarea"
+				cols="60"
+				rows="6"
+				label="PLG_ELEMENT_CALC_AJAX_OBSERVE_LABEL"
+				description="PLG_ELEMENT_CALC_AJAX_OBSERVE_DESC" />
+	</params>
+</install>

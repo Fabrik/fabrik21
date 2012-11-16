@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>fabrikweather</name>
+	<author>Hugh Messenger</author>
+	<creationDate>Apr 2011</creationDate>
+	<copyright>(C) 2005-2011 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders Google Weather</description>
+	<files>
+		<filename fabrikplugin="fabrikweather">fabrikweather.php</filename>
+		<filename>index.html</filename>
+		<folder>assets</folder>
+	</files>
+	
+	<languages folder="administrator/language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikweather.ini</language>
+	</languages>
+	
+	<params group="extra" addpath="/administrator/components/com_fabrik/elements">
+		<param name="fabrikweather_watch" type="tablefields" valueformat="tableelement" label="PLG_ELEMENT_FABRIKWEATHER_WATCH_LABEL" description="PLG_ELEMENT_FABRIKWEATHER_WATCH_DESC" />
+
+		<param name="fabrikweather_watch_type" type="list" default="1" label="PLG_ELEMENT_FABRIKWEATHER_WATCH_TYPE_LABEL" description="PLG_ELEMENT_FABRIKWEATHER_WATCH_TYPE_DESC">
+			<option value="map">Map element</option>
+			<option value="address">Address element</option>
+			<option value="use_city">Use Location</option>
+		</param>
+		<param name="fabrikweather_class_prefix" type="text" size="30" default="" label="PLG_ELEMENT_FABRIKWEATHER_CLASS_PREFIX_LABEL" description="PLG_ELEMENT_FABRIKWEATHER_CLASS_PREFIX_DESC"/>
+		<param name="fabrikweather_city" type="text" size="30" default="" label="PLG_ELEMENT_FABRIKWEATHER_CITY_LABEL" description="PLG_ELEMENT_FABRIKWEATHER_CITY_DESC"/>
+		<param name="fabrikweather_language" type="text" size="3" default="en" label="PLG_ELEMENT_FABRIKWEATHER_LANGUAGE_LABEL" description="PLG_ELEMENT_FABRIKWEATHER_LANGUAGE_DESC"/>
+		<param name="fabrikweather_temp_scale" type="radio" default="f" label="PLG_ELEMENT_FABRIKWEATHER_TEMP_SCALE_LABEL" description="PLG_ELEMENT_FABRIKWEATHER_TEMP_SCALE_DESC">
+			<option value="f">Fahrenheit</option>
+			<option value="c">Centigrade</option>
+		</param>
+		<param name="fabrikweather_askgeo_account" type="text" size="6" default="" label="PLG_ELEMENT_FABRIKWEATHER_ASKGEO_ACCOUNT_LABEL" description="PLG_ELEMENT_FABRIKWEATHER_ASKGEO_ACCOUNT_DESC"/>
+		<param name="fabrikweather_askgeo_key" type="text" size="20" default="" label="PLG_ELEMENT_FABRIKWEATHER_ASKGEO_KEY_LABEL" description="PLG_ELEMENT_FABRIKWEATHER_ASKGEO_KEY_DESC"/>
+
+	</params>
+
+</install>

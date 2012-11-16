@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>file uploader</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Jan 2007</creationDate>
+	<copyright>(C) 2005-2007 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders A File Upload Field</description>
+	<files>
+		<filename fabrikplugin="fabrikfileupload">fabrikfileupload.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<languages folder="administrator/language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikfileupload.ini</language>
+	</languages>
+	<params addpath="/administrator/components/com_fabrik/elements">
+		<param name="ul_max_file_size" type="uploadsize" size="30" default="" label="MAX_FILESIZE" description="MAX_FILESIZEDESC"/>
+		<param name="ul_file_types" type="text" size="30" default="" label="FILETYPES" description="FILETYPES_LONG"/>
+		<param name="ul_directory" type="text" size="50" default="" label="UPLOAD_DIR" description="UPLOAD_DIR_LONG"/>
+		<param name="ul_email_file" type="radio" default="0" label="EMAIL_UPLOADED_FILE">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="random_filename" type="radio" default="0" label="RANDOM_FILENAME" description="RANDOM_FILENAME_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="length_random_filename" type="text" size="10" default="" label="LENGTH_RANDOM_FILENAME"/>
+		<param name="ul_file_increment" type="list" default="0" label="INCREMENTAL_UPLOAD" description="INCREMENTAL_UPLOAD_DESC">
+			<option value="0">LEAVE_ORIGINAL</option>
+			<option value="1">INCREMENT_NEW_FILENAME</option>
+			<option value="2">DELETE_EXISTING_IMAGE</option>
+		</param>
+		<param name="upload_allow_folderselect" type="radio" default="0" label="UPLOADSELECTFOLDER" description="UPLOADSELECTFOLDERDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		 
+		<param name="upload_delete_image" type="radio" default="1" label="UPLOADDELETEIMAGE" description="UPLOADDELETEIMAGEDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+	<params group="display">
+		<param name="default_image" type="text" default="" label="DEFAULTIMAGE" description="DEFAULTIMAGEDESC" />
+		<param name="make_link" type="radio" default="0" label="MAKELINKINTABLE" description="MAKELINKINTABLEDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>	
+		</param>
+		<param name="fu_show_image_in_table" type="radio" default="0" label="SHOWIMAGEINTABLE" description="SHOWIMAGEINTABLEDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>	
+		</param>
+		<param name="fu_show_image" type="list" default="0" label="SHOWIMAGEINFORM" description="SHOWIMAGEINFORMDESC">
+			<option value="0">No</option>
+			<option value="1">Thumbnail (if thumbnails not set to be created will show 'full sized')</option>
+			<option value="2">Full sized</option>	
+		</param>
+		<param name="fu_show_image_in_email" type="radio" default="0" label="SHOWIMAGEINEMAIL" description="SHOWIMAGEINEMAILDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>	
+		</param>
+		<param name="image_library" type="imagelibs" default="" label="Image library" />
+		<param name="fu_main_max_width" type="text" size="3" default="" label="MAXWIDTH" description="MAXWIDTHDESC" />
+		<param name="fu_main_max_height" type="text" size="3" default="" label="MAXHEIGHT" description="MAXHEIGHTDESC" />
+		<param name="fu_title_element" type="tablefields" valueformat="tableelement" label="TITLEELEMENT" description="TITLEELEMENTDESC" />
+	</params>
+		
+	<params group="downloads">
+		<param name="fu_use_download_script" type="list" default="0" label="FU_USE_DOWNLOAD_SCRIPT" description="FU_USE_DOWNLOAD_SCRIPT_DESC">
+				<option value="0">No</option>
+				<option value="1">Table View Only</option>
+				<option value="2">Detail View Only</option>
+				<option value="3">Both</option>
+			</param>
+			<param name="fu_download_acl"
+				type="tablefields"
+				filter="fabrikaccess"
+				label="PLG_ELEMENT_FILEUPLOAD_DOWNLOAD_ACL_LABEL"
+				description="PLG_ELEMENT_FILEUPLOAD_DOWNLOAD_ACL_DESC"
+				/>
+				
+			<param name="fu_download_noaccess_image"
+				type="imagelist" 
+				hide_none="1" directory="/images/stories" 
+				label="PLG_ELEMENT_NO_ACCESS_IMG_LABEL" 
+				description="PLG_ELEMENT_NO_ACCESS_IMG_DESC" />
+				
+			<param name="fu_download_noaccess_url"
+				type="text" 
+				label="PLG_ELEMENT_NO_ACCESS_LINK_LABEL" 
+				description="PLG_ELEMENT_NO_ACCESS_LINK_DESC" />
+				
+			<param name="fu_download_access_image"
+				type="imagelist" 
+				hide_none="1" directory="/images/stories" 
+				label="PLG_ELEMENT_ACCESS_IMG_LABEL" 
+				description="PLG_ELEMENT_ACCESS_IMG_DESC" />
+			
+			
+			<param name="fu_download_email" type="text" size="20" default="" label="FU_DOWNLOAD_EMAIL" description="FU_DOWNLOAD_EMAIL_DESC" />
+			<param name="fu_download_hit_counter" type="tablefields" valueformat="tableelement" label="FU_DOWNLOAD_HIT_COUNTER" description="FU_DOWNLOAD_HIT_COUNTER_DESC" />
+			<param name="fu_download_log" type="radio" default="0" label="FU_DOWNLOAD_LOG" description="FU_DOWNLOAD_LOG_DESC">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+	</params>
+	
+	<params group="thumbnail" addpath="/administrator/components/com_fabrik/elements">
+		<param name="make_thumbnail" type="radio" default="0" label="MAKETHUMBNAIL" description="MAKETHUMBNAILDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="thumb_dir" type="text" size="50" default="" label="THUMBDIR" description="THUMBDIRDESC" />
+		<param name="thumb_prefix" type="text" size="10" default="" label="THUMBPREFIX" description="THUMBPREFIXDESC" />
+		<param name="thumb_max_width" type="text" size="3" default="" label="THUMBWIDTH" description="THUMBWIDTHDESC" />
+		<param name="thumb_max_height" type="text" size="3" default="" label="THUMBHEIGHT" description="THUMBHEIGHTDESC"/>
+		<param name="fu_make_pdf_thumb" type="radio" default="0" label="FU_MAKE_PDF_THUMB" description="FU_MAKE_PDF_THUMB_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+
+	<params group="crop" addpath="/administrator/components/com_fabrik/elemenents">
+		<param name="fileupload_crop" type="radio" default="0" label="CROP" description="CROPDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>	
+		</param>
+		<param name="fileupload_crop_dir" type="text" size="35" default="" label="CROPDIR" description="CROPDIRDESC" />
+		<param name="fileupload_crop_width" type="text" size="3" default="" label="CROPWIDTH" description="CROPWIDTHDESC" />
+		<param name="fileupload_crop_height" type="text" size="3" default="" label="CROPHEIGHT" description="CROPHEIGHTDESC"/>
+		<param name="fileupload_crop_bg" 
+			type="text"
+			size="8"
+			default="#FFFFFF"
+			label="PLG_ELEMENT_FILEUPLOAD_CROP_BG_LABEL"
+			description="PLG_ELEMENT_FILEUPLOAD_CROP_BG_DESC" /> 
+		
+	</params>
+	
+	<params group="storage">
+		<param name="fileupload_storage_type" type="list" default="filesystemstorage" label="FILESTORAGETYPE" description="FILESTORAGETYPEDESC">
+			<option value="filesystemstorage">File System</option>
+			<option value="amazons3storage">Amazon s3</option>	
+		</param>
+		<param name="fileupload_aws_accesskey" type="text" size="40" value="" label="AMAZONS3_ACCESSKEY" description="AMAZONS3_ACCESSKEYDESC" />
+		<param name="fileupload_aws_secretkey" type="text" size="40" value="" label="AMAZONS3_SECRETKEY" description="AMAZONS3_SECRETKEYDESC" />
+		<param name="fileupload_aws_location" type="list" default="" label="AMAZONS3_STORAGELOCATION" description="AMAZONS3_STORAGELOCATIONDESC">
+			<option value="">USA East</option>
+			<option value="us-west-1">USA West(Northern California)</option>
+			<option value="EU">Europe</option>
+			<option value="ap-southeast-1">APAC (Singapore)</option>
+		</param>
+		<param name="fileupload_aws_bucketname" type="text" size="40" value="" label="AMAZONS3_BUCKETNAME" description="AMAZONS3_BUCKETNAMEDESC" />
+		
+		<param name="fileupload_ssl"
+			type="radio"
+				default="0" 
+				label="PLG_ELEMENT_FILUPLOAD_SSL_LABEL"
+				description="PLG_ELEMENT_FILUPLOAD_SSL_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>	
+		</param>
+		
+		<param name="fileupload_amazon_acl"
+			type="list" default="2"
+			label="PLG_ELEMENT_FILEUPLOAD_ACL_LABEL"
+			description="PLG_ELEMENT_FILEUPLOAD_ACL_DESC">
+				<option value="1">Private</option>
+				<option value="2">Public read</option>
+				<option value="3">Public read write</option>
+		</param>
+		<param name="fileupload_skip_check"
+			type="radio"
+				default="0" 
+				label="PLG_ELEMENT_FILEUPLOAD_SKIP_CHECK_LABEL"
+				description="PLG_ELEMENT_FILEUPLOAD_SKIP_CHECK_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>	
+		</param>
+		<param name="fileupload_amazon_auth_url" type="text" default="" size="3" label="PLG_ELEMENT_FILEUPLOAD_AMAZON_AUTH_URL_LABEL" description="PLG_ELEMENT_FILEUPLOAD_AMAZON_AUTH_URL_DESC" />
+	</params>
+	<params group="export">
+		<param name="ul_export_encode_csv" type="list" default="0" label="CSV_EXPORT_FORMAT" description="CSV_EXPORT_FORMATDESC">
+			<option value="relative">Relative Path</option>
+			<option value="full">Full Path</option>
+			<option value="url">URL</option>
+			<option value="raw">Raw file stream (from JFile read())</option>
+			<option value="base64">Base64 encoded file stream</option>
+		</param>
+		<param name="ul_export_encode_json" type="list" default="0" label="JSON_EXPORT_FORMAT" description="JSON_EXPORT_FORMATDESC">
+			<option value="relative">Relative Path</option>
+			<option value="full">Full Path</option>
+			<option value="url">URL</option>
+			<option value="raw">Raw file stream (from JFile read())</option>
+			<option value="base64">Base64 encoded file stream</option>
+		</param>
+	</params>
+	<params group="ajaxupload">
+	
+		<param name="ajax_upload" 
+			type="radio" 
+			default="0" 
+			label="PLG_ELEMENT_FILEUPLOAD_AJAX_LABEL"
+			description="PLG_ELEMENT_FILEUPLOAD_AJAX_DESC">
+				<option value="0">No</option>
+				<option value="1">Yes</option>	
+		</param>
+		
+		<param name="ajax_runtime"
+			type="text"
+			default="html5"
+			label="PLG_ELEMENT_FILEUPLOAD_AJAX_RUNTIME_LABEL"
+			description="PLG_ELEMENT_FILEUPLOAD_AJAX_RUNTIME_DESC" />
+		
+		<param name="ajax_max"
+			type="text"
+			size="2"
+			default="4"
+			label="PLG_ELEMENT_FILEUPLOAD_AJAX_MAX_LABEL"
+			description="PLG_ELEMENT_FILEUPLOAD_AJAX_MAX_DESC" />
+			
+		<param name="ajax_dropbox_width"
+			type="text"
+			default="300"
+			label="PLG_ELEMENT_FILEUPLOAD_AJAX_DROPBOX_WIDTH_LABEL"
+			description="PLG_ELEMENT_FILEUPLOAD_AJAX_DROPBOX_WIDTH_DESC" />
+		
+		<param name="ajax_dropbox_height"
+			type="text"
+			default="200"
+			label="PLG_ELEMENT_FILEUPLOAD_AJAX_DROPBOX_HEIGHT_LABEL"
+			description="PLG_ELEMENT_FILEUPLOAD_AJAX_DROPBOX_HEIGHT_DESC" />
+			
+		<param name="ajax_chunk_size"
+			type="text"
+			default="0"
+			size="4"
+			label="PLG_ELEMENT_FILUPLOAD_AJAX_CHUNK_SIZE_LABEL"
+			description="PLG_ELEMENT_FILUPLOAD_AJAX_CHUNK_SIZE_DESC" />
+			
+	</params>
+</install>

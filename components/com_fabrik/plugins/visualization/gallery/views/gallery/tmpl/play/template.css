@@ -1,0 +1,103 @@
+.imagediv {
+	position: relative;
+}
+
+.fabrikTable td {
+	padding: 5px;
+}
+
+.fabrikTable {
+	margin-bottom: 10px;
+}
+
+.empty {
+	padding: 7px 7px 7px 0;
+}
+
+.imagecont {
+	float: left;
+	margin: 5px 10px;
+	text-align: center;
+}
+
+.imagediv img {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.imagerow .imagecont:first-child img:first-child {
+	border: 3px ridge #bc1879;
+	padding: 3px;
+}
+
+.fabrik_row___jos_fabble_activity___rating img {
+	border: 0px solid transparent !important;
+}
+
+.imagerow .imagecont:first-child .image_creator {
+	color: #bc1879;
+}
+
+.image_creator {
+	margin-top: 10px;
+	height: 20px;
+}
+
+.left .mask {
+	padding: 0 !important;
+	overflow: hidden;
+}
+
+.mask span {
+	text-align: center;
+}
+
+.right {
+	display: none;
+	float: left;
+	margin-left: 10px;
+}
+
+.nav {
+	text-align: center;
+	padding: 10px;
+}
+
+.toolbar {
+	clear: left;
+}
+
+.gallery-admin {
+	clear: left;
+	margin-top: 15px;
+	border: 1px dotted #ccc;
+	padding: 15px;
+}
+
+.gallery-admin a {
+	margin: 0 5px;
+}
+
+.filtertable {
+	border: 1px solid #999;
+	margin: 1em 0;
+}
+
+.filtertable  td {
+	width: 250px;
+	padding: 0.3em;
+}
+
+.filtertable  tbody td {
+	text-align: right;
+}
+
+.filtertable thead,.filtertable tfoot {
+	background-color: #DFDFDF;
+}
+
+.filtertable thead th {
+	text-align: left;
+	padding: 0.3em;
+}

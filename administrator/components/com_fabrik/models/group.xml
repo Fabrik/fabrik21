@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<name>Group Edit Form</name>
+	<params group="pagination">
+		<param name="split_page" type="radio" default="0" label="SPLITPAGE" description="SPLITPAGEDESC">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+	</params>
+	<params addpath="/administrator/components/com_fabrik/elements">
+		<param name="group_columns" type="text" default="1" label="COLUMNS" description="COLUMNSDESC" />
+		
+		<param name="group_column_widths" 
+			type="text" default="44%,44%" 
+			label="COM_FABRIK_COLUMN_WIDTHS_LABEL" 
+			description="COM_FABRIK_COLUMN_WIDTHS_DESC" />
+			
+		<param name="repeat_group_button" type="radio" default="0" label="REPEATGROUPBUTTON" description="REPEATGROUPBUTTONDESC">
+			<option value="0">Hide</option>
+			<option value="1">Show</option>
+		</param>
+		
+		<param name="repeat_max"
+				type="text"
+				default=""
+				label="COM_FABRIK_REPEAT_GROUP_MAX_LABEL"
+				description="COM_FABRIK_REPEAT_GROUP_MAX_DESC"
+				size="2" />
+				
+		<param name="show_repeat_max" type="radio" default="0" label="COM_FABRIK_REPEAT_GROUP_SHOW_MAX_LABEL" description="COM_FABRIK_REPEAT_GROUP_SHOW_MAX_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+				
+		<param name="repeat_group_show_first" type="list" default="1" label="SHOWGROUP" description="SHOWGROUPDESC">
+			<option value="0">Hidden</option>
+			<option value="1">Visible</option>
+			<option value="-1">Not shown</option>
+			<option value="2">Details Only</option>
+		</param>
+		<param name="repeat_group_js_add" type="textarea" default="" rows="8" cols="60" label="CUSTOMJSADD" description="CUSTOMJSADDDESC" />
+		<param name="repeat_group_js_delete" type="textarea" default="" rows="8" cols="60" label="CUSTOMJSDEL" description="CUSTOMJSDELDESC" />
+		<param name="random" type="radio" default="0" label="RANDOMISEELEMENTS" description="RANDOMISEELEMENTSDESC">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>	
+	</params>
+</form>

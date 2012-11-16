@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>Duration</name>
+	<author>Hugh Messenger</author>
+	<creationDate>cwSpetemberApril 2011</creationDate>
+	<copyright>(C) 2005-201r10 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<authorUrl>www.facebook.com/hugh.messenger</authorUrl>
+	<version>2.1</version>
+	<description>Renders duration as hours and minutes menus</description>
+	<files>
+		<filename fabrikplugin="fabrikduration">fabrikduration.php</filename>
+		<filename>index.html</filename>
+		<filename>javascript.js</filename>
+	</files>
+	<languages folder="administrator/language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikduration.ini</language>
+	</languages>
+	<params group="extra">
+		<param name="duration_show_seconds" type="radio" default="0" label="PLG_ELEMENT_DURATION_SHOW_SECONDS_LABEL" description="PLG_ELEMENT_DURATION_SHOW_SECONDS_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="duration_display_format" type="list" default="short" label="PLG_ELEMENT_DURATION_DISPLAY_FORMAT_LABEL" description="PLG_ELEMENT_DURATION_DISPLAY_FORMAT_DESC">
+			<option value="short">PLG_ELEMENT_DURATION_DISPLAY_FORMAT_SHORT</option>
+			<option value="medium">PLG_ELEMENT_DURATION_DISPLAY_FORMAT_MEDIUM</option>
+			<option value="long">PLG_ELEMENT_DURATION_DISPLAY_FORMAT_LONG</option>
+		</param>
+		<param name="duration_start_date" type="tablefields" label="PLG_ELEMENT_DURATION_START_DATE_LABEL" description="PLG_ELEMENT_DURATION_START_DATE_DESC"/>
+		<param name="duration_end_date" type="tablefields" label="PLG_ELEMENT_DURATION_END_DATE_LABEL" description="PLG_ELEMENT_DURATION_END_DATE_DESC"/>
+	</params>
+
+</install>

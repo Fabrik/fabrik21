@@ -1,0 +1,79 @@
+.fabrikElement {
+    margin-left: 10px;
+}
+
+.fabrikSubElementContainer {
+    margin-left: 100px;
+}
+
+.fabrikLabel {
+    width: 100px;
+    clear: left;
+    float: left;
+}
+
+.fabrikActions {
+    padding-top: 15px;
+    clear: left;
+    padding-bottom: 15px;
+}
+
+.fabrikGroupRepeater {
+    float: left;
+    width: 19%;
+}
+
+/** used by password element */
+.fabrikSubLabel {
+    margin-left: -10px;
+    clear: left;
+    margin-top: 10px;
+    float: left;
+}
+
+.fabrikSubElement {
+    display: block;
+    margin-top: 10px;
+    margin-left: 100px;
+}
+
+/* tabs */
+dl.tabs {
+    float: left;
+    margin: 10px 0 -1px 0;
+    z-index: 50;
+}
+
+dl.tabs dt {
+    float: left;
+    padding: 4px 10px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    margin-left: 3px;
+    background: #f0f0f0;
+    color: #666;
+}
+
+dl.tabs dt.open {
+    background: #F9F9F9;
+    border-bottom: 1px solid #F9F9F9;
+    z-index: 100;
+    color: #000;
+}
+
+div.current {
+    clear: both;
+    border: 1px solid #ccc;
+    padding: 10px 10px;
+}
+
+div.current dd {
+    padding: 0;
+    margin: 0;
+}
+
+.fabrikForm dd {
+    border: 1px solid transparent !important;
+}
+

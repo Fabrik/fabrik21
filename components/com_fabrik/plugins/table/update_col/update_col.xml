@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="table" method="upgrade">
+	<name>Update Column</name>
+	<author>Rob Clayburn</author>
+	<creationDate>August 2008</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Updates all values in a column to a given value</description>
+	<files>
+		<filename fabrikplugin="update_col">update_col.php</filename>
+		<filename>javascript.js</filename>
+		<filename>index.html</filename>
+	</files>
+	
+	<administration>
+		<languages folder="administrator/language">
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.table.update_col.ini</language>
+		</languages>
+	</administration>
+	
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="updatecol_access" type="fullaccesslevel" default="100" label="ACCESS" />
+		
+		<param name="updatecol_button_location" type="list" default="bottom"
+			label="PLG_LIST_UPDATE_COL_BUTTON_LOCATION_LABEL"
+			description="PLG_LIST_UPDATE_COL_BUTTON_LOCATION_DESC">
+			<option value="bottom">Bottom</option>
+			<option value="perrow">Per row</option>
+			<option value="both">Both</option>			
+		</param>
+		
+		<param type="text" name="button_label" label="BUTTON_LABEL" size="30" />
+		<param type="tablefields" valueformat="tableelement" name="coltoupdate" label="COLUMN_TO_UPDATE" description="COLUMN_TO_UPDATE_DESC" />
+		<param type="text" name="update_value" label="UPDATETO" size="30" description="UPDATETO_DESC" />
+		
+		<param type="tablefields"
+			valueformat="tableelement" 
+			name="coltoupdate_2" 
+			label="PLG_LIST_UPDATE_COL_COLUMN_TO_UPDATE_2_LABEL" 
+			description="PLG_LIST_UPDATE_COL_COLUMN_TO_UPDATE_2_DESC" />
+			
+		<param type="text" name="update_value_2" label="UPDATETO_2" size="30" description="UPDATETO_2_DESC" />		
+		<param type="text" name="update_message" label="UPDATE_MESSAGE" default="COLUMN_UPDATED" size="30" description="UPDATE_MESSAGE_DESC" />
+		<param name="update_date_element" type="tablefields" valueformat="tableelement" label="UPDATE_DATE" description="UPDATE_DATE_DESC" />
+		<param name="update_user_element" type="tablefields" valueformat="tableelement" label="UPDATE_USER" description="UPDATE_USER_DESC" />
+		<param name="update_email_element" type="tablefields" label="UPDATE_EMAIL" description="UPDATE_EMAIL_DESC" />
+		<param name="update_email_subject" type="text" size="35" label="UPDATE_EMAIL_SUBJECT" description="UPDATE_EMAIL_SUBJECT_DESC" />
+		<param name="eval" type="eval" default="0" label="Eval" />
+		<param name="update_email_msg" type="textarea" rows="5" cols="30" label="UPDATE_EMAIL_MSG" description="UPDATE_EMAIL_MSG_DESC" />
+	</params>
+</install>

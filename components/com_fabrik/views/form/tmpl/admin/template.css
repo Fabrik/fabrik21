@@ -1,0 +1,23 @@
+.fabrikElement{
+	margin-left:112px;
+}
+
+.fabrikLabel{
+	width:100px;
+	clear:left;
+	float:left;
+}
+
+/** used by password element */
+.fabrikSubLabel {
+	margin-left: -10px;
+	clear: left;
+	margin-top: 10px;
+	float: left;
+}
+
+.fabrikSubElement {
+	display: block;
+	margin-top: 10px;
+	margin-left: 100px;
+}

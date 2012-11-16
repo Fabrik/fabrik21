@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><install version="1.5" type="fabrikplugin" group="element" method="upgrade">	<name>rating</name>	<author>Rob Clayburn</author>	<creationDate>Feb 2008</creationDate>	<copyright>(C) 2005-2006 fabrikar.com</copyright>	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>	<authorEmail>rob@pollen-8.co.uk</authorEmail>	<authorUrl>www.fabrikar.com</authorUrl>	<version>2.1</version>	<description>Renders 5 Star rating widget</description>	<install>
+		<sql>
+			<file charset="utf8" driver="mysql">installation/queries.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file charset="utf8" driver="mysql">installation/uninstall.sql</file>
+		</sql>
+	</uninstall>
+
+	<administration>
+		<languages folder="administrator/language" >			<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.element.fabrikrating.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikrating.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.element.fabrikrating.ini</language>
+		</languages>
+	</administration>
+	
+	<languages folder="language" >
+		<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.element.fabrikrating.ini</language>		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikrating.ini</language>		<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.element.fabrikrating.ini</language>		<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.element.fabrikrating.ini</language>		<language tag="nl-NL">nl-NL/nl-NL.com_fabrik.plg.element.fabrikrating.ini</language>
+	</languages>
+
+	<files>		<filename fabrikplugin="fabrikrating">fabrikrating.php</filename>		<filename>index.html</filename>		<filename>javascript.js</filename>		<filename>table-fabrikrating.js</filename>		<folder>images</folder>	</files>
+	<administration>		<languages folder="language" >			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikrating.ini</language>		</languages>	</administration>
+	<params addpath="/administrator/components/com_fabrik/elements">	<param type="radio" name="rating-mode" default="user-rating" label="RATING_MODE" description="RATING_MODE_DESC">			<option value="user-rating">User rating</option>			<option value="creator-rating">Creator rating</option>		</param>		<param type="radio" name="rating-nonefirst" default="1" label="NO_RATING_OPTION_FIRST" description="NO_RATING_OPTION_FIRSTDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param type="radio" name="rating-pngorgif" default=".png" label="IMAGE_FILE_TYPE" description="IMAGE_FILE_TYPEDESC">
+			<option value=".gif">GIF</option>
+			<option value=".png">PNG</option>
+		</param>
+		<param type="radio" name="rating-rate-in-form" default="1" label="RATE_IN_FORM" description="RATE_IN_FORM_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>		<param type="text"			name="rating_float"			size="2"			default="0"			label="PLG_ELEMENT_RATING_FLOAT_LABEL"			description="PLG_ELEMENT_RATING_FLOAT_DESCRIPTION"			/>	</params>		</install>

@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Advanced MarkerClusterer Example</title>
+    <style>
+      html, body, div {
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxQGj0PqsCtxKvarsoS-iqLdqZSKfxRdmoPmGl7Y9335WLC36wIGYa6o5Q&sensor=false" type="text/javascript"></script>
+    <script type="text/javascript">
+      document.write('<script type="text/javascript" src="../src/markerclusterer' + (document.location.search.indexOf('packed') > -1 ? '_packed' : '') + '.js"><' + '/script>');
+    </script>
+    <script src="data.json" type="text/javascript"></script>
+    <script type="text/javascript">
+      var styles = [[{
+        url: '../images/people35.png',
+        height: 35,
+        width: 35,
+        opt_anchor: [16, 0],
+        opt_textColor: '#FF00FF'
+      },
+      {
+        url: '../images/people45.png',
+        height: 45,
+        width: 45,
+        opt_anchor: [24, 0],
+        opt_textColor: '#FF0000'
+      },
+      {
+        url: '../images/people55.png',
+        height: 55,
+        width: 55,
+        opt_anchor: [32, 0]
+      }],
+      [{
+        url: '../images/conv30.png',
+        height: 27,
+        width: 30,
+        anchor: [3, 0],
+        textColor: '#FF00FF'
+      },
+      {
+        url: '../images/conv40.png', 
+        height: 36,
+        width: 40,
+        opt_anchor: [6, 0],
+        opt_textColor: '#FF0000'
+      },
+      {
+        url: '../images/conv50.png',
+        width: 50,
+        height: 45,
+        opt_anchor: [8, 0]
+      }],
+      [{
+        url: '../images/heart30.png',
+        height: 26,
+        width: 30,
+        opt_anchor: [4, 0],
+        opt_textColor: '#FF00FF'
+      },
+      {
+        url: '../images/heart40.png', 
+        height: 35,
+        width: 40,
+        opt_anchor: [8, 0],
+        opt_textColor: '#FF0000'
+      },
+      {
+        url: '../images/heart50.png',
+        width: 50,
+        height: 44,
+        opt_anchor: [12, 0]
+      }]];
+      var map = null;
+      var markers = [];
+      var markerClusterer = null;
+      function initialize() {
+        if(GBrowserIsCompatible()) {
+          map = new GMap2(document.getElementById('map'));
+          map.setCenter(new GLatLng(39.91, 116.38), 2);
+          map.addControl(new GLargeMapControl());
+          map.addControl(new GMapTypeControl());
+          var icon = new GIcon(G_DEFAULT_ICON);
+          icon.image = "http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=FFFFFF,008CFF,000000&ext=.png";
+          for (var i = 0; i < 1000; ++i) {
+            var latlng = new GLatLng(data.photos[i].latitude, data.photos[i].longitude);
+            var marker = new GMarker(latlng, {icon: icon});
+            markers.push(marker);
+          }
+          refreshMap();
+        }
+      }
+      function refreshMap() {
+        if (markerClusterer != null) {
+          markerClusterer.clearMarkers();
+        }
+        var zoom = parseInt(document.getElementById("zoom").value, 10);
+        var size = parseInt(document.getElementById("size").value, 10);
+        var style = document.getElementById("style").value;
+        zoom = zoom == -1 ? null : zoom;
+        size = size == -1 ? null : size;
+        style = style == "-1" ? null: parseInt(style, 10);
+        markerClusterer = new MarkerClusterer(map, markers, {maxZoom: zoom, gridSize: size, styles: styles[style]});
+      }
+    </script>
+  </head>
+  <body onload="initialize()" onunload="GUnload()">
+    <h4>An advanced MarkerClusterer example</h4>
+    <p><a href="?packed">Packed</a>&nbsp;|&nbsp;<a href="?">Unpacked</a> version of the script.</p>
+    <div>
+      <span>Max zoom level: 
+        <select id="zoom">
+          <option value="-1">Default</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+        </select>
+      </span>
+      <span style="margin-left:20px;">Cluster size:
+        <select id="size">
+          <option value="-1">Default</option>
+          <option value="40">40</option>
+          <option value="50">50</option>
+          <option value="70">70</option>
+          <option value="80">80</option>
+        </select>
+      </span>
+      <span style="margin-left:20px;">Cluster style: 
+        <select id="style">
+          <option value="-1">Default</option>
+          <option value="0">People</option>
+          <option value="1">Conversation</option>
+          <option value="2">Heart</option>
+       </select>
+       <input type="button" value="Refresh Map" style="margin-left:20px;" onclick="refreshMap()"></input>
+    </div>
+    <div style="width:800px;height:400px;margin-top:10px;" id="map"></div>
+  </body>
+</html>

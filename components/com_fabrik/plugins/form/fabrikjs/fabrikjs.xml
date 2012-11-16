@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form" method="upgrade">
+	<name>Run js code</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Dec 2008</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Runs js code</description>
+	<files>
+		<filename fabrikplugin="fabrikjs">fabrikjs.php</filename>
+		<folder>scripts</folder>
+		<filename>index.html</filename>
+	</files>
+	<params repeat="1" repeatcontrols="0">
+		<param name="jsfile" type="filelist" directory="components/com_fabrik/plugins/form/fabrikjs/scripts/" hide_default="1" label="JSFILE" description="JSFILEDESC" />
+	</params>
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.form.fabrikjs.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.fabrikjs.ini</language>
+			<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.form.fabrikjs.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.form.fabrikjs.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.form.fabrikjs.ini</language>
+		</languages>
+	</administration>
+</install>

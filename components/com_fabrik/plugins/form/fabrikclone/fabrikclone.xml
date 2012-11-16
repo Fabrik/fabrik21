@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form" method="upgrade">
+	<name>Clone</name>
+	<author>Hugh Messenger</author>
+	<creationDate>Mar 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Clones a submission X times</description>
+	<files>
+		<filename fabrikplugin="fabrikclone">fabrikclone.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="clone_times_field" type="tablefields" onlytablefields="0" default="times" label="CLONETIMESFIELD" description="CLONEMSGFEILDDESC"/>
+		<param name="clone_batchid_field" type="tablefields" onlytablefields="0" default="message" label="CLONEBATCHIDFIELD" description="CLONEBATCHIDFIELDDESC"/>
+	</params>
+
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.form.fabrikclone.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.fabrikclone.ini</language>
+			<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.form.fabrikclone.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.form.fabrikclone.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.form.fabrikclone.ini</language>
+		</languages>
+	</administration>
+</install>

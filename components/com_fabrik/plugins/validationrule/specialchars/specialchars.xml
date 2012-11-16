@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="validationrule" method="upgrade">
+	<name>Special chars</name>
+	<author>Rob Clayburn</author>
+	<creationDate>March 2008</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Tests for special chars</description>
+	<files>
+		<filename fabrikplugin="specialchars">specialchars.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<params  repeat="1" repeatcontrols="0">
+		<param type="text" name="specialchars-message" size="30" label="Error message" value="" description="VALIDATIONERRORDESC" />
+		<param type="textarea" cols="30" rows="5" name="specialchars-validation_condition" label="Condition" description="VALIDATIONCONDITIONDESC"/>
+		<param type="text" name="specalchars" default="" label="Forbidden characters" description="A comma sepearate list of forbidden characters"/>
+		<param name="specialchars-match" type="radio" default="1" label="MATCHORREPLACE" description="MATCHORREPLACEDESC">
+			<option value="0">Replace</option>
+			<option value="1">Match</option>
+		</param>
+		<param name="specialchars-replacestring" type="text" default="" label="REPLACESTRING" description="REPLACESTRINGDESC" />
+	</params>
+	
+
+</install>

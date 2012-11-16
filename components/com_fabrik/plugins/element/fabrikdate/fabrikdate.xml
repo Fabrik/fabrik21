@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>date</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Jan 2007</creationDate>
+	<copyright>(C) 2005-2007 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders Standard Date Picker</description>
+	<files>
+		<filename fabrikplugin="fabrikdate">fabrikdate.php</filename>
+		<filename>index.html</filename>
+		<filename>javascript.js</filename>
+	</files>
+	
+	 <languages folder="administrator/language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikdate.ini</language>
+	</languages>
+	
+	<params addpath="/administrator/components/com_fabrik/elements">
+		<param name="width" type="width" label="Width"/>
+		<param name="hidden" type="hidden" default="" label="HIDDEN" />
+		<param name="eval" type="eval" default="0" label="Eval" />
+		<param name="default" type="default" default="" label="Default" />
+	</params>
+	<params group="time">
+		<param name="date_showtime" type="radio" default="0" label="DATESHOWTIME" description="DATESHOWTIMEDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="date_time_format" length="20" type="text" default="%H:%M" label="TIME_FORMAT" description="TIMEFORMATDESC" />
+	</params>
+		
+	<params group="extra">
+		<param name="date_store_as_local" type="radio" default="0" label="DATESTOREAS" description="DATESTOREASDESC">
+			<option value="0">UTC</option>
+			<option value="1">Local Time</option>
+		</param>
+		<param name="date_table_format" length="20" type="text" default="%Y-%m-%d" label="TABLE_DATE_FORMAT" description="DATEFORMATDESC" />
+		<param name="date_form_format" length="20" type="text" default="%Y-%m-%d" label="FORM_DATE_FORMAT" description="DATEFORMATDESC" />
+		<param name="date_defaulttotoday" type="radio" default="0" label="DATEDEFAULTTODAY" description="DATEDEFAULTTODAYDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="date_alwaystoday" type="radio" default="0" label="DATEALWAYSTODAY" description="DATEALWAYSTODAYDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="date_firstday" size="2" type="text" default="0" label="FIRST_WEEK_DAY" description="TIMEFIRSTDAYDESC" />
+		<param name="date_allow_typing_in_field" type="radio" default="1" label="ALLOWTYPINGINFIELD" description="ALLOWTYPINGINFIELDDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="date_csv_offset_tz" type="list" default="0" label="DATE_CSV_OFFSET_TZ" description="DATE_CSV_OFFSET_TZ_DESC">
+			<option value="0">DATE_CSV_FORMAT_NORMAL</option>
+			<option value="1">DATE_CSV_FORMAT_MYSQL_GMT</option>
+			<option value="2">DATE_CSV_FORMAT_MYSQL_LOCAL</option>
+		</param>
+	</params>
+</install>

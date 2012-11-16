@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form" method="upgrade">
+	<name>Comment</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Oct 2008</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Allows users to add comments to detailed views</description>
+	<install>
+		<sql>
+			<file charset="utf8" driver="mysql">installation/queries.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file charset="utf8" driver="mysql">installation/uninstall.sql</file>
+		</sql>
+	</uninstall>
+
+	<files>
+		<filename fabrikplugin="comment">comment.php</filename>
+		<filename>index.html</filename>
+		<filename>comments.js</filename>
+		<filename>comments.css</filename>
+		<folder>images</folder>
+	</files>
+	<params repeat="1" repeatcontrols="0"  addpath="/administrator/components/com_fabrik/elements">
+		<param name="comment_method" type="list" default="0" label="COMMENTTYPE" description="">
+			<option value="disqus">DISQUS</option>
+			<option value="intensedebate">INTENSEDEBATE</option>
+			<option value="jskit">JSKIT</option>
+			<option value="jcomment">JCOMMENT</option>
+			<option value="internal">LOCALCOMMENTING</option>
+		</param>
+		<param name="comment-disqus-subdomain" label="DISQUSDOMAIN" type="text" size="30" description="DISQUSDOMAINDESC" />
+		<param name="comment-intesedebate-code" label="INTENSEDEBATECODE" type="text" size="30" description="INTENSEDEBATECODEDESC" />
+
+		<param type="spacer" default="LOCALCOMMENTINGSETTINGS" />
+		
+		<param name="comment_lock_element"
+			type="tablefields"
+			valueformat="tableelement"
+			label="PLG_FORM_COMMENT_LOCK_COMMENTS_LABEL"
+			description="PLG_FORM_COMMENT_LOCK_COMMENTS_DESC" />
+		
+		<param name="comment-internal-rating" type="radio" default="0" label="ALLOWRATING" description="ALLOWRATINGDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="comment-internal-anonymous" type="radio" default="0" label="ALLOWANANYMOUS" description="ALLOWANANYMOUSDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="comment-internal-notify" type="radio" default="0" label="NOTIFYONNEWCOMMENT" description="NOTIFYONNEWCOMMENTDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="comment-plugin-notify" type="radio" default="0" label="NOTIFY_PLUGIN_ON_NEW_COMMENT" description="NOTIFY_PLUGIN_ON_NEW_COMMENT_DESC">
+			<option value="0">No</option>
+			<option value="1">Choice</option>
+			<option value="2">Automatic</option>
+		</param>
+		<param name="comment-show-count-in-title" type="radio" default="1" label="COMMENT_SHOW_COUNT_IN_TITLE" description="COMMENT_SHOW_COUNT_IN_TITLE_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		
+		<param name="comment-digg"
+			type="radio" deafult="0"
+			label="PLG_FORM_COMMENT_DIGG_LABEL"
+			description="PLG_FORM_COMMENT_DIGG_DESC">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			
+	</params>
+	
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.comment.ini</language>
+		</languages>
+	</administration>
+	
+	<languages folder="language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.comment.ini</language>
+			<language tag="nl-NL">nl-NL/nl-NL.com_fabrik.plg.form.comment.ini</language>
+		</languages>
+</install>

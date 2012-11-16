@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form" method="upgrade">
+	<name>GCal Sync</name>
+	<author>Hugh Messenger</author>
+	<creationDate>Sep 2011</creationDate>
+	<copyright>(C) 2005-2011 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Updates GCal</description>
+	<files>
+		<filename fabrikplugin="fabrikgcal">fabrikgcal.php</filename>
+		<filename>README.txt</filename>
+		<filename>index.html</filename>
+	</files>
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		
+		<param name="gcal_url"
+	        type="text" size="100"
+	        label="PLG_FORM_GCAL_URL_LABEL"
+	        description="PLG_FORM_GCAL_URL_DESC" />
+
+		<param name="gcal_login" 
+			type="text" size="30"
+			label="PLG_FORM_GCAL_LOGIN_LABEL"
+			description="PLG_FORM_GCAL_LOGIN_DESC" />
+			
+		<param name="gcal_passwd" 
+			type="text" size="30"
+			label="PLG_FORM_GCAL_PASSWD_LABEL"
+			description="PLG_FORM_GCAL_PASSWD_DESC" />
+		
+		<param name="gcal_start_date_element" 
+			type="tablefields"
+			onlytablefields="0"
+			label="PLG_FORM_GCAL_START_DATE_LABEL"
+			description="PLG_FORM_GCAL_START_DATE_DESC"/>
+
+		<param name="gcal_end_date_element"
+	        type="tablefields"
+	        onlytablefields="0"
+	        label="PLG_FORM_GCAL_END_DATE_LABEL"
+	        description="PLG_FORM_GCAL_END_DATE_DESC"/>
+		
+		<param name="gcal_label_element"
+	        type="tablefields"
+	        onlytablefields="0"
+	        label="PLG_FORM_GCAL_LABEL_LABEL"
+	        description="PLG_FORM_GCAL_LABEL_DESC"/>
+		
+		<param name="gcal_desc_element"
+	        type="tablefields"
+	        onlytablefields="0"
+	        label="PLG_FORM_GCAL_DESC_LABEL"
+	        description="PLG_FORM_GCAL_DESC_DESC"/>
+		
+		<param name="gcal_id_element"
+	        type="tablefields"
+	        onlytablefields="0"
+	        label="PLG_FORM_GCAL_ID_LABEL"
+	        description="PLG_FORM_GCAL_ID_DESC"/>
+
+	</params>
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.fabrikgcal.ini</language>
+		</languages>
+	</administration>
+</install>

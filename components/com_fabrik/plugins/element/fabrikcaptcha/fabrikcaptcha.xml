@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>captcha</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Dec 2006</creationDate>
+	<copyright>(C) 2005-2006 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders Captcha security image check</description>
+	<files>
+		<filename fabrikplugin="fabrikcaptcha">fabrikcaptcha.php</filename>
+		<filename>index.html</filename>
+		<filename>javascript.js</filename>
+		<filename>monofont.ttf</filename>
+		<filename>image.php</filename>
+		<folder>recaptcha1.11</folder>
+	</files>
+	
+	<languages folder="language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikcaptcha.ini</language>
+		<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.element.fabrikcaptcha.ini</language>
+		<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.element.fabrikcaptcha.ini</language>
+		<language tag="nl-NL">nl-NL/nl-NL.com_fabrik.plg.element.fabrikcaptcha.ini</language>
+		<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.element.fabrikcaptcha.ini</language>
+	</languages>
+
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.element.fabrikcaptcha.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikcaptcha.ini</language>
+			<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.element.fabrikcaptcha.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.element.fabrikcaptcha.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.element.fabrikcaptcha.ini</language>
+			<language tag="nl-NL">nl-NL/nl-NL.com_fabrik.plg.element.fabrikcaptcha.ini</language>
+			<language tag="pt-BR">pt-BR/pt-BR.com_fabrik.plg.element.fabrikcaptcha.ini</language>
+		</languages>
+	</administration>
+	
+	<params>
+		<param name="captcha-showloggedin" type="radio" default="0" label="SHOWWHENLOGGEDIN" description="SHOWWHENLOGGEDINDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="captcha-method" type="radio" default="standard" label="CAPTCHAMETHOD" description="CAPTCHAMETHODDESC">
+			<option value="standard">Standard</option>
+			<option value="recaptcha">Recaptcha</option>
+		</param>
+	</params>
+
+	<params group="standard">
+		<param name="captcha-width" type="text" size="3" default="120" label="CAPTCHA_WIDTH" description=""/>
+		<param name="captcha-height" type="text" size="3" default="40" label="CAPTCHA_HEIGHT" description=""/>
+		<param name="captcha-chars" type="text" size="3" default="6" label="CAPTCHA__NUMBEROFCHARS" description=""/>
+	</params>
+	
+	<params group="recaptcha">
+		<param name="recaptcha_publickey" type="text" label="RECAPTCHAPUBLICKEY" description="RECAPTCHAPUBLICKEYDESC" size="30" />
+		<param name="recaptcha_privatekey" type="text" label="RECAPTCHAPRIVATEKEY" descripton="RECAPTCHAPRIVATEKEYDESC" size="30" default="" />
+                <param name="recaptcha_theme" type="radio" default="red" label="RECAPTCHA_THEME" description="RECAPTCHA_THEME_DESC">
+			<option value="red">Red</option>
+			<option value="white">White</option>
+                        <option value="blackglass">Black Glass</option>
+                        <option value="clean">Clean</option>
+		</param>
+                <param name="recaptcha_lang" type="text" default="en" label="RECAPTCHA_LANG" description="RECAPTCHA_LANG_DESC" size="2" />
+	</params>
+</install>

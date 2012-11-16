@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="cron" method="upgrade">
+	<name>ImportCSV</name>
+	<author>Mike Griggs</author>
+	<creationDate>May 2010</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>migsby@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Cron ImportCSV</description>
+	<files>
+		<filename fabrikplugin="cronimportcsv">cronimportcsv.php</filename>
+		<filename>index.html</filename>
+	</files>
+
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.cron.cronimportcsv.ini</language>
+		</languages>
+	</administration>
+	
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="cron_importcsv_directory" type="text" default="" size="30" label="CRON_IMPORTCSV_DIR" description="CRON_IMPORTCSV_DIR_DESC" />
+		<param name="cron_importcsv_usetablename" type="radio" default="0" label="CRON_IMPORTCSV_USETABLENAME" description="CRON_IMPORTCSV_USETABLENAME_DESC" >
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="cron_importcsv_maxfiles" type="text" default="1" size="2" label="CRON_IMPORTCSV_MAXFILES" description="CRON_IMPORTCSV_MAXFILES_DESC" />
+		<param name="cron_importcsv_dropdata" type="radio" default="0" label="CRON_IMPORTCSV_DROPDATA" description="CRON_IMPORTCSV_DROPDATA_DESC" >
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="cron_importcsv_overwrite" type="radio" default="0" label="CRON_IMPORTCSV_OVERWRITE" description="CRON_IMPORTCSV_OVERWRITE_DESC" >
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="cron_importcsv_deletefile" type="list" default="1" label="CRON_IMPORTCSV_FILEACTION" description="CRON_IMPORTCSV_FILEACTION_DESC" >
+			<option value="0">CRON_IMPORTCSV_DONOTHING</option>
+			<option value="1">CRON_IMPORTCSV_DELETEFILE</option>
+			<option value="2">CRON_IMPORTCSV_RENAMEFILE</option>
+			<option value="3">CRON_IMPORTCSV_MOVETODONE</option>
+		</param>
+	</params>
+</install>

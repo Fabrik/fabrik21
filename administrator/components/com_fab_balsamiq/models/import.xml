@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	
+	<params group="details" addpath="/administrator/components/com_fab_balsamiq/elements">
+	
+	<param name="tmpl_name" type="text"
+			label="COM_FAB_BALSAMIQ_TMPL_NAME_LABEL" 
+			description="COM_FAB_BALSAMIQ_TMPL_NAME_DESC" />
+			
+		<param name="table_upload" type="upload" 
+			label="COM_FAB_BALSAMIQ_TABLE_FILE_LABEL" 
+			description="COM_FAB_BALSAMIQ_TABLE_FILE_DESC" />
+			
+		<param name="table_upload_txt" type="textarea"
+			cols="40" rows="6"
+			label="COM_FAB_BALSAMIQ_TABLE_TEXT_LABEL"
+			description="COM_FAB_BALSAMIQ_TABLE_TEXT_DESC" />
+
+		<param name="form_upload" type="upload" 
+			label="COM_FAB_BALSAMIQ_FORM_FILE_LABEL" 
+			description="COM_FAB_BALSAMIQ_FORM_FILE_DESC" />
+			
+		<param name="form_upload_txt" type="textarea"
+			cols="40" rows="6"
+			label="COM_FAB_BALSAMIQ_FORM_TEXT_LABEL"
+			description="COM_FAB_BALSAMIQ_FORM_TEXT_DESC" />
+
+		<param name="details_upload" type="upload" 
+			label="COM_FAB_BALSAMIQ_DETAILS_FILE_LABEL" 
+			description="COM_FAB_BALSAMIQ_DETAILS_FILE_DESC" />
+			
+		<param name="form_details_txt" type="textarea"
+			cols="40" rows="6"
+			label="COM_FAB_BALSAMIQ_DETAILS_TEXT_LABEL"
+			description="COM_FAB_BALSAMIQ_DETAILS_TEXT_DESC" />
+						
+		<param name="drop_table" type="radio" default="0" 
+			label="COM_FAB_BALSAMIQ_DROP_TABLE_LABEL"
+			description="COM_FAB_BALSAMIQ_DROP_TABLE_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		
+		<param name="create_fabrik" type="radio" default="0" 
+			label="COM_FAB_BALSAMIQ_CREATE_FABRIK_LABEL"
+			description="COM_FAB_BALSAMIQ_CREATE_FABRIK_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+</form>

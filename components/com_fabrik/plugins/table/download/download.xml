@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="table" method="upgrade">
+	<name>Download</name>
+	<author>Hugh Messenger</author>
+	<creationDate>June 2009	</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Adds a button to the table, allowing ZIP downloads</description>
+	<files>
+		<filename fabrikplugin="download">download.php</filename>
+		<filename>javascript.js</filename>
+		<filename>index.html</filename>
+	</files>
+	
+	<administration>
+		<languages folder="administrator/language">
+			<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.table.download.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.table.download.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.table.download.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.table.download.ini</language>
+		</languages>
+	</administration>
+	
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">		
+		<param name="download_access" type="fullaccesslevel" default="100" label="ACCESS" />
+		<param name="download_button_label" type="text" label="BUTTONLABEL" size="30" />
+		<param name="download_table" type="text" size="35" default="" label="DOWNLOADTABLE" description="DOWNLOADTABLEDESC" />  
+		<param name="download_fk" type="text" size="35" default="" label="DOWNLOADFK" description="DOWNLOADFKDESC" />  
+		<param name="download_file" type="text" size="35" default="" label="DOWNLOADFILE" description="DOWNLOADFILEDESC" />  
+		<param name="download_width" type="text" size="4" default="" label="DOWNLOADWIDTH" description="DOWNLOADWIDTHDESC" />  
+		<param name="download_height" type="text" size="4" default="" label="DOWNLOADHEIGHT" description="DOWNLOADHEIGHTDESC" />  
+		<param name="download_image_library" type="imagelibs" default="" label="Image library" />
+	</params>
+</install>

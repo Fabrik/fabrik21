@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="validationrule" method="upgrade">
+	<name>Are unique</name>
+	<author>Lieven Gryp</author>
+	<creationDate>Feb 2009</creationDate>
+	<copyright>(C) 2005-2006 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>lieven.gryp@telenet.be</authorEmail>
+	<authorUrl>www.acpegasus.be</authorUrl>
+	<version>2.1</version>
+	<description>Determines if the data entered already exists in the database table. 
+	Uniqueness is defined based on 2 fields.</description>
+	<files>
+		<filename fabrikplugin="areuniquevalues">areuniquevalues.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<params repeat="1" repeatcontrols="0">
+		<param type="text" name="areuniquevalues-message" size="30" label="Error message" value="" description="VALIDATIONERRORDESC" />
+		<param type="text" name="areuniquevalues-otherfield" size="30" label="Other Field Name" value="" description="The (short) element name of the other field to validate as unique" />
+	</params>
+</install>

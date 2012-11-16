@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>cascading dropdown</name>
+	<author>Rob Clayburn</author>
+	<creationDate>July 2008</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders a drop down whose content is defined by the value entered in another of the form's elements</description>
+	<files>
+		<filename fabrikplugin="fabrikcascadingdropdown">fabrikcascadingdropdown.php</filename>
+		<filename>index.html</filename>
+		<filename>javascript.js</filename>
+		<filename>filter.js</filename>
+	</files>
+
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.element.fabrikcascadingdropdown.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikcascadingdropdown.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.element.fabrikcascadingdropdown.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.element.fabrikcascadingdropdown.ini</language>
+		</languages>
+	</administration>
+	
+	<params addpath="/administrator/components/com_fabrik/elements">
+		<param name="cascadingdropdown_connection" type="connections" label="Connection" />		
+		<param name="cascadingdropdown_table" observe="cascadingdropdown_connection" type="fabriktables" label="table" description="CASCADINGDDTABLEDESC"/>
+		<param name="cascadingdropdown_id" type="element" excludejoined="1" showintable="true" connection="cascadingdropdown_connection" table="cascadingdropdown_table" label="Id" description="CASCADINGDDIDDESC"/>
+		<param name="cascadingdropdown_label" type="element" excludejoined="1" connection="cascadingdropdown_connection" table="cascadingdropdown_table" label="Label" description="CASCADINGDDLABELDESC"/><param
+			name="cascadingdropdown_label_concat" type="text" default=""
+			size="105"
+			label="CASCADINGDDLABELCONCAT" description="CASCADINGDDLABELCONCATDESC">
+</param>
+	</params>
+	<params group="watch" addpath="/administrator/components/com_fabrik/elements">
+		<param name="cascadingdropdown_observe" type="tablefields" label="CASCADINGDDWATCH" description="CASCADINGDDWATCHDESC"/>
+		<param name="cascadingdropdown_key" type="element" connection="cascadingdropdown_connection" table="cascadingdropdown_table" label="CASCADINGDROPDOWNKEY" description="CASCADINGDROPDOWNKEYDESC"/>
+	</params>
+	<params group="advanced" addpath="/administrator/components/com_fabrik/elements">
+		<param name="cascadingdropdown_filter" type="text" size="126" default="" label="CASCADINGDDWHERE" description="CASCADINGDDWHEREDESC"/>
+		<param name="cascadingdropdown_where_when" type="radio" default="3" label="CASCADINGWHEREWHEN" description="CASCADINGWHEREWHENDESC">
+			<option value="1">New</option>
+			<option value="2">Edit</option>
+			<option value="3">Both</option>
+		</param>
+		<param name="hidden" type="hidden" size="3" label="HIDDEN" />
+		<param name="cascadingdropdown_showpleaseselect" type="radio" default="1" label="SHOWPLEASESELECT" description="SHOWPLEASESELECTDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="eval" type="eval" default="0" label="Eval" />
+		<param name="default" type="default" default="" label="Default" />
+	</params>
+	<params group="frontend">
+		<param name="cascadingdropdown_readonly_link" type="radio" default="0" label="FABRIKDATABASEJOIN_READONLY_LINK" description="FABRIKDATABASEJOIN_READONLY_LINK_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		
+		<param name="cdd_desc_column" 
+			type="element" 
+			label="DESCRIPTIONFIELD" 
+			table="cascadingdropdown_table" 
+			connection="cascadingdropdown_connection" 
+			description="DESCRIPTIONFIELDDESC"/>
+			
+	</params>
+		
+</install>

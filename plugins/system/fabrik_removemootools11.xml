@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="system" method="upgrade">
+	<name>System - Remove Mootools 1.1</name>
+	<author>Pollen 8</author>
+	<creationDate>April 2010</creationDate>
+	<copyright>Copyright (C) 2005 - 2010 Pollen 8 Design Ltd. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.pollen-8.co.uk</authorUrl>
+	<version>2.0rc5</version>
+	<description>Removes mootools 11</description>
+	<files>
+		<filename plugin="fabrik_removemootools11">fabrik_removemootools11.php</filename>
+	</files>
+	<params>
+	</params>
+</install>

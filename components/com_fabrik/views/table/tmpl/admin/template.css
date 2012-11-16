@@ -1,0 +1,52 @@
+.sequenceName{
+	color:#6022E5;
+}
+
+.oddrow0{
+	background-color:#FAFAFA;
+}
+
+.oddrow1{
+	background-color:#Efefef;
+}
+
+.button2-right.off .prev {
+	background:transparent url(../images/j_button2_prev_off.png) no-repeat scroll 0%;
+}
+
+ul.fabrikRepeatData {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+ul.fabrikRepeatData li {
+	background-image: none;
+	padding: 0;
+	margin: 0;
+}
+
+.fabrikTable tfoot{
+	background-color:#F3F3F3;
+	border-top:1px solid #999999;
+	text-align:center;
+}
+
+.list-footer{
+	margin:auto;
+	text-align:center;
+	width:44em;
+}
+
+.counter{
+	clear:left;
+	padding-top:1em;
+}
+
+.list-footer div.limit {
+	float: left;
+	height: 22px;
+	line-height: 22px;
+	margin: 0 10px;
+}
+

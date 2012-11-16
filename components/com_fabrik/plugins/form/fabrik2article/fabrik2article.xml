@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5"
+         type="fabrikplugin"
+         group="form"
+         method="upgrade">
+  <name>Fabrik2Article</name>
+  <author>Pieter-Jan de Vries</author>
+  <creationDate>March 2009</creationDate>
+  <copyright>(C) 2009 obix.nl</copyright>
+  <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+  <authorEmail>pieter@obix.nl</authorEmail>
+  <authorUrl>www.obix.nl</authorUrl>
+  <version>2.1</version>
+  <description>Renders Fabrik data as Joomla! articles.</description>
+  <files>
+    <filename fabrikplugin="fabrik2article">fabrik2article.php</filename>
+    <filename>index.html</filename>
+    <filename>controllers/article.php</filename>
+    <filename>models/article.php</filename>
+    <filename>tables/article.php</filename>
+    <filename>views/article/view.html.php</filename>
+    <filename>views/article/tmpl/default.php</filename>
+    <filename>views/article/tmpl/default_group.php</filename>
+  </files>
+  <languages folder="language">
+    <language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.fabrik2article.ini</language>
+  </languages>
+  <params repeat="1"
+          repeatcontrols="0"
+          addpath="/administrator/components/com_fabrik/elements">
+    <param name="fabrik2article_article_id_element"
+           type="tablefields"
+           valueformat="tableelement"
+           onlytablefields="0"
+           label="Article Id"
+           description="Element to store the article id of the associated Joomla! article." />
+    <param name="fabrik2article_article_title_element"
+           type="tablefields"
+           valueformat="tableelement"
+           onlytablefields="0"
+           label="Article Title"
+           description="Element to serve as the title for the associated Joomla! article." />
+    <param name="fabrik2article_article_publish_element"
+           type="tablefields"
+           valueformat="tableelement"
+           onlytablefields="0"
+           label="Publish"
+           description="Element specifying whether to publish the associated Joomla! article.  Should have a raw value of either 0 or 1, i.e. radio or dropdown" />
+	<param name="fabrik2article_category"
+           add_select="true"
+           default=""
+           type="sql2"
+           query="select #__categories.id as value, concat(#__sections.title, '/', #__categories.title) as fabrik2article_category from #__sections join #__categories on #__categories.section = #__sections.id order by #__sections.title, #__categories.title"
+           label="Section/Category"
+           description="Joomla! section and category to store article." />
+    <param name="fabrik2article_template"
+           type="folderlist"
+           directory="components/com_fabrik/views/article/tmpl/"
+           hide_default="1"
+           label="EMAILTEMPLATE"
+           description="EMAILTEMPLATEDESC" />
+    <param name="fabrik2article_delete_article"
+           type="radio"
+           default="0"
+           label="Delete Article"
+           description="Delete associated Joomla article(s) when row(s) deleted from Fabrik table">
+      <option value="0">No</option>
+      <option value="1">Yes</option>
+    </param>
+  </params>
+</install>

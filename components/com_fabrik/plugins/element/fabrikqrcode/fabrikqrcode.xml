@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>Google QR Code</name>
+	<author>Hugh Messenger</author>
+	<creationDate>August 2009</creationDate>
+	<copyright>(C) 2005-2011 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1.1</version>
+	<description>Renders google QR Code viz</description>
+	<files>
+		<filename fabrikplugin="fabrikqrcode">fabrikqrcode.php</filename>
+		<filename>index.html</filename>
+	</files>
+	
+	<administration>
+		<languages folder="administratot/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikqrcode.ini</language>
+		</languages>
+	</administration>
+	
+	<params>
+		<param name="qrcode_element" type="tablefields" label="QRCODE_ELEMENT" description="QRCODE_ELEMENT_DESC"/>
+		<param name="qrcode_encode" type="radio" default="UTF-8" label="QRCODE_ENCODE" description="">
+			<option value="UTF-8">UTF-8</option>
+			<option value="ISO-8859-1">ISO-8859-1</option>
+			<option value="Shift_JIS">Shift_JIS</option>
+		</param>
+		<param name="qrcode_width" type="text" size="3" default="150" label="QRCODE_WIDTH" description="QRCODE_WIDTH_DESC" />
+		<param name="qrcode_height" type="text" size="3" default="150" label="QRCODE_HEIGHT" description="QRCODE_HEIGHT_DESC" />
+	</params>
+</install>

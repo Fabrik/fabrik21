@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="editors-xtd" method="upgrade">
+	<name>Button - Fabrik</name>
+	<author>Rob Clayburn</author>
+	<creationDate>April 2010</creationDate>
+	<copyright>Copyright (C) 2005 - 2010 Pollen 8 Design Ltd.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1.2</version>
+	<description>Insert fabrik data into your articles</description>
+	<files>
+		<filename plugin="fabrik">fabrik.php</filename>
+	</files>
+	<params />
+</install>

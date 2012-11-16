@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="table" method="upgrade">
+	<name>Radius Search</name>
+	<author>Rob Clayburn</author>
+	<creationDate>April 2010</creationDate>
+	<copyright>(C) 2005-2010 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Performs radius search</description>
+	<files>
+		<filename fabrikplugin="radius_search">radius_search.php</filename>
+		<filename>javascript.js</filename>
+		<filename>radius_search.css</filename>
+		<filename>index.html</filename>
+		<folder>images</folder>
+	</files>
+	
+	<administration>
+		<languages folder="administrator/language">
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.table.radius_search.ini</language>
+			<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.table.radius_search.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.table.radius_search.ini</language>
+		</languages>
+	</administration>
+	
+	<languages folder="language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.table.radius_search.ini</language>
+		<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.table.radius_search.ini</language>
+		<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.table.radius_search.ini</language>
+	</languages>
+		
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="radius_mapelement" type="tablefields" filter="fabrikgooglemap" label="RADIUSMAPELEMENT" description="RADIUSMAPELEMENTDESC" />
+		<param name="radius_unit" default="km" type="list" label="RADIUSUNIT">
+			<option value="km">KMs</option>
+			<option value="miles">Miles</option>
+		</param>
+		<param name="radius_max" default="100" type="text" size="4" label="RADIUSMAX" />
+		<param name="radius_label" default="Radius search" type="text" label="RADIUSSEARCHLABEL" />
+		<param name="radius_placeelement" type="tablefields" label="RADIUSPLACEELEMENT" description="RADIUSPLACEELEMENTDESC" />
+	</params> 
+</install>

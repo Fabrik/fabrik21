@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>open street map</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Oct 2008</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders An OpenstreetMap with Single Marker</description>
+	<files>
+		<filename fabrikplugin="fabrikopenstreetmap">fabrikopenstreetmap.php</filename>
+		<filename>javascript.js</filename>
+		<filename>index.html</filename>
+	</files>
+	
+	<administration>
+	  <languages folder="administrator/language" >
+			<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.element.fabrikopenstreetmap.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikopenstreetmap.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.element.fabrikopenstreetmap.ini</language>
+		</languages>
+	</administration>
+	
+	<params>
+		<param name="fb_osm_defaultlayer" type="list" default="openlayers" label="FBOSMDEFAULTLAYER" description="FBOSMDEFAULTLAYERDESC">
+			<option value="openlayers">OpenLayers</option>
+			<option value="yahoo">Yahoo</option>
+			<option value="google">Google</option>
+			<option value="virtualearth">Virtual Earth</option>
+		</param>
+		<param name="fb_osm_gmlayers" type="radio" default="0" label="FBOSMSHOWGOOGLE" description="FBOSMSHOWGOOGLEDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fb_osm_gm_key" type="text" size="30" default="" label="FBGMGOOGLEMAPKEY" description="FBGMGOOGLEMAPKEYDESC"/>
+		
+		<param name="fb_osm_yahoolayers" type="radio" default="0" label="FBOSMSHOWYAHOO" description="FBOSMSHOWYAHOODESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fb_yahoo_key" type="text" size="30" default="" label="FBOSMYAHOOMAPKEY" description="FBOSMYAHOOMAPKEYDESC"/>
+		
+		<param name="fb_osm_virtualearthlayers" type="radio" default="0" label="FBOSMSHOWVIRTUALEARTH" description="FBOSMSHOWVIRTUALEARTHDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	
+		<param name="fb_osm_lat" type="text" size="10" default="53.2224" label="FBGMLAT" description="FBGMLATDESC"/>
+		<param name="fb_osm_long" type="text" size="10" default="-4.2007" label="FBGMLONG" description="FBGMLONGDESC"/>
+		<param name="fb_osm_zoomlevel" type="text" size="3" default="4" label="FBGMZOOMLEVEL" description="FBGMZOOMLEVELDESC"/>
+		<param name="fb_osm_mapwidth" type="text" size="3" default="200" label="FBGMMAPWIDTH" description=""/>
+		<param name="fb_osm_mapheight" type="text" size="3" default="150" label="FBGMMAPHEIGHT" description=""/>
+					
+	</params>
+	<params group="tablesettings">
+		<param name="fb_osm_table_mapwidth" type="text" size="3" default="200" label="FBGMMAPWIDTH" description=""/>
+		<param name="fb_osm_table_mapheight" type="text" size="3" default="150" label="FBGMMAPHEIGHT" description=""/>
+		<param name="fb_osm_table_zoomlevel" type="text" size="3" default="4" label="FBGMZOOMLEVEL" description="FBGMZOOMLEVELDESC"/>
+	</params>
+</install>

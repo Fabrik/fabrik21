@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>Sugar CRM ID</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Aug 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders a sugar id field</description>
+	<files>
+		<filename fabrikplugin="sugarid">sugarid.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<params>
+	</params>
+</install>

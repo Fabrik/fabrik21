@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="visualization" method="upgrade">
+	<name>fusionchart</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Sept 2009</creationDate>
+	<copyright>(C) 2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Show fusioncharts</description>
+	<files>
+		<filename fabrikplugin="fusionchart">fusionchart.js</filename>
+		<filename>index.html</filename>
+		<folder>views</folder>
+		<folder>models</folder>
+		<folder>controllers</folder>
+		<folder>FCcharts</folder>
+		<folder>FCclass</folder>
+	</files>
+	<languages folder="administrator/language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.visualization.fusionchart.ini</language>
+		<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.visualization.fusionchart.ini</language>
+		<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.visualization.fusionchart.ini</language>
+	</languages>
+
+	<params group="connection" addpath="/administrator/components/com_fabrik/elements" description="CONNECTIONONLYFABRIKTABLES">
+		<param name="fusionchart_version" type="list" default="free_old" label="PLG_VIZ_FC_VERSION_LABEL" description="PLG_VIZ_FC_VERSION_DESC">
+			<option value="free_old">Default</option>
+			<option value="free_22">Free 2.2</option>
+			<option value="pro_30">Pro 3.0</option>
+		</param>
+		<param name="fusionchart_connection" type="connections" label="Connection" />
+	</params>
+
+	<params repeatcontrols="1" repeat="1" addpath="/administrator/components/com_fabrik/elements">
+		<param name="fusionchart_table" type="fabriktables" connection_in_repeat="false" repeat="0" observe="fusionchart_connection" label="Table"/>
+		<param name="fusionchart_elementList" type="element" connection_in_repeat="false" include_calculations="1" connection="fusionchart_connection" table="fusionchart_table" label="CHART_ELEMENT" description="CHART_ELEMENT_DESC" />
+		<param name="fusionchart_axis_labels" type="text" label="CHART_LABEL" description="CHART_LABEL_DESC" />
+		<param name="fusionchart_element_type" type="list" default="dataset" label="FC_ELEMENT_TYPE" description="FC_ELEMENT_TYPE_DESC">
+			<option value="dataset">Data Set</option>
+			<option value="trendline">Trend Line</option>
+		</param>
+		<param name="fusionchart_elcolour" type="text" size="7" label="FC_ELCOLOUR" description="FC_ELCOLOUR_DESC" />
+		<param name="fusionchart_elalpha" type="text" size="3" label="FC_ELALPHA" description="FC_ELALPHA_DESC" />
+		<param name="fusion_x_axis_label" type="element" connection_in_repeat="false" connection="fusionchart_connection" table="fusionchart_table" label="FC_AXIS_LABEL" description="FC_AXIS_LABEL_DESC" />
+		<param name="fusion_label_step_ratio" type="text" size="3" label="PLG_VIZ_FC_LABEL_STEP_RATIO_LABEL" description="PLG_VIZ_FC_LABEL_STEP_RATIO_DESC" />
+		<param name="fusion_x_axis_measurement_unit" type="text" size="3" label="FC_AXIS_MEASUREMENT_UNIT" description="" />
+		<param name="fusionchart_dual_y_parent" type="list" default="P" label="PLG_VIZ_FUSIONCHART_DUAL_Y_PARENT_LABEL" description="PLG_VIZ_FUSIONCHART_DUAL_Y_PARENT_DESC">
+			<option value="P">Primary</option>
+			<option value="S">Secondary</option>
+		</param>
+	</params>
+
+	<params group="trendline">
+		<param name="fusionchart_trendlabel" type="text" size="20" label="FC_TREND_LABEL" description="FC_TREND_LABEL_DESC" />
+		<param name="fusionchart_trendstartvalue" type="text" size="10" label="FC_TREND_STARTVALUE" description="FC_TREND_STARTVALUE_DESC" />
+		<param name="fusionchart_trendendvalue" type="text" size="10" label="FC_TREND_ENDVALUE" description="FC_TREND_ENDVALUE_DESC" />
+		<param name="fusionchart_trendshowontop" type="radio" default="1" label="FC_TREND_SHOWONTOP" description="FC_TREND_SHOWONTOP_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fusionchart_trendiszone" type="radio" default="0" label="FC_TREND_ISZONE" description="FC_TREND_ISZONE_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+
+	<params group="graph_attributes">
+		<param name="fusionchart_type" type="list" default="" label="FC_CHART_TYPE" description="FC_CHART_TYPE_DESC">
+			<option value="">None</option>
+			<option value="AREA2D">Area 2D</option>
+			<option value="BAR2D">Bar 2D</option>
+			<option value="COLUMN2D">Column 2D</option>
+			<option value="COLUMN3D">Column 3D</option>
+			<option value="DOUGHNUT2D">Doughnut 2D</option>
+			<option value="DOUGHNUT3D">Doughnut 3D</option>
+			<option value="LINE">Line</option>
+			<option value="PIE2D">Pie 2D</option>
+			<option value="PIE3D">Pie 3D</option>
+			<option value="MSAREA2D">MS Area 2D</option>
+			<option value="MSBAR2D">MS Bar 2D</option>
+			<option value="MSBAR3D">MS Bar 3D</option>
+			<option value="MSCOLUMN2D">MS Column 2D</option>
+			<option value="MSCOLUMN3D">MS Column 3D</option>
+			<option value="MSLINE">MS Line</option>
+			<option value="MSCOMBIDY2D">MS Combi</option>
+			<option value="MULTIAXISLINE">Multi Axis Line</option>		
+			<option value="STACKEDAREA2D">Stacked Area 2D</option>
+			<option value="STACKEDBAR2D">Stacked Bar 2D</option>
+			<option value="STACKEDCOLUMN2D">Stacked Column 2D</option>
+			<option value="STACKEDCOLUMN3D">Stacked Column 3D</option>
+			<option value="SCROLLAREA2D">Scroll Area 2D</option>
+			<option value="SCROLLCOLUMN2D">Scroll Column 2D</option>
+			<option value="SCROLLLINE2D">Scroll Line 2D</option>
+			<option value="SCROLLSTACKEDCOLUMN2D">Scroll Stacked Column 2D</option>
+			<option value="SCATTER">Scatter</option>
+		</param>
+		
+		<param name="fusionchart_chart_palette" type="list" default="1" label="FC_CHART_PALETTE" description="FC_CHART_PALETTE_DESC">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+		</param>
+		<param name="fusionchart_palette_colors" type="text" size="50" default="" label="FC_PALETTE_COLORS" description="FC_PALETTE_COLORS_DESC" />
+		<param name="fusionchart_width" type="text" size="5" default="300" label="Width" description="enter an integer for the width (px)" />
+		<param name="fusionchart_height" type="text" size="5" default="200" label="Height" description="enter an integer for the height (px)" />
+		<param name="fusionchart_layout" label="template" type="folderlist" directory="/components/com_fabrik/plugins/visualization/fusionchart/views/fusionchart/tmpl/" />
+		<param name="fusionchart_message_loading" type="text" size="50" default="Please Wait.The chart is loading..." label="FC_MSG_LOADING" description="" />
+		<param name="fusionchart_message_parsing_data" type="text" size="50" default="Reading Data. Please Wait" label="FC_MSG_PARSING_DATA" description="" />
+		<param name="fusionchart_message_nodata" type="text" size="50" default="No data to display." label="FC_MSG_NODATA" description="" />
+		<param name="fusionchart_custom_attributes" type="textarea" rows="8" cols="40" default="" label="FC_CUSTOM_ATTRIBUTES" description="FC_CUSTOM_ATTRIBUTES_DESC" />
+
+	</params>
+
+	<params group="background">
+		<param name="fusionchart_bgcolor" type="text" size="7" label="FC_BG_COLOR" description="FC_BG_COLOR_DESC" />
+		<param name="fusionchart_bgalpha" type="text" size="3" label="FC_BG_ALPHA" description="FC_BG_ALPHA_DESC" />
+		<param name="fusionchart_bgimg" type="text" size="30" label="FC_BG_IMG" description="FC_BG_IMG_DESC" />
+	</params>
+
+	<params group="canvas">
+		<param name="fusionchart_cnvcolor" type="text" size="7" label="FC_CNV_COLOR" description="FC_CNV_COLOR_DESC" />
+		<param name="fusionchart_cnvalpha" type="text" size="3" label="FC_CNV_ALPHA" description="FC_CNV_ALPHA_DESC" />
+		<param name="fusionchart_bordercolor" type="text" size="7" label="FC_CNV_BORDER_COLOR" description="FC_CNV_BORDER_COLOR_DESC" />
+		<param name="fusionchart_borderthick" type="text" size="3" label="FC_CNV_BORDER_THICKNESS" description="FC_CNV_BORDER_THICKNESS_DESC" />
+	</params>
+
+	<params group="axis">
+		<param name="fusionchart_caption" type="text" label="FC_CAPTION" description="FC_CAPTION_DESC" />
+		<param name="fusionchart_subcaption" type="text" label="FC_SUBCAPTION" description="FC_SUBCAPTION_DESC" />
+		<param name="fusionchart_xaxis_name" type="text" label="FC_XAXIS_NAME" description="FC_XAXIS_NAME_DESC" />
+		<param name="fusionchart_yaxis_name" type="text" label="FC_YAXIS_NAME" description="FC_YAXIS_NAME_DESC" />
+	</params>
+
+	<params group="numerical_limits">
+		<param name="fusionchart_yaxis_minvalue" type="text" size="7" label="FC_YAXIS_MINVALUE" description="FC_YAXIS_MINVALUE_DESC" />
+		<param name="fusionchart_yaxis_maxvalue" type="text" size="7" label="FC_YAXIS_MAXVALUE" description="FC_YAXIS_MAXVALUE_DESC" />
+	</params>
+
+	<params group="gal">
+		<param name="fusionchart_shownames" type="radio" default="1" label="FC_SHOWNAMES" description="FC_SHOWNAMES_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fusionchart_showvalues" type="radio" default="1" label="FC_SHOWVALUES" description="FC_SHOWVALUES_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+                <param name="fusionchart_connect_nulldata" type="radio" default="1" label="FC_CONNECTNULLVALUES" description="FC_CONNECTNULLVALUES_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fusionchart_showlimits" type="radio" default="1" label="FC_SHOWLIMITS" description="FC_SHOWLIMITS_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fusionchart_rotatenames" type="radio" default="0" label="FC_ROTATENAMES" description="FC_ROTATENAMES_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+
+		<param name="fusionchart_slantlabels" type="radio" default="0" label="FC_SLANTLABELS" description="FC_ROTATENAMES_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		
+		<param name="fusionchart_rotatevalues" type="radio" default="0" label="FC_ROTATEVALUES" description="FC_ROTATEVALUES_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+
+		<param name="fusionchart_values_inside" type="radio" default="0" label="FC_VALUES_INSIDE" description="FC_VALUES_INSIDE_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fusionchart_animation" type="radio" default="1" label="FC_ANIMATION" description="FC_ANIMATION_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fusionchart_colshadow" type="radio" default="1" label="FC_COL_SHADOW" description="FC_COL_SHADOW_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fusionchart_scroll_numvisible" type="text" label="FC_SCROLL_NUMVISIBLE" description="FC_SCROLL_NUMVISIBLE_DESC" />
+	</params>
+
+	<params group="font">
+		<param name="fusionchart_basefont" type="list" default="0" label="FC_BASE_FONT" description="FC_BASE_FONT_DESC">
+			<option value="0">Default</option>
+			<option value="Arial">Arial</option>
+			<option value="Arial Black">Arial Black</option>
+			<option value="Verdana">Verdana</option>
+		</param>
+		<param name="fusionchart_basefont_size" type="text" size="3" label="FC_BASE_FONTSIZE" description="FC_BASE_FONTSIZE_DESC" />
+		<param name="fusionchart_basefont_color" type="text" size="7" label="FC_BASE_FONTCOLOR" description="FC_BASE_FONTCOLOR_DESC" />
+		<param name="fusionchart_outcnv_basefont" type="list" default="0" label="FC_OUTCNV_BASE_FONT" description="FC_OUTCNV_BASE_FONT_DESC">
+			<option value="0">Default</option>
+			<option value="Arial">Arial</option>
+			<option value="Arial Black">Arial Black</option>
+			<option value="Verdana">Verdana</option>
+		</param>
+		<param name="fusionchart_outcnv_basefont_size" type="text" size="3" label="FC_OUTCNV_BASE_FONTSIZE" description="FC_OUTCNV_BASE_FONTSIZE_DESC" />
+		<param name="fusionchart_outcnv_basefont_color" type="text" size="7" label="FC_OUTCNV_BASE_FONTCOLOR" description="FC_OUTCNV_BASE_FONTCOLOR_DESC" />
+	</params>
+
+	<params group="numbers">
+		<param name="fusionchart_num_prefix" type="text" size="3" label="FC_NUM_PREFIX" description="FC_NUM_PREFIX_DESC" />
+		<param name="fusionchart_num_suffix" type="text" size="3" label="FC_NUM_SUFFIX" description="FC_NUM_SUFFIX_DESC" />
+		<param name="fusionchart_formatnumber" type="radio" default="0" label="FC_FORMAT_NUM" description="FC_FORMAT_NUM_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fusionchart_formatnumberscale" type="radio" default="0" label="FC_FORMAT_NUM_SCALE" description="FC_FORMAT_NUM_SCALE_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fusionchart_decimal_sep" type="text" size="3" label="FC_DECIMAL_SEP" description="FC_DECIMAL_SEP_DESC" />
+		<param name="fusionchart_thousand_sep" type="text" size="3" label="FC_THOUSAND_SEP" description="FC_THOUSAND_SEP_DESC" />
+		<param name="fusionchart_decimal_precision" type="text" size="3" label="FC_DECIMAL_PRECISION" description="FC_DECIMAL_PRECISION" />
+		<param name="fusionchart_divline_decimal_precision" type="text" size="3" label="FC_DIVLINE_DECIMAL_PRECISION" description="FC_DIVLINE_DECIMAL_PRECISION" />
+		<param name="fusionchart_limits_decimal_precision" type="text" size="3" label="FC_LIMITS_DECIMAL_PRECISION" description="FC_LIMITS_DECIMAL_PRECISION" />
+
+	</params>
+
+	<params group="zeroplane">
+		<param name="fusionchart_zero_thick" type="text" size="3" label="FC_ZERO_THICKNESS" description="FC_ZERO_THICKNESS_DESC" />
+		<param name="fusionchart_zero_color" type="text" size="7" label="FC_ZERO_COLOR" description="FC_ZERO_COLOR_DESC" />
+		<param name="fusionchart_zero_alpha" type="text" size="3" label="FC_ZERO_ALPHA" description="FC_ZERO_ALPHA_DESC" />
+	</params>
+
+	<params group="divlines">
+		<param name="fusionchart_divline_number" type="text" size="3" label="FC_DIVLINE_NUMBER" description="FC_DIVLINE_NUMBER_DESC" />
+		<param name="fusionchart_divline_color" type="text" size="7" label="FC_DIVLINE_COLOR" description="FC_DIVLINE_COLOR_DESC" />
+		<param name="fusionchart_divline_thick" type="text" size="3" label="FC_DIVLINE_THICKNESS" description="FC_DIVLINE_THICKNESS_DESC" />
+		<param name="fusionchart_divline_alpha" type="text" size="3" label="FC_DIVLINE_ALPHA" description="FC_DIVLINE_ALPHA_DESC" />
+		<param name="fusionchart_divline_showvalue" type="radio" default="1" label="FC_DIVLINE_SHOWVALUE" description="FC_DIVLINE_SHOWVALUE_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fusionchart_divline_alt_hgrid_color" type="text" size="7" label="FC_DIVLINE_ALT_HGRID_COLOR" description="FC_DIVLINE_ALT_HGRID_COLOR_DESC" />
+		<param name="fusionchart_divline_alt_hgrid_alpha" type="text" size="3" label="FC_DIVLINE_ALT_HGRID_ALPHA" description="FC_DIVLINE_ALT_HGRID_ALPHA_DESC" />
+	</params>
+
+	<params group="vert_divlines">
+		<param name="fusionchart_vdivline_number" type="text" size="3" label="FC_VDIVLINE_NUMBER" description="FC_VDIVLINE_NUMBER_DESC" />
+		<param name="fusionchart_vdivline_color" type="text" size="7" label="FC_VDIVLINE_COLOR" description="FC_VDIVLINE_COLOR_DESC" />
+		<param name="fusionchart_vdivline_thick" type="text" size="3" label="FC_VDIVLINE_THICKNESS" description="FC_VDIVLINE_THICKNESS_DESC" />
+		<param name="fusionchart_vdivline_alpha" type="text" size="3" label="FC_VDIVLINE_ALPHA" description="FC_VDIVLINE_ALPHA_DESC" />
+		<param name="fusionchart_divline_alt_vgrid_color" type="text" size="7" label="FC_DIVLINE_ALT_VGRID_COLOR" description="FC_DIVLINE_ALT_VGRID_COLOR_DESC" />
+		<param name="fusionchart_divline_alt_vgrid_alpha" type="text" size="3" label="FC_DIVLINE_ALT_VGRID_ALPHA" description="FC_DIVLINE_ALT_VGRID_ALPHA_DESC" />
+	</params>
+
+	<params group="hover_caption">
+		<param name="fusionchart_show_hovercap" type="radio" default="0" label="FC_SHOW_HOVERCAP" description="FC_SHOW_HOVERCAP_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fusionchart_hovercap_bgcolor" type="text" size="7" label="FC_HOVERCAP_BGCOLOR" description="FC_HOVERCAP_BGCOLOR_DESC" />
+		<param name="fusionchart_hovercap_bordercolor" type="text" size="7" label="FC_HOVERCAP_BORDERCOLOR" description="FC_HOVERCAP_BORDERCOLOR_DESC" />
+		<param name="fusionchart_hovercap_sep" type="text" size="3" label="FC_HOVERCAP_SEP" description="FC_HOVERCAP_SEP_DESC" />
+	</params>
+
+	<params group="margins">
+		<param name="fusionchart_chart_leftmargin" type="text" size="3" label="FC_CHART_LEFTMARGIN" description="FC_CHART_LEFTMARGIN_DESC" />
+		<param name="fusionchart_chart_rightmargin" type="text" size="3" label="FC_CHART_RIGHTMARGIN" description="FC_CHART_RIGHTMARGIN_DESC" />
+		<param name="fusionchart_chart_topmargin" type="text" size="3" label="FC_CHART_TOPMARGIN" description="FC_CHART_TOPMARGIN_DESC" />
+		<param name="fusionchart_chart_bottommargin" type="text" size="3" label="FC_CHART_BOTTOMMARGIN" description="FC_CHART_BOTTOMMARGIN_DESC" />
+	</params>
+
+	<params group="rest">
+		<!-- <param name="fusionchart_scale" type="radio" default="" label="FC_SCALE" description="FC_SCALE_DESC">
+			<option value="">Default</option>
+			<option value="noscale">No Scale</option>
+			<option value="exactfit">Exact Fit</option>
+			<option value="noborder">No Border</option>
+			<option value="showall">Show All</option>
+		</param> -->
+	</params>
+
+</install>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- to update plugins image run this query -->
+<!-- UPDATE downloads d, (SELECT title, image AS selected_image 
+FROM downloads where image IS NOT NULL ) AS d2 SET d.image = d2.selected_image 
+WHERE d.title = d2.title -->
+<project name="fabrik" default="build_one_plugin">
+	<property file="build-plugins_config.ini" />
+	<property file="build-plugins_private.ini" />
+
+	<path id="svnant.class.path">
+		<pathelement location="lib/svnant.jar" />
+		<pathelement location="lib/svnClientAdapter.jar" />
+		<pathelement location="lib/svnjavahl.jar" />
+		<pathelement location="lib/svnkit.jar" />
+	</path>
+	
+	<typedef resource="org/tigris/subversion/svnant/svnantlib.xml" classpathref="svnant.class.path" />
+	
+	<target name="build_one_plugin" depends="-prompt_for_config">
+		<antcall target="fabrik.build_one_plugin_svn_update" />
+		<antcall target="fabrik.build_one_plugin_refresh_files" />
+		<antcall target="fabrik.build_one_plugin_zip" />
+		<antcall target="fabrik.build_one_plugin_ftp" />
+		<antcall target="fabrik.build_one_plugin_sql" />
+	</target>
+	
+	<target name="-prompt_for_config" unless="plugin.slug">
+		<input message="Plugin Type:" validargs="form,table,element,cron,visualization,validationrule" addproperty="plugin.type" />
+		<input message="Plugin Slug:" addproperty="plugin.slug" />
+		<input message="Plugin Title:" addproperty="plugin.title" />
+		<input message="Fabrik Version:" addproperty="version" />
+		<input message="Updating: ${plugin.type} ${plugin.slug} ${version} OK?" />
+	</target>
+	
+	<target name="fabrik.build_one_plugin_sql">
+      <property name="plugin.path" value="${cfg.ftp_download_dir}/plg_fabrik_${plugin.type}_${plugin.slug}_${version}.zip" />
+      <!-- <echo message="Updating SQL: ${plugin.path}" /> -->
+      <echo message='INSERT INTO ${cfg.sql_downloads_table} (`slug`, `title`, `type`, `download`, `version`, `published`, `create_date`, `digg`, `acl`, `joomla_version`, `like`, `description`, `author`, `hits`) VALUES ("${plugin.slug}", "${plugin.title}", "${plugin.type}", "${plugin.path}", "${version}", "0", NOW(), "0", "19", "15", "0", "", "62", "0") ON DUPLICATE KEY UPDATE	download = "${plugin.path}", version = "${version}"' />
+     	<sql
+			driver="${cfg.sql_driver}"
+			url="${cfg.sql_url}"
+			userid="${cfg.sql_user}"
+			password="${cfg.sql_password}"
+			expandProperties="true"
+			autocommit="true"
+			print="yes"
+		>
+			<transaction><![CDATA[
+				INSERT INTO ${cfg.sql_downloads_table}
+					(`slug`, `title`, `type`, `download`, `version`, `published`, `create_date`, `digg`, `acl`, `joomla_version`, `like`, `description`, `author`, `hits`, `fb_og_type`)
+					VALUES ("${plugin.slug}", "${plugin.title}", "${plugin.type}", "${plugin.path}", "${version}", "0", NOW(), "0", "19", "15", "0", "", "62", "0", "product")
+				ON DUPLICATE KEY UPDATE
+					download = "${plugin.path}",
+					version = "${version}"
+			]]></transaction>
+		</sql>
+    </target>
+    
+	<target name="fabrik.build_one_plugin_ftp">
+		<!-- <echo message="FTP'ing ZIP: ${cfg.ftp_download_dir}/plg_fabrik_${plugin.type}_${plugin.slug}_${version}.zip" /> -->
+		<ftp server="${cfg.ftp_host}" userid="${cfg.ftp_user}" password="${cfg.ftp_password}" verbose="no" remotedir="${cfg.ftp_download_site_prefix}${cfg.ftp_download_dir}">
+			<fileset file="${cfg.destdir}/plugins/${plugin.type}/plg_fabrik_${plugin.type}_${plugin.slug}_${version}.zip">
+			</fileset>
+		</ftp>
+	</target>
+	
+	<target name="fabrik.build_one_plugin_zip">
+		<!-- <echo message="Building ZIP: ${cfg.destdir}/plugins/${plugin.type}/plg_fabrik_${plugin.type}_${plugin.slug}_${version}.zip" /> -->
+		<mkdir dir="${cfg.destdir}/plugins/${plugin.type}" />
+		<delete file="${cfg.destdir}/plugins/${plugin.type}/plg_fabrik_${plugin.type}_${plugin.slug}_${version}.zip" />
+		<zip destfile="${cfg.destdir}/plugins/${plugin.type}/plg_fabrik_${plugin.type}_${plugin.slug}_${version}.zip" basedir="${cfg.destdir}/components/com_fabrik/plugins/${plugin.type}/${plugin.slug}" />
+	</target>
+	
+	<target name="fabrik.build_one_plugin_refresh_files">
+		<!-- <echo message="Refreshing: ${cfg.destdir}/components/com_fabrik/plugins/${plugin.type}/${plugin.slug}, svn files ${cfg.rootdir}/components/com_fabrik/plugins/${plugin.type}/${plugin.slug}" /> -->
+		<delete dir="${cfg.destdir}/components/com_fabrik/plugins/${plugin.type}/${plugin.slug}" />
+		<mkdir dir="${cfg.destdir}/components/com_fabrik/plugins/${plugin.type}/${plugin.slug}" />
+		<copy todir="${cfg.destdir}/components/com_fabrik/plugins/${plugin.type}/${plugin.slug}">
+			<fileset dir="${cfg.rootdir}/components/com_fabrik/plugins/${plugin.type}/${plugin.slug}">
+				<exclude name="**/*.zip" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="fabrik.build_one_plugin_svn_update" unless="plugin.svn_done">
+		<!-- <echo message="SVN update: ${cfg.rootdir}/components/com_fabrik/plugins/${plugin.type}/${plugin.slug}" /> -->
+		<svn username="${cfg.svn_user}" password="${cfg.svn_password}">
+			<update revision="HEAD" dir="${cfg.rootdir}/components/com_fabrik/plugins/${plugin.type}/${plugin.slug}" />
+		</svn>
+
+	</target>
+	
+</project>

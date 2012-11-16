@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form">
+	<name>Set Cookie</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Jan 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Stores form data in cookie</description>
+	<files>
+		<filename fabrikplugin="fabrikcookie">fabrikcookie.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<params repeat="1" repeatcontrols="0">
+		<param type="sql" name="group" label="group to save" query="SELECT id AS value, name AS 'group' FROM #__fabrik_groups" />
+	</params>
+</install>

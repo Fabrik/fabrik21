@@ -1,0 +1,8 @@
+.chown ul {
+	list-style:none;
+}
+
+.chown li {
+	background-image:none;
+	margin-top:15px;
+}

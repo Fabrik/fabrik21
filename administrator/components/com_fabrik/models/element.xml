@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<name>Element Edit Form</name>
+	<params addpath="/administrator/components/com_fabrik/elements">
+		<param name="rollover" type="text" size="35" default="" label="HOVERTEXT" description="HOVERTEXTDESC" />							
+		<param name="hover_text_title" type="text" default="" label="HOVERTEXTTITLE" description="HOVERTEXTTITLEDESC" />
+		<param name="tipsoverelement" type="radio" default="0" label="TIPS_OVER_ELEMENT" description="TIPS_OVER_ELEMENT_DESC">
+			<option value="0">NO</option>
+			<option value="1">YES</option>
+		</param>
+		<param name="labelindetails" type="radio" default="1" label="TIPS_IN_DETAILEDVIEW" description="TIPS_IN_DETAILEDVIEW_DESC">
+			<option value="0">NO</option>
+			<option value="1">YES</option>
+		</param>
+		<param name="labelintable" 
+			type="radio" 
+			default="0"
+			label="COM_FABRIK_TIPS_IN_TABLE_VIEW_LABEL"
+			description="COM_FABRIK_TIPS_IN_TABLE_VIEW_DESC">
+			<option value="0">NO</option>
+			<option value="1">YES</option>
+		</param>
+		
+		<param name="comment" type="text" default="" label="COMMENT" description="COMMENTDESC" />
+	</params>
+	
+	<params group="basics" addpath="/administrator/components/com_fabrik/elements">
+		<param name="group_id" type="grouplist" default="" label="GROUP" description="ELEMENT GROUP DESC" />
+		<param name="ordering" type="specificordering" label="ORDER" description="ORDER DESCRIPTION" />
+		
+		<param name="plugin" type="pluginlist" plugin="element" label="Element type" description="ELEMENT PLUGIN DESC"/>
+	</params>
+	
+	<params group="publishing">
+		<param name="state" type="radio" default="1" label="PUBLISHED" description="ELEMENT PUBLISHED DESCRIPTION">
+			<option value="0">NO</option>
+			<option value="1">YES</option>
+		</param>
+		<param name="use_in_page_title" type="radio" default="0" label="ADD TO PAGE TITLE" description="ADD TO PAGE TITLE DESC" >
+			<option value="0">NO</option>
+			<option value="1">YES</option>
+		</param>
+		<param name="access" type="fullaccesslevel" default="100" label="ACCESS" description="ACCESS DESC" />
+	</params>
+	
+	<params group="publishing2">
+		<param name="view_access" type="fullaccesslevel" default="100" label="READ ONLY ACCESS" description="READ ONLY DESC" />
+		<param name="encrypt" 
+			type="radio" default="0"
+			label="COM_FABRIK_ENCRYPT_LABEL" 
+			description="COM_FABRIK_ENCRYPT_DESC" >
+			<option value="0">NO</option>
+			<option value="1">YES</option>
+		</param>
+	</params>
+	
+	<params group="tablesettings">
+		<param name="show_in_table_summary" type="radio" default="0" label="SHOW IN TABLE" description="SHOW IN TABLE DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="link_to_detail" type="radio" default="0" label="LINK TO DETAILS" description="LINK TO DETAILS DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="can_order" type="radio" default="0" label="ALLOW ORDERING" description="ALLOW ORDERING DESC" >
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+	
+	<params group="tablecsssettings">
+		<param name="tablecss_header_class" type="text" size="20" label="TABLECSSHEADERCLASS" description="TABLECSSHEADERCLASSDESC" />
+		<param name="tablecss_header" type="text" size="40" label="TABLECSSHEADER" description="TABLECSSHEADERDESC" />
+		<param name="tablecss_cell_class" type="text" size="20" label="TABLECSSCELLCLASS" description="TABLECSSCELLCLASSDESC" />
+		<param name="tablecss_cell" type="text" size="40" label="TABLECSSCELL" description="TABLECSSCELLDESC" />
+	</params>
+
+	<params group="filtersettings">
+		<param name="filter_type" type="list" default="" label="FILTER TYPE" description="FILTER TYPE DESC">
+			<option value="">NONE</option>
+			<option value="field">FIELD</option>
+			<option value="dropdown">DROPDOWN</option>
+			<option value="range">RANGE</option>
+			<option value="auto-complete">AUTOCOMPLETE</option>
+		</param>
+		<param name="filter_exact_match" type="radio" default="1" label="EXACT MATCH" description="EXACT MATCH DESC" >
+			<option value="0">NO</option>
+			<option value="1">YES</option>
+		</param>
+	</params>
+	
+	<params group="filtersettings2">
+		<param name="filter_access" type="fullaccesslevel" default="100" label="FILTER ACCESS" />
+		<param name="full_words_only" type="radio" default="0" label="FULLWORDS" description="FULLWORDSDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="inc_in_adv_search" type="radio" default="1" label="INCLUDE IN ADVANCED SEARCH" description="INCLUDE IN ADVANCED SEARCH DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="inc_in_search_all" type="radio" default="1" label="INCLUDEINSEARCHALL" description="INCLUDEINSEARCHALLDESC" >
+			<option value="0">NO</option>
+			<option value="1">YES</option>
+		</param>
+		<param name="filter_required" type="radio" default="0" label="REQUIREDFILTER" description="REQUIREDFILTERDESC" >
+			<option value="0">NO</option>
+			<option value="1">YES</option>
+		</param>
+		<param name="filter_build_method" type="list" default="0" label="FILTER_BUILD_METHOD" description="FILTER_BUILD_METHOD_DESC">
+			<option value="0">default</option>
+			<option value="1">SHOW_DATA_RECORDED_IN_TABLE</option>
+			<option value="2">SHOW_ALL_OPTIONS</option>
+		</param>
+		<param name="filter_groupby" type="radio" default="text" label="ORDER BY" description="">
+			<option value="text">Label</option>
+			<option value="value">Value</option>
+		</param>
+		
+		<param name="filter_length"
+			type="text"
+			size="3"
+			default="20"
+			label="COM_FABRIK_FILTER_LENGTH_LABEL"
+			description="COM_FABRIK_FILTER_LENGTH_DESC" />
+			
+	</params>
+	
+	<params group="tablesettings2">
+		<param name="element_alt_table_heading" type="text" default="" label="TABLEHEADINGLABEL" description="TABLEHEADINGLABELDESC" />
+		<param name="icon_folder" type="recursivefolderlist" recursive="1" directory="images/stories" hide_none="0" hide_default="1"  default="" label="ICON FOLDER" description="ICON FOLDER DESC" />
+		<param name="custom_link" size="55" type="text" default="" label="CUSTOMLINK" description="CUSTOMLINKDESC" />
+		<param name="use_as_row_class" type="radio" default="0" label="USEASROWCLASS" description="USEASROWCLASSDESC">
+			<option value="0">No</option>
+			<option value="1">Row</option>
+		</param>
+	</params>
+	
+	<params group="calculations">
+		<param name="sum_on" type="radio" default="0" label="SUMTOTAL" description="SUMTOTALDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="sum_label" type="text" default="Sum" label="SUMLABEL" description="SUMLABELDESC" />
+		
+		<param name="sum_access" type="list" default="0" label="SUMACCESS" description="SUMACCESSDESC">
+			<option value="0">Public</option>
+			<option value="1">Registered</option>
+			<option value="2">Special</option>
+		</param>
+		<param name="sum_split" type="tablefields" valueformat="id" default="" label="Split on"  />
+		<param name="" type="spacer" default=" " />
+		<param name="avg_on" type="radio" default="0" label="AVERAGETOTAL" description="AVERAGETOTALDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="avg_label" type="text" default="Average" label="AVGLABEL" description="AVGLABELDESC" />
+		<param name="avg_access" type="list" default="0" label="AVERAGEACCESS" description="AVERAGEACCESSDESC">
+			<option value="0">Public</option>
+			<option value="1">Registered</option>
+			<option value="2">Special</option>
+		</param>
+		<param name="avg_split" type="tablefields" valueformat="id" default="" label="Split on"  />
+		
+		<param name="" type="spacer" default=" " />
+		<param name="median_on" type="radio" default="0" label="MEDIANTOTAL" description="MEDIANTOTALDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="median_label" type="text" default="Median" label="MEDIANLABEL" description="MEDIANLABELDESC" />
+		<param name="median_access" type="list" default="0" label="MEDIANACCESS" description="MEDIANACCESSDESC">
+			<option value="0">Public</option>
+			<option value="1">Registered</option>
+			<option value="2">Special</option>
+		</param>
+		<param name="median_split" type="tablefields" valueformat="id" default="" label="Split on"  />
+		
+		<param name="" type="spacer" default=" " />
+		<param name="count_on" type="radio" default="0" label="COUNTRECORDS" description="COUNTRECORDSDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="count_label" type="text" default="Count" label="COUNTLABEL" description="COUNTLABELDESC" />
+		
+		<param name="count_condition" type="text" size="35" default="" label="COUNTVALUE" description="COUNTVALUEDESC" />		
+		<param name="count_access" type="list" default="0" label="COUNTACCESS" description="COUNTACCESSDESC">
+			<option value="0">Public</option>
+			<option value="1">Registered</option>
+			<option value="2">Special</option>
+		</param>
+		<param name="count_split" type="tablefields" valueformat="id" default="" label="SPLIT ON"  />
+	</params>
+	
+		<params group="rss">
+			<param name="show_in_rss_feed" type="radio" default="0" label="SHOWINRSS" description="SHOWINRSSDESC">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			<param name="show_label_in_rss_feed" type="radio" default="0" label="RSSINCLABEL" description="RSSINCLABELDESC">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			<param name="use_as_fake_key" type="radio" default="0" label="PSEUDOKEY" description="PSEUDOKEYDESC">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+		</params>
+</form>

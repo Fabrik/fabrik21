@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="validationrule" method="upgrade">
+	<name>Is alphanumeric</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Jan 2008</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Test to ensure the data entered is alphanumeric</description>
+	<files>
+		<filename fabrikplugin="isalphanumeric">isalphanumeric.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<params repeat="1" repeatcontrols="0">
+		<param type="text" name="isalphanumeric-message" size="30" label="Error message" value="" description="VALIDATIONERRORDESC" />
+		<param type="textarea" cols="30" rows="5" name="isalphanumeric-validation_condition" label="Condition" description="VALIDATIONCONDITIONDESC"/>
+	</params>
+</install>

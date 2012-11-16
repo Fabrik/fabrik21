@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install SYSTEM "http://dev.joomla.org/xml/1.5/plugin-install.dtd">
+<install type="plugin" group="system" method="upgrade" version="1.5.0">
+	<name>Phoca PDF - Fabrik</name>
+	<creationDate>26/11/2010</creationDate>
+	<author>Rob Clayburn</author>
+	<authorEmail></authorEmail>
+	<authorUrl>fabrikar.com</authorUrl>
+	<copyright>Rob Clayburn</copyright>
+	<license>GNU/GPL</license>
+	<version>1.0.0</version>
+
+	
+	<description><![CDATA[ 
+       Phoca PDF Conent Plugin - creating PDF documents from fabrik views<br />
+      
+      ]]></description>
+
+	<!-- Main File Copy Section -->
+	<files>
+		<filename plugin="phocapdffabrik">phocapdffabrik.php</filename>
+		<filename plugin="phocapdffabrik">phocapdffabrik.xml</filename>
+	</files>
+
+	<!-- Language -->
+	
+	
+	
+	<params group="phocasite" addpath="/administrator/components/com_phocapdf/elements">
+		
+		<param name="margin_top" type="phocatextunit" default="27" size="3" label="Margin Top" description="Margin Top DESC" />
+		<param name="margin_left" type="phocatextunit" default="15" size="3" label="Margin Left" description="Margin Left DESC" />
+		<param name="margin_right" type="phocatextunit" default="15" size="3" label="Margin Right" description="Margin Right DESC" />
+  		<param name="margin_bottom" type="phocatextunit" default="25" size="3" label="Margin Bottom" description="Margin Bottom DESC" />
+		
+		<param name="page_format" type="list" default="A4" label="Page Format" description="Page Format DESC">
+			<option value="4A0">4A0</option>
+			<option value="2A0">2A0</option>
+			<option value="A0">A0</option>
+			<option value="A1">A1</option>
+			<option value="A2">A2</option>
+			<option value="A3">A3</option>
+			<option value="A4">A4</option>
+			<option value="A5">A5</option>
+			<option value="A6">A6</option>
+			<option value="A7">A7</option>
+			<option value="A8">A8</option>
+			<option value="A9">A9</option>
+			<option value="A10">A10</option>
+			<option value="B0">B0</option>
+			<option value="B1">B1</option>
+			<option value="B2">B2</option>
+			<option value="B3">B3</option>
+			<option value="B4">B4</option>
+			<option value="B5">B5</option>
+			<option value="B6">B6</option>
+			<option value="B7">B7</option>
+			<option value="B8">B8</option>
+			<option value="B9">B9</option>
+			<option value="B10">B10</option>
+			<option value="C0">C0</option>
+			<option value="C1">C1</option>
+			<option value="C2">C2</option>
+			<option value="C3">C3</option>
+			<option value="C4">C4</option>
+			<option value="C5">C5</option>
+			<option value="C6">C6</option>
+			<option value="C7">C7</option>
+			<option value="C8">C8</option>
+			<option value="C9">C9</option>
+			<option value="C10">C10</option>
+			<option value="RA0">RA0</option>
+			<option value="RA1">RA1</option>
+			<option value="RA2">RA2</option>
+			<option value="RA3">RA3</option>
+			<option value="RA4">RA4</option>
+			<option value="SRA0">SRA0</option>
+			<option value="SRA1">SRA1</option>
+			<option value="SRA2">SRA2</option>
+			<option value="SRA3">SRA3</option>
+			<option value="SRA4">SRA4</option>
+			<option value="LETTER">LETTER</option>
+			<option value="LEGAL">LEGAL</option>
+			<option value="EXECUTIVE">EXECUTIVE</option>
+			<option value="FOLIO">FOLIO</option>
+		</param>
+		
+		<param name="page_orientation" type="list" default="P" label="Page Orientation" description="Page Orientation DESC">
+			<option value="P">Portrait</option>
+			<option value="L">Landscape</option>
+		</param>
+		
+		<param name="font_type" type="phocafonttype" default=""  label="Font Type" description="Font Type DESC" />
+		
+		<param name="site_font_color" type="phocacolortext" default="#000000" size="8" label="Site Font Color" description="Site Font Color DESC" />
+		<param name="site_cell_height" type="text" default="1.2" size="3" label="Site Cell Height Ratio" description="Site Cell Height Ratio DESC" />
+		
+	</params>
+	
+	
+	<params group="phocaheader" addpath="/administrator/components/com_phocapdf/elements">
+		
+		<param name="header_display" type="list" default="1" label="Display Header" description="Display Header DESC">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		
+		<param name="header_display_line" type="list" default="1" label="Display Header Line" description="Display Header Line DESC">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		
+		<param name="header_data" type="phocaeditor" rows="5" cols="40" default=""  label="Header Data" description="Header Data DESC" />
+		<param name="header_data_align" type="list" default="L"  label="Header Data Align" description="Header Data Align DESC" >
+			<option value="L">Left</option>
+			<option value="C">Center</option>
+			<option value="R">Right</option>
+			<option value="J">Justify</option>
+		</param>
+		<param name="header_font_type" type="phocafonttype" default=""  label="Header Font Type" description="Header Font Type DESC" />
+		<param name="header_font_size" type="phocatextunit" default="10" size="3" label="Header Font Size" description="Header Font Size DESC" />
+		<param name="header_font_style" type="list" default="" label="Header Font Style" description="Header Font Style DESC">
+			<option value="">Regular</option>
+			<option value="B">Bold</option>
+			<option value="I">Italic</option>
+			<option value="BI">Bold Italic</option>
+			<option value="U">Underline</option>
+			<option value="D">Line Through</option>
+		</param>
+		
+		<param name="header_font_color" type="phocacolortext" default="#000000" size="8" label="Header Font Color" description="Header Font Color DESC" />
+		<param name="header_line_color" type="phocacolortext" default="#000000" size="8" label="Header Line Color" description="Header Line Color DESC" />
+		<param name="header_bg_color" type="phocacolortext" default="" size="8" label="Header Background Color" description="Header Background Color DESC" />
+
+		<param name="header_cell_height" type="text" default="1.2" size="3" label="Header Cell Height Ratio" description="Header Cell Height Ratio DESC" />
+		
+		<param name="header_margin" type="phocatextunit" default="5" size="3" label="Header Margin" description="Header Margin Size DESC" />
+			
+	</params>
+	
+	<params group="phocafooter" addpath="/administrator/components/com_phocapdf/elements">
+	
+		<param name="footer_display" type="list" default="1" label="Display Footer" description="Display Footer DESC">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		
+		<param name="footer_display_line" type="list" default="1" label="Display Footer Line" description="Display Footer Line DESC">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		
+		<param name="footer_data" type="phocaeditor" rows="5" cols="40" default=""  label="Footer Data" description="Footer Data DESC" />
+		
+		<param name="footer_data_align" type="list" default="R"  label="Footer Data Align" description="Footer Data Align DESC" >
+			<option value="L">Left</option>
+			<option value="C">Center</option>
+			<option value="R">Right</option>
+			<option value="J">Justify</option>
+		</param>
+		<param name="footer_display_pagination" type="list"  default="1"  label="Footer Display Pagination" description="Footer Display Pagination DESC" >
+		<option value="1">Yes</option>
+		<option value="0">No</option>
+		</param>
+		
+		<param name="footer_font_type" type="phocafonttype" default=""  label="Footer Font Type" description="Footer Font Type DESC" />
+		<param name="footer_font_size" type="phocatextunit" default="8" size="3" label="Footer Font Size" description="Footer Font Size DESC" />
+		<param name="footer_font_style" type="list" default="" label="Footer Font Style" description="Footer Font Style DESC">
+			<option value="">Regular</option>
+			<option value="B">Bold</option>
+			<option value="I">Italic</option>
+			<option value="BI">Bold Italic</option>
+			<option value="U">Underline</option>
+			<option value="D">Line Through</option>
+		</param>
+		
+		<param name="footer_font_color" type="phocacolortext" default="#000000" size="8" label="Footer Font Color" description="footer Font Color DESC" />
+		<param name="footer_line_color" type="phocacolortext" default="#000000" size="8" label="Footer Line Color" description="footer Line Color DESC" />
+		
+		<param name="footer_bg_color" type="phocacolortext" default="" size="8" label="Footer Background Color" description="Footer Background Color DESC" />
+		
+		<param name="footer_cell_height" type="text" default="1.2" size="3" label="Footer Cell Height Ratio" description="Footer Cell Height Ratio DESC" />
+		
+		<param name="footer_margin" type="phocatextunit" default="15" size="3" label="Footer Margin" description="Footer Margin Size DESC" />
+			
+	</params>
+	
+	
+	<params group="phocapdf" addpath="/administrator/components/com_phocapdf/elements">
+		
+		<param name="pdf_name" type="text" default="" size="30" label="PDF Name" description="PDF Name DESC" />
+		<param name="pdf_destination" type="list" default="S" label="PDF Destination" description="PDF Destination DESC">
+
+			<option value="I">Inline Browser</option>
+			<option value="D">Force File Download</option>
+			<option value="S">Inline Browser (Popup)</option>
+		</param>
+		
+		<param name="use_cache" type="list" default="0" label="Cache" description="Cache DESC">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		
+		<param name="image_scale" type="text" default="4" size="3" label="Image Scale" description="Image Scale DESC" />
+		
+		<param name="display_plugin" type="list" default="0" label="Display Plugin Code" description="Display Plugin Code DESC">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		
+		<param name="display_image" type="list" default="1" label="Display Images" description="Display Images DESC">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		
+		<param name="sef_enabled" type="list" default="0" label="SEF Enabled" description="SEF Enabled DESC">
+			<option value="0">No</option>
+			<option value="1">Yes (.pdf?)</option>
+			<option value="2">Yes (.pdf)</option>
+		</param>
+			
+	</params>
+	
+
+</install>

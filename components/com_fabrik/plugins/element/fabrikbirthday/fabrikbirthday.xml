@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>Birthday</name>
+	<author>Rob Clayburn / Jaanus Nurmoja</author>
+	<creationDate>April 2011</creationDate>
+	<copyright>(C) 2005-2010 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorEmail>jaanus@nurmoja.net.ee</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<authorUrl>www.facebook.com/jaanus.nurmoja</authorUrl>
+	<version>2.1</version>
+	<description>Renders birthday or decease day/month/year dropdowns</description>
+	<files>
+		<filename fabrikplugin="fabrikbirthday">fabrikbirthday.php</filename>
+		<filename>index.html</filename>
+		<filename>javascript.js</filename>
+	</files>
+	<languages folder="administrator/language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikbirthday.ini</language>
+        <language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.element.fabrikbirthday.ini</language>
+        <language tag="et-EE">et-EE/et-EE.com_fabrik.plg.element.fabrikbirthday.ini</language>
+	</languages>
+	<params group="extra">
+		<param name="birthday_format" type="text" default="%Y-%m-%d" label="TABLE_DATE_FORMAT" description="DATEFORMATDESC" />
+		<param name="table_age_format" type="radio" default="no" label="TABLE_AGE_FORMAT" description="TABLE_AGEFORMATDESC">
+			<option value="no">DATEONLY</option>
+			<option value="{age}">AGEONLY</option>
+			<option value="{age} date">DATE(AGE)</option>
+			<option value="{age} this">AGETHISYEAR</option>
+			<option value="{age} next">AGENEXTYEAR</option>
+		</param>
+		<param name="details_day_format" type="radio" default="d.m.Y" label="DETAILS_DATE_FORMAT" description="DETAILS_DATEFORMATDESC">
+			<option value="d.m.Y">01.03.1789</option>
+			<option value="m.d.Y">03/01/1789</option>
+			<option value="D. month YYYY">1_MARCH_1789</option>
+			<option value="Month d, YYYY">MARCH_1_1789</option>
+			<option value="{age}">AGEONLY</option>
+			<option value="{age} d.m">822_1_MARCH</option>
+			<option value="{age} m.d">822_MARCH_1</option>
+		</param>
+		<param name="bd_day_daylabel" type="text" default="BD_DAY" label="BD_DAY_LABEL" />
+		<param name="bd_day_monthlabel" type="text" default="BD_MONTH" label="BD_MONTH_LABEL" />
+		<param name="bd_day_yearlabel" type="text" default="BD_YEAR" label="BD_YEAR_LABEL" />
+		<param name="bd_day_numyears" type="text" default="500" size="3" label="BD_NUMBER_OF_YEARS" />
+		<param name="bd_tutorial" type="spacer" default="BD_EXAMPLE" />
+		<param name="bd_tutorial" type="spacer" default="BD_EXAMPLEDESC" />
+	</params>
+
+</install>

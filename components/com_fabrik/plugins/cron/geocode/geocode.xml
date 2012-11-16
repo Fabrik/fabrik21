@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="cron" method="upgrade">
+	<name>Geocoding</name>
+	<author>Hugh Messenger</author>
+	<creationDate>Jan 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Geocoding from address data</description>
+	<files>
+		<filename fabrikplugin="geocode">geocode.php</filename>
+		<filename>admingeocode.js</filename>
+		<filename>README.txt</filename>
+		<filename>index.html</filename>
+		<folder>libs</folder>
+	</files>
+	
+
+		<languages folder="administrator/language">
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.cron.geocode.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.cron.geocode.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.cron.geocode.ini</language>
+		</languages>
+
+	
+	<params repeat="0" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="geocode_gmap_key" type="text" default="" size="100" label="GEOCODEGMAPKEY" description="GEOCODEGMAPKEYDESC" />		
+		<param name="geocode_map_element" type="element" connection="connection" table="table" label="GEOCODEMAP" description="GEOCODEMAP"/>
+		<param name="geocode_addr1_element" type="element" connection="connection" table="table" label="GEOCODEADDR1" description="GEOCODEADDR1"/>
+		<param name="geocode_addr2_element" type="element" connection="connection" table="table" label="GEOCODEADDR2" description="GEOCODEADDR2"/>
+		<param name="geocode_city_element" type="element" connection="connection" table="table" label="GEOCODECITY" description="GEOCODECITY"/>
+		<param name="geocode_state_element" type="element" connection="connection" table="table" label="GEOCODESTATE" description="GEOCODESTATE"/>
+		<param name="geocode_zip_element" type="element" connection="connection" table="table" label="GEOCODEZIP" description="GEOCODEZIP"/>
+		<param name="geocode_country_element" type="element" connection="connection" table="table" label="GEOCODECOUNTRY" description="GEOCODECOUNTRY"/>
+		<param name="geocode_is_empty" type="text" default="" size="30" label="GEOCODEISEMPTY" description="GEOCODEISEMPTYDESC" />
+		<param name="geocode_zoom_level" type="text" default="4" size="2" label="GEOCODEZOOM" description="GEOCODEZOOMDESC" />
+		<param name="geocode_default" 
+			type="text" 
+			default="55.33,34.44" 
+			label="PLG_CRON_GEOCODE_DEFAULT_LABEL"
+			description="PLG_CRON_GEOCODE_DEFAULT_DESC" />
+			
+		<param name="geo_code_delay"
+			type="text"
+			default="100"
+			label="PLG_CRON_GEOCODE_DELAY_LABEL"
+			description="PLG_CRON_GEOCODE_DELAY_DESC" />
+			
+		<param name="geo_code_batch"
+			type="text"
+			size="3"
+			default="20"
+			label="PLG_CRON_GEOCODE_BATCH_LABEL"
+			description="PLG_CRON_GEOCODE_BATCH_DESC" />
+			
+		<param name="geocode_verbose_log" type="radio" default="0" label="GEOCODE_VERBOSE_LOG" desc="GEOCODE_VERBOSE_LOG_DESC" >
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+</install>

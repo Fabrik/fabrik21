@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="cron" method="upgrade">
+	<name>Run PHP</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Feb 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Run some php code</description>
+	<files>
+		<filename fabrikplugin="cronphp">cronphp.php</filename>
+		<folder>scripts</folder>
+		<filename>index.html</filename>
+	</files>
+
+		<languages folder="administrator/language">
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.cron.cronphp.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.cron.cronphp.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.cron.cronphp.ini</language>
+			<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.cron.cronphp.ini</language>
+		</languages>
+
+	
+	<params repeat="0" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="cronphp_file" type="filelist" directory="components/com_fabrik/plugins/cron/cronphp/scripts/" hide_default="1" label="CRONPHPFILE" description="CRONPHPFILEDESC" />
+		
+		<param name="cronphp_params"
+			type="textarea"
+			rows="10"
+			cols="100"
+			label="PLG_FABRIK_CRON_PHP_PARAMS_LABEL"
+			description="PLG_FABRIK_CRON_PHP_PARAMS_DESC" />
+			
+		<param name="cronphp_load_data" type="radio" default="1" label="CRONPHP_LOAD_DATA" description="CRONPHP_LOAD_DATA_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+</install>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>digg</name>
+	<author>Rob Clayburn</author>
+	<creationDate>March 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Allow dig like voting</description>
+	<install>
+		<sql>
+			<file charset="utf8" driver="mysql">installation/queries.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file charset="utf8" driver="mysql">installation/uninstall.sql</file>
+		</sql>
+	</uninstall>
+		
+	<languages folder="language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikdigg.ini</language>
+		<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.element.fabrikdigg.ini</language>
+		<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.element.fabrikdigg.ini</language>
+	</languages>
+		
+	<files>
+		<filename fabrikplugin="fabrikdigg">fabrikdigg.php</filename>
+		<filename>index.html</filename>
+		<filename>javascript.js</filename>
+		<filename>table-fabrikdigg.js</filename>
+		<folder>images</folder>
+	</files>
+	
+	<administration>
+		<languages folder="language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikdigg.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.element.fabrikdigg.ini</language>
+		</languages>
+	</administration>
+
+
+	<params>
+		<param type="radio" name="digg-rate-in-form" default="1" label="RATE_IN_FORM" description="RATE_IN_FORM_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+</install>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form" method="upgrade">
+	<name>Mailchimp</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Feb 2011</creationDate>
+	<copyright>(C) 2005-2011 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Adds users to a mailchimp mailing list</description>
+	<files>
+		<filename fabrikplugin="mailchimp">mailchimp.php</filename>
+		<filename>index.html</filename>
+		<folder>examples</folder>
+		<filename>MCAPI.class.php</filename>
+	</files>
+	
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.mailchimp.ini</language>
+		</languages>
+	</administration>
+	
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="mailchimp_apikey" 
+			type="text" size="40"
+			
+			label="PLG_FORM_MAILCHIMP_API_KEY_LABEL"
+			description="PLG_FORM_MAILCHIMP_API_KEY_DESC"/>
+			
+		<param name="mailchimp_listid"
+			type="text" size="30"
+			label="PLG_FORM_MAILCHIMP_LIST_ID_LABEL"
+			description="PLG_FORM_MAILCHIMP_LIST_ID_DESC"/>
+			
+		<param name="mailchimp_email" 
+			type="tablefields" 
+			label="PLG_FORM_MAILCHIMP_EMAIL_LABEL" 
+			description="PLG_FORM_MAILCHIMP_EMAIL_DESC" />
+			
+		<param name="mailchimp_firstname" 
+			type="tablefields" 
+			label="PLG_FORM_MAILCHIMP_FIRST_NAME_LABEL" 
+			description="PLG_FORM_MAILCHIMP_FIRST_NAME_DESC" />
+			
+		<param name="mailchimp_lastname" 
+			type="tablefields" 
+			label="PLG_FORM_MAILCHIMP_LAST_NAME_LABEL" 
+			description="PLG_FORM_MAILCHIMP_LAST_NAME_DESC" />
+			
+		<param name="mailchimp_signuplabel"
+			type="text"
+			size="30"
+			default="Sign up to my mailing list"
+			label="PLG_FORM_MAILCHIMP_SIGNUP_LABEL_LABEL"
+			description="PLG_FORM_MAILCHIMP_SIGNUP_LABEL_DESC" />
+		
+		<param name="mailchimp_update_existing"
+			type="radio"
+			default="0"
+			label="PLG_FORM_MAILCHIMP_UPDATE_EXISTING_LABEL"
+			description="PLG_FORM_MAILCHIMP_UPDATE_EXISTING_DESC">
+				<option value="0">NO</option>
+				<option value="1">YES</option>
+			</param>
+			
+			<param name="mailchimp_email_type"
+			type="radio"
+			default="html"
+			label="PLG_FORM_MAILCHIMP_EMAIL_TYPE_LABEL"
+			description="PLG_FORM_MAILCHIMP_EMAIL_TYPE_DESC">
+				<option value="text">text</option>
+				<option value="html">html</option>
+			</param>
+			
+			
+			<param name="mailchimp_double_optin"
+			type="radio"
+			default="1"
+			label="PLG_FORM_MAILCHIMP_DOUBLE_OPTIN_LABEL"
+			description="PLG_FORM_MAILCHIMP_DOUBLE_OPTIN_DESC">
+				<option value="0">NO</option>
+				<option value="1">YES</option>
+			</param>
+			
+			<param name="mailchimp_groupopts"
+				type="textarea"
+				cols="40"
+				rows="6"
+				label="PLG_FORM_MAILCHIMP_GROUP_OPTS_LABEL"
+				description="PLG_FORM_MAILCHIMP_GROUP_OPTS_DESC" />
+			
+	</params>
+</install>

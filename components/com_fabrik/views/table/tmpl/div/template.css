@@ -1,0 +1,194 @@
+table.fabrikTable {
+	border-collapse: collapse;
+	margin-top: 10px;
+}
+
+table.fabrikTable td,table.fabrikTable th {
+	padding: 5px;
+	border: 1px solid #cccccc;
+}
+
+.fabrikForm {
+	margin-top: 15px;
+}
+
+table.fabrikTable tr.fabrik_calculations td {
+	border: 0 !important;
+}
+
+table.fabrikTable th {
+	background-color: #e0e0e0;
+}
+
+.oddRow0 {
+	background-color: #FAFAFA;
+}
+
+.oddRow1 {
+	background-color: #Efefef;
+}
+
+.firstPage,.previousPage,.aPage,.nextPage,.lastPage {
+	display: inline;
+	padding: 3px;
+}
+
+table.filtertable {
+	width: 50%;
+}
+
+.fabrikHover {
+	background-color: #ffffff;
+}
+
+/** highlight the last row that was clicked */
+.fabrikRowClick {
+	background-color: #ffffff;
+}
+
+/** highlight the loaded row - package only */
+.activeRow {
+	background-color: #FFFFCC;
+}
+
+.emptyDataMessage {
+	background-color: #EFE7B8;
+	border-color: #EFD859;
+	border-width: 2px 0;
+	border-style: solid;
+	padding: 5px;
+	margin: 10px 0;
+	font-size: 1em;
+	color: #CC0000;
+	font-weight: bold;
+}
+
+.tablespacer {
+	height: 20px;
+}
+
+.fabrikButtons {
+	text-align: right;
+	padding: 10px;
+}
+
+ul.fabrikRepeatData {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+ul.fabrikRepeatData li {
+	background-image: none;
+	padding: 0;
+	margin: 0;
+}
+
+/* buttons */
+.button2-left,.button2-right,.button2-left div,.button2-right div {
+	float: left;
+}
+
+.button2-left a,.button2-right a,.button2-left span,.button2-right span
+	{
+	color: #333333;
+	cursor: pointer;
+	display: block;
+	float: left;
+	font-size: 11px;
+	height: 22px;
+	line-height: 22px;
+	text-decoration: none;
+}
+
+.button2-right {
+	background:
+		url("../../../../../../administrator/templates/khepri/images/j_button2_right.png")
+		no-repeat scroll 100% 0 transparent !important;
+	margin-left: 5px;
+	float: left;
+}
+
+.button2-right .start {
+	background: transparent
+		url("../../../../../../administrator/templates/khepri/images/j_button2_first.png")
+		no-repeat;
+}
+
+.button2-right.off .start {
+	background: transparent
+		url("../../../../../../administrator/templates/khepri/images/j_button2_first_off.png")
+		no-repeat;
+}
+
+.button2-right .prev {
+	background:
+		url("../../../../../../administrator/templates/khepri/images/j_button2_prev.png")
+		no-repeat scroll 0 0 transparent;
+}
+
+.button2-right.off .prev {
+	background:
+		url("../../../../../../administrator/templates/khepri/images/j_button2_prev_off.png")
+		no-repeat scroll 0 0 transparent;
+}
+
+.button2-left {
+	background:
+		url("../../../../../../administrator/templates/khepri/images/j_button2_left.png")
+		no-repeat scroll 0 0 transparent
+}
+
+.button2-left .page,.button2-left .blank {
+	background:
+		url("../../../../../../administrator/templates/khepri/images/j_button2_right_cap.png")
+		no-repeat scroll 100% 0 transparent
+}
+
+.button2-left .next {
+	background:
+		url("../../../../../../administrator/templates/khepri/images/j_button2_next.png")
+		no-repeat scroll 100% 0 transparent
+}
+
+.button2-left.off .next {
+	background:
+		url("../../../../../../administrator/templates/khepri/images/j_button2_next_off.png")
+		no-repeat scroll 100% 0 transparent
+}
+
+.button2-left .end {
+	background:
+		url("../../../../../../administrator/templates/khepri/images/j_button2_last.png")
+		no-repeat scroll 100% 0 transparent;
+}
+
+.button2-left.off .end {
+	background:
+		url("../../../../../../administrator/templates/khepri/images/j_button2_last_off.png")
+		no-repeat scroll 100% 0 transparent;
+}
+
+.counter {
+	clear: left;
+	padding-top: 1em;
+}
+
+.list-footer {
+	margin: auto;
+	text-align: center;
+	width: 44em;
+}
+
+.footer {
+	border-top: 1px solid #999999;
+	padding-top: 1em;
+	background: #F3F3F3;
+}
+
+.list-footer div.limit {
+	float: left;
+	height: 22px;
+	line-height: 22px;
+	margin: 0 10px;
+}

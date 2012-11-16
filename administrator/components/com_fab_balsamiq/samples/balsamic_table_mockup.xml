@@ -1,0 +1,237 @@
+<mockup version="1.0" skin="sketch" measuredW="910" measuredH="437" mockupW="910" mockupH="431">
+  <controls>
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::Title" x="17" y="19" w="110" h="-1" measuredW="103" measuredH="34" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>left</align>
+        <customID>fabrik_title</customID>
+        <size>20</size>
+        <text>Downloads</text>
+      </controlProperties>
+    </control>
+    <control controlID="52" controlTypeID="com.balsamiq.mockups::Label" x="17" y="64" w="69" h="25" measuredW="45" measuredH="25" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customData/>
+        <customID>downloads___type/FL</customID>
+        <text>Plugin%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="55" controlTypeID="com.balsamiq.mockups::SearchBox" x="655" y="64" w="183" h="-1" measuredW="65" measuredH="25" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customData/>
+        <customID>fabrik_search_all</customID>
+      </controlProperties>
+    </control>
+    <control controlID="56" controlTypeID="com.balsamiq.mockups::ComboBox" x="292" y="63" w="-1" h="-1" measuredW="101" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customID>downloads___acl/F</customID>
+        <state>closed</state>
+        <text>Subscriber%0AFree</text>
+      </controlProperties>
+    </control>
+    <control controlID="57" controlTypeID="com.balsamiq.mockups::ComboBox" x="67" y="64" w="-1" h="-1" measuredW="141" measuredH="25" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customID>downloads___type/F</customID>
+        <text>Type%20e.g%20element</text>
+      </controlProperties>
+    </control>
+    <control controlID="58" controlTypeID="com.balsamiq.mockups::Link" x="607" y="63" w="-1" h="-1" measuredW="37" measuredH="25" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customID>fabrik_clear</customID>
+        <text>clear</text>
+      </controlProperties>
+    </control>
+    <control controlID="59" controlTypeID="com.balsamiq.mockups::Button" x="846" y="62" w="-1" h="-1" measuredW="43" measuredH="28" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customID>fabrik_search</customID>
+        <text>Go%21</text>
+      </controlProperties>
+    </control>
+    <control controlID="60" controlTypeID="com.balsamiq.mockups::Label" x="229" y="63" w="69" h="25" measuredW="55" measuredH="25" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customData/>
+        <customID>downloads___acl/FL</customID>
+        <text>Access%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="80" controlTypeID="com.balsamiq.mockups::Canvas" x="1" y="6" w="909" h="98" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderColor>7317724</borderColor>
+        <customData/>
+        <customID>fabrik_header</customID>
+      </controlProperties>
+    </control>
+    <control controlID="82" controlTypeID="com.balsamiq.mockups::Link" x="127" y="18" w="-1" h="-1" measuredW="28" measuredH="25" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customID>fabrik_add</customID>
+        <text>add</text>
+      </controlProperties>
+    </control>
+    <control controlID="83" controlTypeID="com.balsamiq.mockups::Link" x="689" y="19" w="-1" h="-1" measuredW="89" measuredH="25" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customID>fabrik_csv_export</customID>
+        <text>export%20to%20csv</text>
+      </controlProperties>
+    </control>
+    <control controlID="84" controlTypeID="com.balsamiq.mockups::Link" x="793" y="18" w="-1" h="-1" measuredW="98" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customID>fabrik_csv_import</customID>
+        <text>import%20from%20csv</text>
+      </controlProperties>
+    </control>
+    <control controlID="92" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="110" w="910" h="187" measuredW="100" measuredH="70" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>0.25</backgroundAlpha>
+        <borderColor>7317724</borderColor>
+        <borderStyle>roundedSolid</borderStyle>
+        <color>10470904</color>
+        <customData/>
+        <customID>fabrik_row</customID>
+      </controlProperties>
+    </control>
+    <control controlID="93" controlTypeID="com.balsamiq.mockups::Image" x="17" y="125" w="172" h="157" measuredW="77" measuredH="79" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+        <customData/>
+        <customID>downloads___image</customID>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="95" controlTypeID="com.balsamiq.mockups::SubTitle" x="221" y="125" w="187" h="-1" measuredW="221" measuredH="40" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>0</color>
+        <customData/>
+        <customID>downloads___title</customID>
+        <text>Subscriber%20plug-in</text>
+      </controlProperties>
+    </control>
+    <control controlID="96" controlTypeID="com.balsamiq.mockups::Button" x="704" y="121" w="50" h="25" measuredW="73" measuredH="32" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customData/>
+        <customID>downloads___like</customID>
+        <icon>FacebookIcon%7Csmall</icon>
+        <text>like</text>
+      </controlProperties>
+    </control>
+    <control controlID="97" controlTypeID="com.balsamiq.mockups::Paragraph" x="401" y="175" w="437" h="90" measuredW="200" measuredH="140" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>left</align>
+        <bold>false</bold>
+        <customData/>
+        <customID>downloads___description</customID>
+        <italic>false</italic>
+        <size>12</size>
+        <text>description%20of%20plugin%20sdf%20%2Casdfasdf%2Cmas%20df%2Cma%20sdfnasd%20fajsdf%20as%2Cdfm%20a%2C.sdmfa%20s%2Cdmfa%20sdfuja9sdufhsdfjjiu%20%20mnsd%2Cfm%20asdyuhsd%20asmdf%20km%20qwhrt%20ertererp%20ker%5B%20t</text>
+        <underline>false</underline>
+      </controlProperties>
+    </control>
+    <control controlID="98" controlTypeID="com.balsamiq.mockups::Image" x="803" y="119" w="96" h="28" measuredW="77" measuredH="79" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>none</borderStyle>
+        <customData/>
+        <customID>downloads___download</customID>
+      </controlProperties>
+    </control>
+    <control controlID="99" controlTypeID="com.balsamiq.mockups::ComboBox" x="254" y="175" w="-1" h="-1" measuredW="92" measuredH="23" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customID>downloads___type</customID>
+        <size>12</size>
+        <state>closed</state>
+        <text>Component%0AElement%0AForm%20plug-in%0ATable%20plug-in%0AVisualization%0AValidation%0AJoomla%20Plug-in%0AJoomla%20Module%0A%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="100" controlTypeID="com.balsamiq.mockups::ComboBox" x="217" y="150" w="75" h="-1" measuredW="52" measuredH="23" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customID>downloads___joomla_version</customID>
+        <size>12</size>
+        <state>closed</state>
+        <text>1.0%0A1.5%0A1.6</text>
+      </controlProperties>
+    </control>
+    <control controlID="102" controlTypeID="com.balsamiq.mockups::DateChooser" x="812" y="260" w="92" h="-1" measuredW="106" measuredH="29" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customData/>
+        <customID>downloads___create_date</customID>
+      </controlProperties>
+    </control>
+    <control controlID="103" controlTypeID="com.balsamiq.mockups::Button" x="626" y="123" w="65" h="25" measuredW="48" measuredH="32" zOrder="21" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customData/>
+        <customID>downloads___digg</customID>
+        <icon>HeartIcon%7Csmall</icon>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="105" controlTypeID="com.balsamiq.mockups::Label" x="219" y="175" w="45" h="25" measuredW="40" measuredH="23" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>left</align>
+        <customData/>
+        <customID>downloads___type/L</customID>
+        <italic>true</italic>
+        <size>12</size>
+        <text>Type%3A</text>
+        <underline>false</underline>
+      </controlProperties>
+    </control>
+    <control controlID="106" controlTypeID="com.balsamiq.mockups::Label" x="715" y="261" w="92" h="25" measuredW="86" measuredH="23" zOrder="23" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>right</align>
+        <customData/>
+        <customID>downloads___create_date/L</customID>
+        <italic>true</italic>
+        <size>12</size>
+        <text>Last%20updated%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="108" controlTypeID="com.balsamiq.mockups::CheckBox" x="229" y="260" w="-1" h="-1" measuredW="65" measuredH="22" zOrder="24" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customID>fabrik_delete</customID>
+        <text>Delete</text>
+      </controlProperties>
+    </control>
+    <control controlID="110" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="339" w="909" h="98" measuredW="100" measuredH="70" zOrder="25" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customData/>
+        <customID>fabrik_footer</customID>
+      </controlProperties>
+    </control>
+    <control controlID="111" controlTypeID="com.balsamiq.mockups::Button" x="823" y="380" w="-1" h="-1" measuredW="64" measuredH="28" zOrder="26" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customID>fabrik_delete</customID>
+        <text>Delete</text>
+      </controlProperties>
+    </control>
+    <control controlID="112" controlTypeID="com.balsamiq.mockups::TextInput" x="284" y="200" w="-1" h="-1" measuredW="79" measuredH="27" zOrder="27" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customID>downloads___hits</customID>
+        <size>12</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="113" controlTypeID="com.balsamiq.mockups::Label" x="219" y="201" w="92" h="25" measuredW="69" measuredH="23" zOrder="28" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>left</align>
+        <customData/>
+        <customID>downloads___hits/L</customID>
+        <italic>true</italic>
+        <size>12</size>
+        <text>Downloads%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="116" controlTypeID="com.balsamiq.mockups::TextInput" x="319" y="149" w="-1" h="-1" measuredW="79" measuredH="27" zOrder="29" locked="false" isInGroup="-1">
+      <controlProperties>
+        <customID>downloads___version</customID>
+        <size>12</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="117" controlTypeID="com.balsamiq.mockups::Label" x="291" y="150" w="25" h="24" measuredW="16" measuredH="23" zOrder="30" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>right</align>
+        <customData/>
+        <customID>downloads___version/L</customID>
+        <size>12</size>
+        <text>v%3A</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

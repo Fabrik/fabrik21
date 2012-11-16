@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<name>Visualization Edit Form</name>
+	<params addpath="/administrator/components/com_fabrik/elements">
+		<param name="state" type="radio" default="0" label="Published">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="created_by" type="author" default="" label="AUTHOR" description="AUTHORDESC" />
+		<param name="created_by_alias" type="text" size="20" default="" label="AUTHOR ALIAS" description="AUTHOR ALIASDESC" />
+		<param name="access" type="list" size="20" default="0" label="ACCESS LEVEL" description="ACCESS LEVELDESC">
+			<option value="0">Public</option>
+			<option value="1">Registered</option>
+			<option value="2">Special</option>
+		</param>
+		<param name="created" type="calendar" default="" label="CREATE DATE" />
+		<param name="publish_up" type="calendar" default="" label="START PUBLISHING" />
+		<param name="publish_down" type="calendar" default="" label="FINISH PUBLSHING" />
+	</params>
+	
+	<params group="layout">
+		<param name="show-title" type="radio" default="1" label="SHOWTITLE" description="SHOWTITLEDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>	
+	</params>
+</form>

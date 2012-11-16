@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="validationrule" method="upgrade">
+	<name>Is not</name>
+	<author>Hugh Messenger</author>
+	<creationDate>Nov 2008</creationDate>
+	<copyright>(C) 2005-2006 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Is Not validation</description>
+	<files>
+		<filename fabrikplugin="isnot">isnot.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<params repeat="1" repeatcontrols="0">
+		<param type="text" name="isnot-message" size="30" label="Error message" value="" description="VALIDATIONERRORDESC" />
+		<param type="textarea" cols="30" rows="5" name="isnot-validation_condition" label="Condition" description="VALIDATIONCONDITIONDESC"/>
+		<param type="text" name="isnot-isnot" size="30" label="ISNOTVALIDATION" value="" description="ISNOTVALIDATIONDESC" />
+	</params>
+</install>

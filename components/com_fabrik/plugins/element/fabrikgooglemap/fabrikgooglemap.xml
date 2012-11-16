@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>google map</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Oct 2007</creationDate>
+	<copyright>(C) 2005-2007 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders A Google Map with Single Marker</description>
+	<files>
+		<filename fabrikplugin="fabrikgooglemap">fabrikgooglemap.php</filename>
+		<filename>javascript.js</filename>
+		<filename>index.html</filename>
+		<filename>images/zoomin.png</filename>
+		<filename>images/zoomout.png</filename>
+	</files>
+	
+	 <languages folder="language" >
+			<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.element.fabrikgooglemap.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikgooglemap.ini</language>
+			<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.element.fabrikgooglemap.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.element.fabrikgooglemap.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.element.fabrikgooglemap.ini</language>
+		</languages>
+	
+	<administration>
+	  <languages folder="administrator/language" >
+			<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.element.fabrikgooglemap.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikgooglemap.ini</language>
+			<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.element.fabrikgooglemap.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.element.fabrikgooglemap.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.element.fabrikgooglemap.ini</language>
+		</languages>
+	</administration>
+	
+	<params>
+		<param name="fb_gm_maptype" type="list" default="G_NORMAL_MAP" label="FBGMMAPTYPE">
+			<option value="G_NORMAL_MAP">Normal</option>
+			<option value="G_SATELLITE_MAP">Satelite</option>
+			<option value="G_HYBRID_MAP">Hybrid</option>
+			<option value="TERRAIN">Terrain</option>
+		</param>
+		<param name="fb_gm_mapwidth" type="text" size="3" default="200" label="FBGMMAPWIDTH" description=""/>
+		<param name="fb_gm_mapheight" type="text" size="3" default="150" label="FBGMMAPHEIGHT" description=""/>
+	
+		<param name="fb_gm_mapcontrol" type="list" default="GSmallZoomControl" label="FBGMMAPCONTROL" description="FBGMMAPCONTROLDESC">
+			<option value="">None</option>
+			<option value="GLargeMapControl">Large map control</option>
+			<option value="GSmallMapControl">Small map control</option>
+		</param>
+		<param name="fb_gm_scalecontrol" type="radio" default="0" label="FBGMSCALECONTROL" description="FBGMSCALECONTROLDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fb_gm_maptypecontrol" type="radio" default="0" label="FBGMMAPTYPECONTROL" description="FBGMMAPTYPECONTROLDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fb_gm_overviewcontrol" type="radio" default="0" label="FBGMOVERVIEWCONTROL" description="FBGMOVERVIEWCONTROLDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fb_gm_staticmap" type="radio" default="0" label="FBGSTATICMAP" description="FBGSTATICMAPDESC">
+			<option value="1">Static</option>
+			<option value="2">Full</option>
+		</param>
+		<param name="fb_gm_staticmap_icon" type="text" siz="50" label="PLG_ELEMENT_GOOGLEMAP_STATIC_ICON_LABEL" description="PLG_ELEMENT_GOOGLEMAP_STATIC_ICON_LABEL_DESC" />
+		<param name="fb_gm_scroll_wheel" type="radio" default="0" label="FBGSMOUSEWHEEL" description="FBGSMOUSEWHEELDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fb_gm_latlng" type="radio" default="0" label="FBGSLATLNG" description="FBGSLATLNGDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fb_gm_latlng_dms" type="radio" default="0" label="FBGSLATLNGDMS" description="FBGSLATLNGDMSDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fb_gm_auto_center" type="radio" default="0" label="PLG_ELEMENT_GOOGLEMAP_AUTO_CENTER" description="PLG_ELEMENT_GOOGLEMAP_AUTO_CENTER_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+	
+	<params group="defaultlocation">
+		<param name="fb_gm_defaultloc"
+			type="radio"
+			default="0"
+			label="PLG_ELEMENT_GOOGLEMAP_DEFAULT_LOCATION_LABEL"
+			description="PLG_ELEMENT_GOOGLEMAP_DEFAULT_LOCATION_DESC">
+				<option value="0">PLG_ELEMENT_GOOGLEMAP_COORDS</option>
+				<option value="1">PLG_ELEMENT_GOOGLEMAP_GEOLOC</option>
+				<option value="2">PLG_ELEMENT_GOOGLEMAP_EVAL_DEFAULT</option>
+		</param>
+		
+		<param name="fb_gm_eval_default" type="textarea" rows="5" cols="30" default="" label="PLG_ELEMENT_GOOGLEMAP_EVAL_DEFAULT_LABEL" description="PLG_ELEMENT_GOOGLEMAP_EVAL_DEFAULT_DESC" />
+		
+		<param name="fb_gm_lat" type="text" size="10" default="53.2224" label="FBGMLAT" description="FBGMLATDESC"/>
+		<param name="fb_gm_long" type="text" size="10" default="-4.2007" label="FBGMLONG" description="FBGMLONGDESC"/>
+		<param name="fb_gm_zoomlevel" type="text" size="3" default="4" label="FBGMZOOMLEVEL" description="FBGMZOOMLEVELDESC"/>
+		
+	</params>
+	
+	<params group="geocoding" addpath="/administrator/components/com_fabrik/elements">
+		<param name="fb_gm_geocode" type="radio" default="0" label="FBGGEOCODE" description="FBGGEOCODEDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+			<option value="2">Use Elements</option>
+		</param>
+		<param name="fb_gm_reverse_geocode" type="radio" default="0" label="PLG_ELEMENT_GOOGLEMAP_REVERSE_GEOCODE_LABEL" description="PLG_ELEMENT_GOOGLEMAP_REVERSE_GEOCODE_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fb_gm_geocode_addr1" type="tablefields"  label="FBGGEOCODEADDR1" description="FBGGEOCODEADDR1DESC"/>
+		<param name="fb_gm_geocode_addr2" type="tablefields"  label="FBGGEOCODEADDR2" description="FBGGEOCODEADDR2DESC"/>
+		<param name="fb_gm_geocode_city" type="tablefields"  label="FBGGEOCODECITY" description="FBGGEOCODECITYDESC"/>
+		<param name="fb_gm_geocode_state" type="tablefields"  label="FBGGEOCODESTATE" description="FBGGEOCODESTATEDESC"/>
+		<param name="fb_gm_geocode_zip" type="tablefields"  label="FBGGEOCODEZIP" description="FBGGEOCODEZIPDESC"/>
+		<param name="fb_gm_geocode_country" type="tablefields"  label="FBGGEOCODECOUNTRY" description="FBGGEOCODECOUNTRYDESC"/>
+		<param name="fb_gm_geocode_event" type="radio" default="button" label="FBGGEOCODEEVENT" description="FBGGEOCODEEVENTDESC">
+			<option value="button">BUTTON</option>
+			<option value="change">AS_YOU_TYPE</option>
+		</param>
+	</params>
+
+	<params group="tablesettings">
+		<param name="fb_gm_staticmap_tableview" type="radio" default="0" label="FBGSTATICMAPTABLEVIEW" description="FBGSTATICMAPTABLEVIEWDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fb_gm_staticmap_tableview_type_coords" type="radio" default="num" label="FBGSTATICMAPTABLEVIEWTYPECOORDS" description="FBGSTATICMAPTABLEVIEWTYPECOORDSDESC">
+			<option value="num">Decimal</option>
+			<option value="dms">DMS</option>
+		</param>
+		<param name="fb_gm_table_mapwidth" type="text" size="3" default="200" label="FBGMMAPWIDTH" description=""/>
+		<param name="fb_gm_table_mapheight" type="text" size="3" default="150" label="FBGMMAPHEIGHT" description=""/>
+		<param name="fb_gm_table_zoomlevel" type="text" size="3" default="4" label="FBGMZOOMLEVEL" description="FBGMZOOMLEVELDESC"/>
+	</params>
+	
+	<params group="radiuswidget">
+		<param name="fb_gm_radius" type="radio" default="0" label="PLG_ELEMENT_GOOGLEMAP_RADIUS_LABEL" description="PLG_ELEMENT_GOOGLEMAP_RADIUS_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fb_gm_radius_unit" type="radio" default="k" label="PLG_ELEMENT_GOOGLEMAP_RADIUS_UNIT_LABEL" description="PLG_ELEMENT_GOOGLEMAP_RADIUS_UNIT_DESC">
+			<option value="m">Miles</option>
+			<option value="k">Kilometers</option>
+		</param>
+
+		<param name="fb_gm_radius_write_element" type="tablefields"  label="PLG_ELEMENT_GOOGLEMAP_RADIUS_WRITE_ELEMENT_LABEL" description="PLG_ELEMENT_GOOGLEMAP_RADIUS_WRITE_ELEMENT_DESC"/>
+		<param name="fb_gm_radius_read_element" type="tablefields"  label="PLG_ELEMENT_GOOGLEMAP_RADIUS_READ_ELEMENT_LABEL" description="PLG_ELEMENT_GOOGLEMAP_RADIUS_READ_ELEMENT_DESC"/>
+		<param name="fb_gm_radius_default" type="text" size="3" default="50" label="PLG_ELEMENT_GOOGLEMAP_RADIUS_DEFAULT_LABEL" description="PLG_ELEMENT_GOOGLEMAP_RADIUS_DEFAULT_DESC"/>
+		<param name="fb_gm_radius_fitmap" type="radio" default="0" label="PLG_ELEMENT_GOOGLEMAP_RADIUS_FITMAP_LABEL" description="PLG_ELEMENT_GOOGLEMAP_RADIUS_FITMAP_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+ 	</params>
+</install>

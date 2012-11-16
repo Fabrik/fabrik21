@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form" method="upgrade">
+	<name>Autofill</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Sept 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>observers a specified field and looks up first matching record with the same data, then asks if you want to pre-fill in the form with that data</description>
+	<files>
+		<filename fabrikplugin="fabrikautofill">fabrikautofill.php</filename>
+		<filename>index.html</filename>
+		<filename>javascript.js</filename>
+	</files>
+	
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.fabrikautofill.ini</language>
+		</languages>
+	</administration>
+	
+	<languages folder="language" >
+		<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.form.fabrikautofill.ini</language>
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.fabrikautofill.ini</language>
+		<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.form.fabrikautofill.ini</language>
+		<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.form.fabrikautofill.ini</language>
+		<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.form.fabrikautofill.ini</language>
+	</languages>
+	
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="autofill_field_name" 
+			valueformat="tableelement" 
+			type="tablefields" onlytablefields="0" default="" 
+			label="PLG_FORM_AUTOFILL_FIELD_TO_OBSERVE_LABEL" 
+			description="PLG_FORM_AUTOFILL_FIELD_TO_OBSERVE_DESC"/>
+		
+		<param name="autofill_trigger"
+			type="tablefields"
+			valueformat="tableelement" 
+			onlytablefields="0" 
+			label="PLG_FORM_AUTOFILL_TRIGGER_LABEL"
+			description="PLG_FORM_AUTOFILL_TRIGGER_DESC" />
+			
+		<param name="autofill_cnn" 
+			type="connections" 
+			label="PLG_FORM_AUTOFILL_CONNECTION_LABEL"
+			description="PLG_FORM_AUTOFILL_CONNECTION_DESC"/>
+		
+		<param name="autofill_table"
+			observe="autofill_cnn"
+			type="fabriktables"
+			label="PLG_FORM_AUTOFILL_TABLE_LABEL"
+			description="PLG_FORM_AUTOFILL_TABLE_DESC"/>
+			
+		<param name="autofill_map"
+			type="textarea"
+			rows="6"
+			cols="30"
+			label="PLG_FORM_AUTOFILL_ELEMENT_MAP_LABEL"
+			description="PLG_FORM_AUTOFILL_ELEMENT_MAP_DESC" />
+		
+		<param name="autofill_edit_orig"
+			type="radio"
+			default="0"
+			label="PLG_FORM_AUTOFILL_EDIT_ORIG_LABEL"
+			description="PLG_FORM_AUTOFILL_EDIT_ORIG_DESC" >
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+		
+		<param name="autofill_confirm"
+			type="radio"
+			default="1"
+			label="PLG_FORM_AUTOFILL_CONFIRM_LABEL"
+			description="PLG_FORM_AUTOFILL_CONFIRM_DESC" >
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+	</params>
+</install>

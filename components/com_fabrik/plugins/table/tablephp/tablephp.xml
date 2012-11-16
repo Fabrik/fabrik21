@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="table" method="upgrade">
+	<name>Run PHP</name>
+	<author>Rob Clayburn</author>
+	<creationDate>August 2008</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Create a button which runs some PHP code on the select records</description>
+	<files>
+		<filename fabrikplugin="tablephp">tablephp.php</filename>
+		<filename>javascript.js</filename>
+		<filename>index.html</filename>
+		<filename>scripts/index.html</filename>
+	</files>
+	
+	<administration>
+		<languages folder="administrator/language">
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.table.tablephp.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.table.tablephp.ini</language>
+		</languages>
+	</administration>
+
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="table_php_access" type="fullaccesslevel" default="100" label="ACCESS" />
+		<param name="table_php_button_label" type="text" label="BUTTONLABEL" size="30" />
+		<param name="table_php_file" type="filelist" directory="components/com_fabrik/plugins/table/tablephp/scripts/" hide_default="1" label="PHPFILE" description="PHPFILEDESC" />
+		<param name="table_php_code" type="textarea" default="" rows="8" cols="60" label="PHPCODE" description="PHPCODEDESC" />
+		<param name="table_php_additional_data" type="text" size="50" label="PLG_TABLE_PHP_ADDITIONAL_DATA" desscription="PLG_TABLE_PHP_ADDITIONAL_DATA_DESC" />
+		<param name="table_php_msg" type="text" label="SUCCESSMSG" size="30"/>
+	</params>
+</install>

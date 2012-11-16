@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="visualization" method="upgrade">
+	<name>media</name>
+	<author>Hugh Messenger</author>
+	<creationDate>Mar 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Show Media</description>
+	<files>
+		<filename fabrikplugin="media">media.js</filename>
+		<filename>index.html</filename>
+		<folder>views</folder>
+		<folder>models</folder>
+		<folder>controllers</folder>
+		<folder>libs</folder>
+	</files>
+	
+	<params group="connection" addpath="/administrator/components/com_fabrik/elements" description="CONNECTIONONLYFABRIKTABLES">
+		<param name="media_connection" type="connections" label="Connection" />
+	</params>
+	
+	<params repeatcontrols="0" repeat="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="media_table" type="fabriktables" repeat="0" observe="media_connection" connection_in_repeat="false" label="Table"/>
+		<param name="media_media_elementList" type="element" connection_in_repeat="false" include_calculations="1" connection="media_connection" table="media_table" label="Media Element" description="Media element to use, usually a file upload element."/>
+		<param name="media_title_elementList" type="element" connection_in_repeat="false" include_calculations="1" connection="media_connection" table="media_table" label="Title Element" description="Text element with track title."/>
+		<param name="media_image_elementList" type="element" connection_in_repeat="false" include_calculations="1" connection="media_connection" table="media_table" label="Image Element" description="Optional element for track image, usually a file upload element."/>
+		<param name="media_info_elementList" type="element" connection_in_repeat="false" include_calculations="1" connection="media_connection" table="media_table" label="URL Element" description="Optional element for URL to detail page for this track.  If not specified, Fabrik will automatically generate the standard detail view link to this row."/>
+	</params>
+	
+	<params group="rest">
+		<param name="media_width" type="text" size="5" default="" label="Width" description="enter an integer for the width (px)" />
+		<param name="media_height" type="text" size="5" default="" label="Height" description="enter an integer for the height (px)" />
+				
+	</params>
+
+</install>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>Facebook like button</name>
+	<author>Rob Clayburn</author>
+	<creationDate>April 2010</creationDate>
+	<copyright>(C) 2005-2010 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders Facebook Like button</description>
+	<files>
+		<filename fabrikplugin="fblike">fblike.php</filename>
+		<filename>index.html</filename>
+		<filename>javascript.js</filename>
+	</files>
+
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fblike.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.element.fblike.ini</language>
+		</languages>
+	</administration>
+	
+	<params group="extra">
+		<param name="fblike_opengraph_applicationid" type="text" label="APPLICATIONID" description="APPLICATIONIDDESC" />
+		<param name="fblike_url" type="text" label="FBLIKEURL" description="FBLIKEURLDESC" />
+		<param name="fblike_layout" type="list" default="standard" label="FBLIKELAYOUT">
+				<option value="standard">standard</option>
+				<option value="button_count">button count</option>
+				<option value="box_count">box count</option>
+		</param>
+		<param name="fblike_showfaces" default="0" type="radio" label="FBLIKESHOWFACES">
+			<option value="0">NO</option>
+			<option value="1">YES</option>
+		</param>
+		<param name="fblike_width" type="text" size="3" default="300" label="WIDTH" />
+		<param name="fblike action" type="list" default="like" label="FBLIKEACTION">
+			<option value="like">like</option>
+			<option value="recommend">recommend</option>
+		</param>
+		<param name="fblike_font" type="list" default="arial" label="FBLIKEFONT">
+			<option value="arial">arial</option>
+			<option value="lucida grande">lucida grande</option>
+			<option value="segoe ui">segoe ui</option>
+			<option value="tahoma">tahoma</option>
+			<option value="trebuchet ms">trebuchet ms</option>
+			<option value="verdana">verdana</option>
+		</param>
+		<param name="fblike_colorscheme" default="light" type="list" label="FBLIKECOLORSCHEME">
+			<option value="light">light</option>
+			<option value="dark">dark</option>
+		</param>
+		
+		<param name="fblike_locale"
+			default="en_US"
+			size="5"
+			type="text"
+			label="PLG_ELEMENT_FBLIKE_LOCALE_LABEL"
+			description="PLG_ELEMENT_FBLIKE_LOCALE_DESC" />
+	</params>
+	
+	<params group="opengraph-required">
+		<param name="fblike_title"
+			type="tablefields" 
+			label="PLG_ELEMENT_FBLIKE_OG_TITLE_LABEL"
+			description="PLG_ELEMENT_FBLIKE_OG_TITLE_DESC" />
+			
+		<param name="fblike_type"
+			type="tablefields" 
+			label="PLG_ELEMENT_FBLIKE_OG_TYPE_LABEL"
+			description="PLG_ELEMENT_FBLIKE_OG_TYPE_DESC" />
+			
+		<param name="fblike_image"
+			type="tablefields" 
+			label="PLG_ELEMENT_FBLIKE_OG_IMAGE_LABEL"
+			description="PLG_ELEMENT_FBLIKE_OG_IMAGE_DESC" />
+		
+		<param name="fblike_description"
+			type="tablefields" 
+			label="PLG_ELEMENT_FBLIKE_OG_DESCRIPTION_LABEL"
+			description="PLG_ELEMENT_FBLIKE_OG_DESCRIPTION_DESC" />
+			
+		</params>
+		
+		<params group="opengraph-contact">
+			<param name="fblike_email"
+				type="tablefields" 
+				label="PLG_ELEMENT_FBLIKE_OG_EMAIL_LABEL"
+				description="PLG_ELEMENT_FBLIKE_OG_EMAIL_DESC" />
+				
+			<param name="fblike_phone_number"
+				type="tablefields" 
+				label="PLG_ELEMENT_FBLIKE_OG_PHONE_NUMBER_LABEL"
+				description="PLG_ELEMENT_FBLIKE_OG_PHONE_NUMBER_DESC" />
+				
+			<param name="fblike_fax_number"
+				type="tablefields" 
+				label="PLG_ELEMENT_FBLIKE_OG_FAX_NUMBER_LABEL"
+				description="PLG_ELEMENT_FBLIKE_OG_FAX_NUMBER_DESC" />
+				
+		</params>
+		
+		<params group="opengraph-location">
+			<param name="fblike_location"
+				type="tablefields" 
+				label="PLG_ELEMENT_FBLIKE_OG_LOCATION_LABEL"
+				description="PLG_ELEMENT_FBLIKE_OG_LOCATION_DESC" />
+				
+			<param name="fblike_street_address"
+				type="tablefields" 
+				label="PLG_ELEMENT_FBLIKE_OG_STREET_ADDRESS_LABEL"
+				description="PLG_ELEMENT_FBLIKE_OG_STREET_ADDRESS_DESC" />
+				
+			<param name="fblike_locality"
+				type="tablefields" 
+				label="PLG_ELEMENT_FBLIKE_OG_LOCALITY_LABEL"
+				description="PLG_ELEMENT_FBLIKE_OG_LOCALITY_DESC" />
+				
+			<param name="fblike_region"
+				type="tablefields" 
+				label="PLG_ELEMENT_FBLIKE_OG_REGION_LABEL"
+				description="PLG_ELEMENT_FBLIKE_OG_REGION_DESC" />
+				
+			<param name="fblike_postal_code"
+				type="tablefields" 
+				label="PLG_ELEMENT_FBLIKE_OG_POSTAL_CODE_LABEL"
+				description="PLG_ELEMENT_FBLIKE_OG_POSTAL_CODE_DESC" />
+				
+			<param name="fblike_country"
+				type="tablefields" 
+				label="PLG_ELEMENT_FBLIKE_OG_COUNTRY_LABEL"
+				description="PLG_ELEMENT_FBLIKE_OG_COUNTRY_DESC" />
+			
+	</params>
+</install>

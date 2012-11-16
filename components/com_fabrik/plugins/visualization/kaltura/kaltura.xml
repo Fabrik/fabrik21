@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="visualization" method="upgrade">
+	<name>Kaltura</name>
+	<author>Rob Clayburn</author>
+	<creationDate>April 2009</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Show kaltura gallery</description>
+	<files>
+		<filename fabrikplugin="kaltura">kaltura.php</filename>
+		<folder>controllers</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+		<filename>index.html</filename>
+	</files>
+	
+	<administration>
+	  <languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.visualization.kaltura.ini</language>
+		</languages>
+	</administration>
+	
+	<params group="connection" addpath="/administrator/components/com_fabrik/elements"  description="CONNECTIONONLYFABRIKTABLES">
+		<param name="kaltura_connection" type="connections" label="Connection" />
+	</params>
+	
+	<params repeatcontrols="1" repeat="1" addpath="/administrator/components/com_fabrik/elements">
+		<param name="kaltura_table" observe="kaltura_connection" type="fabriktables" connection_in_repeat="false" label="table"/>
+		<param name="kaltura_video" type="element" connection="kaltura_connection" connection_in_repeat="false" table="kaltura_table" label="VIDEOELEMENT" description="VIDEOELEMENTDESC" />
+		<param name="kaltura_partnerid" type="text" default="" label="PARTENERID" description="PARTENERIDDESC" />
+		<param name="kaltura_sub_partnerid" type="text" default="" label="SUBPARTENERID" description="SUBPARTENERIDDESC" />
+		<param name="kaltura_webservice_secret" type="text" default="" label="WEBSERVICESECRET" description="WEBSERVICESECRETDESC" />
+		<param name="kaltura_admin_secret" type="text" default="" label="ADMINSECRET" description="ADMINSECRETDESC" />
+		
+	</params>
+	<params group="rest" repeat="0">
+	</params>
+</install>

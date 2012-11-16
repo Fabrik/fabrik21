@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form" method="upgrade">
+	<name>Limit</name>
+	<author>Rob Clayburn</author>
+	<creationDate>July 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Limits the number of times a user can submit a form</description>
+	<files>
+		<filename fabrikplugin="fabriklimit">fabriklimit.php</filename>
+		<filename>admin.js</filename>
+		<filename>index.html</filename>
+	</files>
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="limit_length" type="text" size="3" default="" label="LIMITLENGTH" description="LIMITLENGTHDESC"/>
+		<param name="@spacer" type="spacer" default="OR"/>
+	
+		<param name="limit_connection" type="connections" label="LIMIT_CONNECTION" description="LIMIT_CONNECTION_DESC" />		
+		<param name="limit_table" observe="limit_connection" type="fabriktables" label="LIMIT_TABLE" description="LIMIT_TABLE_DESC"/>
+		<param name="limit_user" type="element" connection="limit_connection" table="limit_table" label="LIMIT_USER_ELEMENT" description="LIMIT_USER_ELEMENT_DESC"/>
+		<param name="limit_max" type="element" connection="limit_connection" table="limit_table" label="LIMIT_MAX_ELEMENT" description="LIMIT_MAX_ELEMENT_DESC"/>
+		
+		<param name="@spacer" type="spacer"/>
+	
+		<param name="limit_userfield" type="tablefields" valueformat="tableelement" onlytablefields="0" default="" label="LIMITUSER" description="LIMITUSERDESC"/>
+		<param name="limit_reached_message" type="text" size="20" default="You have reached the maximum number of submissions" label="LIMITREACHEDMSG" description="LIMITREACHEDMSGDESC" />
+		<param name="limit_allow_anonymous" type="radio" default="0" label="LIMITALLOWANONYMOUS" description="LIMITALLOWANONYMOUSDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.form.fabriklimit.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.fabriklimit.ini</language>
+			<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.form.fabriklimit.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.form.fabriklimit.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.form.fabriklimit.ini</language>
+		</languages>
+	</administration>
+	
+	<languages folder="language" >
+		<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.form.fabriklimit.ini</language>
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.fabriklimit.ini</language>
+		<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.form.fabriklimit.ini</language>
+		<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.form.fabriklimit.ini</language>
+		<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.form.fabriklimit.ini</language>
+	</languages>
+	
+</install>

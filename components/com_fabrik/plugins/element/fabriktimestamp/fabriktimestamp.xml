@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>timestamp</name>
+	<author>Rob Clayburn &amp; Nathan Cook</author>
+	<creationDate>Jan 2007</creationDate>
+	<copyright>(C) 2005-2007 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Timestamp element with option to choose either GMT or local server time.</description>
+	<files>
+		<filename fabrikplugin="fabriktimestamp">fabriktimestamp.php</filename>
+		<filename>index.html</filename>
+	</files>
+	
+	<administration>
+	  <languages folder="administrator/language" >			
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabriktimestamp.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.element.fabriktimestamp.ini</language>
+		</languages>
+	</administration>
+	
+	<params>
+		<param name="gmt_or_local" type="radio" default="0" label="GMTORLOCAL" description="GMTORLOCALDESC">
+			<option value="0">GMT</option>
+			<option value="1">Local Server Time</option>
+		</param>
+		
+		<param name="timestamp_update_on_edit"
+			type ="radio"
+			default="0"
+			label="PLG_ELEMENT_TIMESTAMP_UPDATE_ON_EDIT_LABEL"
+			descripton="PLG_ELEMENT_TIMESTAMP_UPDATE_ON_EDIT_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>	
+		</param>
+	</params>
+</install>

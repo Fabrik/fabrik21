@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form" method="upgrade">
+	<name>Email</name>
+	<author>Rob Clayburn</author>
+	<creationDate>March 2007</creationDate>
+	<copyright>(C) 2005-2007 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Performs email tasks on form submission</description>
+	<files>
+		<filename fabrikplugin="fabrikemail">fabrikemail.php</filename>
+		<filename>index.html</filename>
+		<folder>tmpl</folder>
+	</files>
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="email_to" type="text" size="97" default="" label="EMAILTO" description="EMAILTODESC"/>
+		<param name="email_to_eval" type="textarea" cols="55" rows="3" label="EMAILTOEVAL" description="EMAILTOEVALDESC" />
+		<param name="email_from" type="text" size="97" default="" label="EMAILFROM" description="EMAILFROMDESC"/>
+		<param name="email_subject" type="text" size="97" default="" label="EMAILSUBJECT" description="EMAILSUBJECTDESC"/>
+		<param name="email_template" type="filelist" directory="components/com_fabrik/plugins/form/fabrikemail/tmpl/" hide_default="1" label="EMAILTEMPLATE" description="EMAILTEMPLATEDESC"/>
+		<param name="email_template_content" add_select="true" default="" type="sql2" query="SELECT id AS value, title AS email_template_content FROM #__content" label="ORCONTENTITEMTEMPLATE" description="ORCONTENTITEMTEMPLATEDESC" />
+		<param name="email_attach_type" type="text" size="5" default="" label="EMAILATTACHTYPE" description="EMAILATTACHTYPEDESC"/>
+		<param name="email_attach_eval" type="textarea" cols="55" rows="5" label="EMAILATTACHEVAL" description="EMAILATTACHEVALDESC" />
+		<param name="email_conditon" type="textarea" cols="55" rows="5" label="Condition" description="CONDITIONDESC" />
+	</params>
+</install>

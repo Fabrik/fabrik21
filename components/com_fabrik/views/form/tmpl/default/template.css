@@ -1,0 +1,40 @@
+.fabrikElement {
+	margin-left: 10px;
+	margin-right:0;
+}
+
+.fabrikSubElementContainer {
+	margin-left: 100px;
+}
+
+.fabrikLabel {
+	width: 100px;
+	clear: left;
+	float: left;
+	min-height:1px; /*for elements with no label txt*/
+}
+
+.fabrikActions {
+	padding-top: 15px;
+	clear: left;
+	padding-bottom: 15px;
+}
+
+.fabrikGroupRepeater {
+	float: left;
+	width: 19%;
+}
+
+/** used by password element */
+.fabrikSubLabel {
+	margin-left: -10px;
+	clear: left;
+	margin-top: 10px;
+	float: left;
+}
+
+.fabrikSubElement {
+	display: block;
+	margin-top: 10px;
+	margin-left: 100px;
+}

@@ -1,0 +1,18 @@
+.fabrikForm .fabrikGroup ul{
+	list-style:none;
+}
+
+.fabrikForm .fabrikGroup > ul{
+	padding:0;
+	margin:0;
+}
+
+.fabrikForm .fabrikGroup li{
+	background:none !important;
+}
+
+.fabrikForm fieldset,
+.fabrikForm fieldset li.fabrikElementContainer{
+	padding:0 !important;
+	border:0;
+}

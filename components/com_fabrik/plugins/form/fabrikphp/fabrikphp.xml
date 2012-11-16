@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form" method="upgrade">
+	<name>Run php code</name>
+	<author>Rob Clayburn</author>
+	<creationDate>March 2007</creationDate>
+	<copyright>(C) 2005-2007 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Evaluates php code on form submission</description>
+	<files>
+		<filename fabrikplugin="fabrikphp">fabrikphp.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<params repeat="1" repeatcontrols="0">
+		<param name="only_process_curl" type="list" default="0" label="PROCESSCURL" description="PROCESSCURLDESC">
+			<option value="">Never</option>
+			<option value="onBeforeLoad">Before the form data is loaded (onBeforeLoad)</option>
+			<option value="onLoad">Before the form is loaded (onLoad)</option>
+			<option value="onBeforeProcess">Start of form submission (onBeforeProcess)</option>
+			<option value="onBeforeStore">After any images have been uploaded (onBeforeStore)</option>
+			<option value="onBeforeCalculations">After data stored, before calculations (onBeforeCalculations)</option>
+			<option value="onAfterProcess">End of form submission (onAfterProcess)</option>
+			<option value="onError">If an error occurs in form submission (onError)</option>
+			<option value="getTopContent">At top of form (getTopContent)</option>
+			<option value="getBottomContent">At bottom of form (getBottomContent)</option>
+			<option value="getEndContent">After the end of the form (getEndContent)</option>
+		</param>
+		<param name="form_php_file" type="filelist" directory="components/com_fabrik/plugins/form/fabrikphp/scripts/" hide_default="1" label="PHPFILE" description="PHPFILEDESC" />
+		<param name="curl_code" type="textarea" default="" rows="8" cols="60" label="PHPCODE" description="PHPCODEDESC" />
+	</params>
+</install>

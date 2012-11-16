@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Visualization">
+		<message>
+			<![CDATA[Visualization]]>
+		</message>
+	</layout>
+	<state>
+		<name>Fabrik Visualization</name>
+		<description>Choose from a selection of Fabrik visualizations</description>
+		<url addpath="/administrator/components/com_fabrik/elements">
+			<param name="controller" type="pluginlist" key="visualization.plugin" plugin="visualization" default="0" label="Visualization type" description="" />
+		</url>
+		<params addpath="/administrator/components/com_fabrik/elements">
+			<param name="visualizationid" type="visaulizationlist" default="0" label="Select Instance" description="" />
+			<param name="resetfilters" type="radio" default="0" label="Reset filters" description="Reset any applied filters when clicking on the link">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+			</param>
+		</params>
+	</state>
+</metadata>

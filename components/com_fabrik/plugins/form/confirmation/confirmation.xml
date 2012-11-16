@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form" method="upgrade">
+	<name>Confirmation</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Aug 2008</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Asks the user to validate the data before submitting to the database</description>
+	<files>
+		<filename fabrikplugin="confirmation">confirmation.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<params repeat="1" repeatcontrols="0"  addpath="/administrator/components/com_fabrik/elements">
+			<param name="confirmation_conditon" type="textarea" cols="30" rows="5" label="Condition" description="CONFIRMATIONCONDITIONDESC" />
+	</params>
+	<languages folder="language" >
+		<language tag="da-DK">da-DK/da-DK.com_fabrik.plg.form.confirmation.ini</language>
+		<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.form.confirmation.ini</language>
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.confirmation.ini</language>
+		<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.form.confirmation.ini</language>
+		<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.form.confirmation.ini</language>
+		<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.form.confirmation.ini</language>
+	</languages>
+</install>

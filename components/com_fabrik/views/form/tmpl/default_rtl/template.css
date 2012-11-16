@@ -1,0 +1,31 @@
+
+.fabrikElement{
+	margin-left:10px;
+	text-align:right;
+	/*float:left;*/
+}
+
+.fabrikSubElementContainer{
+	margin-left:100px;
+}
+
+.fabrikLabel{
+	width:100px;
+	clear:right;
+	float:right;
+}
+
+.fabrikActions{
+	padding-top:15px;
+	clear:left;
+	padding-bottom:15px;
+}
+
+.fabrikGroupRepeater{
+	float:left;
+	width:19%;
+}
+
+.fabrik_subelement{
+	float:right !important;
+}

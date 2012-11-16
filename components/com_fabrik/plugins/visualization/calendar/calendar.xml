@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="visualization" method="upgrade">
+	<name>Calendar</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Jan 2008</creationDate>
+	<copyright>(C) 2005-2006 pollen-8.co.uk</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Defines behaviour of calendar visualization plugin</description>
+	<files>
+		<filename fabrikplugin="calendar">calendar.js</filename>
+		<filename>index.html</filename>
+		<folder>controllers</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+	</files>
+	<params addpath="/administrator/components/com_fabrik/elements">
+		<param name="calendar_layout" label="template" type="folderlist" directory="/components/com_fabrik/plugins/visualization/calendar/views/calendar/tmpl/" />
+		<param name="show_calendar_legend" type="radio" default="1" label="SHOWLEGEND" description="SHOWLEGENDDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="use_standard_event_table" type="radio" default="1" label="USESTANDARDEVENTTABLE" description="USESTANDARDEVENTTABLEDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		
+		<param name="show_day" type="radio" default="1" label="SHOWDAY" description="SHOWDAYDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="show_week" type="radio" default="1" label="SHOWWEEK" description="SHOWWEEKDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		
+		<param name="calendar_default_view" type="list" default="monthView"
+			label="PLG_VISUALIZATION_CALENDAR_DEFAULT_VIEW_LABEL"
+			description="PLG_VISUALIZATION_CALENDAR_DEFAULT_VIEW_DESC">
+			<option value="dayView">Day</option>
+			<option value="weekView">Week</option>
+			<option value="monthView">Month</option>
+		</param>
+		<param name="yoffset" type="text" size="3" default="0" label="YOFFSET" description="YOFFSETDESC" />
+		<param name="first_week_day" type="text" size="1" default="0" label="FIRSTWEEKDAY" description="TIMEFIRSTDAYDESC"/>
+		<param name="calendar_connection" type="connections" label="CONNECTION" description="CONNECTIONONLYFABRIKTABLES" />
+	</params>
+
+	<params group="fields" repeatcontrols="1" repeat="1" repeatmin="1">
+		<param name="calendar_table[]" type="fabriktables" connection_in_repeat="false" observe="calendar_connection" label="TABLE" description="CALENDARTABLEDESC"/>
+		<param name="calendar_startdate_element[]" type="element" connection_in_repeat="false" connection="calendar_connection" table="calendar_table" label="STARTDATEELEMENT" description="STARTDATEELEMENTDESC"/>
+		<param name="calendar_enddate_element[]" type="element" connection_in_repeat="false" connection="calendar_connection" table="calendar_table" label="ENDDATEELEMENT" description="ENDDATEELEMENTDESC"/>
+		<param name="calendar_label_element[]" type="element" connection_in_repeat="false" connection="calendar_connection" table="calendar_table" label="LABELELEMENT" description="LABELELEMENTDESC"/>
+		<param name="colour[]" type="text" label="COLOR" description="COLORDESC" />	
+	</params>
+	
+	<params group="monthview">
+		<param name="calendar-monthday-width" type="text" size="3" default="90" label="MONTHDAYWIDTH" description="MONTHDAYWIDTHDESC" />
+		<param name="calendar-monthday-height" type="text" size="3" default="80" label="MONTHDAYHEIGHT" description="MONTHDAYHEIGHTDESC" />
+		<param name="greyscaled-week-end" type="radio" default="0" label="GREYSCALEWEEKEND" description="GREYSCALEWEEKENDDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+</install>

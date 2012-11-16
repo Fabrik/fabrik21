@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>Facebook like box</name>
+	<author>Rob Clayburn</author>
+	<creationDate>April 2010</creationDate>
+	<copyright>(C) 2005-2010 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders Facebook Like box widget</description>
+	<files>
+		<filename fabrikplugin="fblikebox">fblikebox.php</filename>
+		<filename>index.html</filename>
+		<filename>javascript.js</filename>
+	</files>
+
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fblikebox.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.element.fblikebox.ini</language>
+		</languages>
+	</administration>
+	
+	<params group="extra">
+		<param name="fblikebox_pageid" type="text" label="PAGEID" description="PAGEIDDESC" />
+		<param name="fblikebox_width" type="text" size="3" default="300" label="WIDTH" />
+		<param name="fblikebox header" type="radio" default="1" label="FBLIKEBOXHEADER">
+			<option value="0">NO</option>
+			<option value="1">YES</option>
+		</param>
+		<param name="fblikebox_stream" type="radio" default="1" label="FBLIKEBOXSTREAM">
+			<option value="0">NO</option>
+			<option value="1">YES</option>
+		</param>
+		<param name="fblikebox_connections" type="text" default="10" label="FBLIKEBOXCONNECTIONS" />
+		
+		<param name="fblikebox_locale"
+			default="en_US"
+			size="5"
+			type="text"
+			label="PLG_ELEMENT_FBLIKEBOX_LOCALE_LABEL"
+			description="PLG_ELEMENT_FBLIKEBOX_LOCALE_DESC" />
+	</params>		
+</install>

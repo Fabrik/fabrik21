@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="validationrule" method="upgrade">
+	<name>Email Exists in Joomla</name>
+	<author>Hugh Messenger</author>
+	<creationDate>June 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Check to see if an email exists (or not) in J! users table</description>
+	<files>
+		<filename fabrikplugin="emailexists">emailexists.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<params  repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param type="text" name="emailexists-message" size="30" label="Error message" value="" description="VALIDATIONERRORDESC" />
+		<param type="textarea" cols="30" rows="5" name="emailexists-validation_condition" label="Condition" description="VALIDATIONCONDITIONDESC"/>
+		<param name="emailexists_or_not" type="radio" default="fail_if_exist" label="EMAILEXISTSORNOT" description="EMAILEXISTSORNOTDESC">
+			<option value="fail_if_exists">FAILIFMAILEXISTS</option>
+			<option value="fail_if_not_exists">FAILIFEMAILNOTEXISTS</option>
+		</param>
+	</params>
+	
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.validationrule.emailexists.ini</language>
+		</languages>
+	</administration>
+</install>

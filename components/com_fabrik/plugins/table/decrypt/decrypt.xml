@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="table" method="upgrade">
+	<name>Decrypt</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Feb 2011</creationDate>
+	<copyright>(C) 2005-2011 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Decrypt using DES-ECB</description>
+	<files>
+		<filename fabrikplugin="decrypt">decrypt.php</filename>
+		<filename>index.html</filename>
+		<filename>scripts/index.html</filename>
+	</files>
+	
+	<administration>
+		<languages folder="administrator/language">
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.table.decrypt.ini</language>
+		</languages>
+	</administration>
+
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="php_decrypt_access" type="fullaccesslevel" default="100" label="ACCESS" />
+		
+		<param name="decrypt_key"
+			type="text"
+			label="PLG_DECRYPT_FIELD_KEY_LABEL"
+			description="PLG_DECRYPT_FIELD_KEY_DESC" />
+			
+		<param name="decrypt_fields"
+			type="textarea"
+			cols="20"
+			rows="6"
+			label="PLG_DECRYPT_FIELDS_LABEL"
+			description="PLG_DECRYPT_FIELDS_DESC" />
+	</params>
+</install>

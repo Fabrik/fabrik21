@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>kaltura - video upload</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Jan 2007</creationDate>
+	<copyright>(C) 2005-2007 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>see kaltura.com</description>
+	<files>
+		<filename fabrikplugin="fabrikkaltura">fabrikkaltura.php</filename>
+		<filename>javascript.js</filename>
+		<filename>index.html</filename>
+	</files>
+	<languages folder="administrator/language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikkaltura.ini</language>
+	</languages>
+	
+	<params>
+		<param name="kaltura_partnerid" type="text" default="" label="PARTENERID" description="PARTENERIDDESC" />
+		<param name="kaltura_sub_partnerid" type="text" default="" label="SUBPARTENERID" description="SUBPARTENERIDDESC" />
+		<param name="kaltura_webservice_secret" type="text" default="" label="WEBSERVICESECRET" description="WEBSERVICESECRETDESC" />
+		<param name="kaltura_show_closebutton" type="radio" label="SHOWCLOSEBUTTON" description="SHOWCLOSEBUTTONDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+</install>

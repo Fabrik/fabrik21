@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="visualization" method="upgrade">
+	<name>googlemap</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Sept 2007</creationDate>
+	<copyright>(C) 2005-2011 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Show a google map</description>
+	<files>
+		<filename fabrikplugin="googlemap">googlemap.js</filename>
+		<filename>index.html</filename>
+		<folder>controllers</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+	</files>
+	
+	<administration>
+	  <languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.visualization.fabrikgooglemap.ini</language>
+		</languages>
+	</administration>
+	
+	<params group="connection" addpath="/administrator/components/com_fabrik/elements">
+		<param name="googlemap_connection" type="connections" label="Connection"  description="CONNECTIONONLYFABRIKTABLES"/>
+	</params>
+	
+	<params repeatcontrols="1" repeat="1" addpath="/administrator/components/com_fabrik/elements">
+		<param name="googlemap_table" observe="googlemap_connection" connection_in_repeat="false" type="fabriktables" label="table"/>
+		<param name="fb_gm_detailtemplate" type="textarea" default="" rows="8" cols="40" label="FBGMDETAILTEMPLATE" description="FBGMDETAILTEMPLATEDDESC" />
+		<param name="fb_gm_iconimage" type="imagelist" default="" hide_none="1" directory="/images/stories" label="ICON" description="ICONDESC" />
+		<param name="fb_gm_first_iconimage" type="imagelist" default="" hide_none="1" directory="/images/stories" label="PLG_VISUALIZATION_GOOGLEMAP_FIRST_ICON_LABEL" description="PLG_VISUALIZATION_GOOGLEMAP_FIRST_ICON_DESC" />
+		<param name="fb_gm_last_iconimage" type="imagelist" default="" hide_none="1" directory="/images/stories" label="PLG_VISUALIZATION_GOOGLEMAP_LAST_ICON_LABEL" description="PLG_VISUALIZATION_GOOGLEMAP_LAST_ICON_DESC" />
+		<param name="fb_gm_iconimage2"  type="element" connection="googlemap_connection" connection_in_repeat="false" table="googlemap_table" label="DATAICON" description="DATAICONDESC" />
+		<param name="fb_gm_icon_letter" size="1" type="text" default="" label="ICONLETTER" description="ICONLETTERDESC" />
+		
+		<param name="fb_gm_polyline_element" type="element" connection="googlemap_connection" connection_in_repeat="false" table="googlemap_table" label="FBGPOLYLINE_ELEMENT" description="FBGPOLYLINE_ELEMENTDESC"/>
+		<param name="fb_gm_polyline_width" type="text" size="3" default="10" label="FBGPOLYLINE_WIDTH" description="FBGPOLYLINE_WIDTHDESC"/>
+		<param name="fb_gm_polyline_colour" type="text" size="8" default="#CCFFFF" label="FBGPOLYLINE_COLOUR" description="FBGPOLYLINE_COLOURDESC"/>
+		<param name="fb_gm_use_polygon" type="radio" default="0" label="FBGMUSEPOLYGON" description="FBGMUSEPOLYGONSDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fb_gm_polygon_fillOpacity" type="text" size="3" default="0.35" label="FBGPOLYGON_FILLOPACITY" description="FBGPOLYGON_FILLOPACITYDESC"/>
+		<param name="fb_gm_polygon_fillColor" type="text" size="8" default="#CCFFFF" label="FBGPOLYGON_FILLCOLOUR" description="FBGPOLYGON_FILLCOLOURDESC"/>		
+		
+		<param name="fb_gm_title_element"
+			type="element" connection="googlemap_connection"
+			connection_in_repeat="false" table="googlemap_table" 
+			label="PLG_VIZ_GOOGLEMAP_TITLE_ELEMENT_LABEL"
+			description="PLG_VIZ_GOOGLEMAP_TITLE_ELEMENT_DESC" />
+			
+	</params>
+	
+	<params group="rest" repeat="0">
+		<param name="fb_gm_maptype" type="list" default="G_NORMAL_MAP" label="MAPTYPE">
+			<option value="G_NORMAL_MAP">Normal</option>
+			<option value="G_SATELLITE_MAP">Satelite</option>
+			<option value="G_HYBRID_MAP">Hybrid</option>
+			<options vlaue="TERRAIN">Terrain</options>
+		</param>
+		<param name="fb_gm_zoomlevel" type="text" size="2" default="4" label="FBGMZOOMLEVEL" description="FBGMZOOMLEVELDESC"/>
+		<param name="fb_gm_center" type="radio" default="middle" label="FBGMCENTERON" desc="FBGMCENTERON_DESC">
+			<option value="middle">MIDDLE</option>
+			<option value="lastmarker">LAST MARKER</option>
+			<option value="userslocation">USERS_LOCATION</option>
+			<option value="querystring">QUERY_STRING</option>
+		</param>
+	
+		<param name="fb_gm_mapwidth" type="text" size="3" default="600" label="FBGMMAPWIDTH" description=""/>
+		<param name="fb_gm_mapheight" type="text" size="3" default="300" label="FBGMMAPHEIGHT" description=""/>
+		<param name="fb_gm_layout" label="template" type="folderlist" directory="/components/com_fabrik/plugins/visualization/googlemap/views/googlemap/tmpl/" />
+	</params>
+	<params group="controls">
+		<param name="fb_gm_zoom"
+			type="radio" default="1"
+			label="PLG_VIZ_GOOGLEMAP_ZOOM_LABEL"
+			description="PLG_VIZ_GOOGLEMAP_ZOOM_DESC">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+		</param>
+			
+		<param name="fb_gm_zoom_control_style" 
+			type="list" default="DEFAULT"
+			label="PLG_VIZ_GOOGLEMAP_ZOOM_CONTROL_STYLE_LABEL" 
+			description="PLG_VIZ_GOOGLEMAP_ZOOM_CONTROL_STYLE_DESC">
+			<option value="0">Default</option>
+			<option value="1">Small</option>
+			<option value="2">Large</option>
+		</param>
+
+		<param name="fb_gm_scalecontrol" type="radio" default="0" label="FBGMSCALECONTROL" description="FBGMSCALECONTROLDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fb_gm_maptypecontrol" type="radio" default="0" label="FBGMMAPTYPECONTROL" description="FBGMMAPTYPECONTROLDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fb_gm_overviewcontrol" type="radio" default="0" label="FBGMOVERVIEWCONTROL" description="FBGMOVERVIEWCONTROLDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		
+	</params>
+	<params group="ajax">
+		<param name="fb_gm_ajax_refresh" type="radio" default="0" label="FBGMAJAXREFRESH" description="FBGMAJAXREFRESHDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fb_gm_ajax_refresh_center" type="radio" default="1" label="FBGMAJAXREFRESHCENTRE" description="FBGMAJAXREFRESHCENTREDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fb_gm_ajax_refresh_rate" size="6" type="text" default="10000" label="REFRESHRATE" description="REFRESHRATEDESC" />
+	</params>
+	
+	<params group="clustering">
+		<param name="fb_gm_clustering" type="radio" default="0" label="FBGMCLUSTERINGON" description="FBGMCLUSTERINGONDESC">
+			<option value="0">No</option>
+			<option value="1">Use ClusterMarker</option>
+			<option value="2">Use MarkerClusterer</option>
+		</param>
+		<param name="fb_gm_cluster_splits" type="text" size="10" default="10,50" label="FBGMCLUSTERSPLIT" description="FBGMCLUSTERSPLITDESC"/>
+		<param name="fb_gm_cluster_icon_increment" type="text" size="3" default="5" label="FBGMCLUSTERICONINCREMENT" description="FBGMCLUSTERICONINCREMENTDESC" />
+	</params>
+	
+
+	
+	<params group="advanced">
+		<param name="fb_gm_markermax" type="text" default="" label="FBGMMARKERMAX" description="FBGMMARKERMAXDESC" />
+		
+		<param name="fb_gm_markermax_message"
+			type="text"
+			size="40"
+			label="PLG_VIZ_GOOGLEMAP_MAX_MARKER_MESSAGE_LABEL"
+			description="PLG_VIZ_GOOGLEMAP_MAX_MARKER_MESSAGE_DESC" />
+			
+		<param name="fb_gm_random_marker" 
+			type="radio" default="0" 
+			label="PLG_VIZ_GOOGLEMAP_RANDOM_ICONS_LABEL"
+			description="PLG_VIZ_GOOGLEMAP_RANDOM_ICONS_DESC">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+		</param>
+		
+		<param name="fb_gm_use_cookies" type="radio" default="1" label="FBGMUSECOOKIES" description="FBGMUSECOOKIESDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+	
+	<params group="overlay_settings">
+		<param name="fb_gm_use_overlays" 
+			type="radio" default="0" 
+			label="PLG_VIZ_GOOGLEMAP_USE_OVERLAYS_LABEL" 
+			description="PLG_VIZ_GOOGLEMAP_USE_OVERLAYS_DESC">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+		</param>
+		
+		<param name="fb_gm_use_overlays_sidebar" 
+			type="radio" default="0" 
+			label="PLG_VIZ_GOOGLEMAP_USE_OVERLAYS_SIDEBAR_LABEL" 
+			description="PLG_VIZ_GOOGLEMAP_USE_OVERLAYS_SIDEBAR_DESC">
+				<option value="0">None</option>
+				<option value="1">Left</option>
+				<option value="2">Right</option>
+		</param>
+		
+		<param name="fb_gm_group_sidebar"
+			type="radio" default="0"
+			label="PLG_VIZ_GOOGLEMAP_GROUP_BY_SIDEBAR_LABEL"
+			description="PLG_VIZ_GOOGLEMAP_GROUP_BY_SIDEBAR_DESC">
+				<option value="0">No</option>
+				<option value="1">Yes</option>	
+		</param>
+		
+		<param name="fb_gm_group_class"
+			type="element" 
+			connection="googlemap_connection" 
+			connection_in_repeat="false" 
+			table="googlemap_table"
+			label="PLG_VIZ_GOOGLEMAP_GROUP_CLASS_LABEL"
+			description="PLG_VIZ_GOOGLEMAP_GROUP_CLASS_DESC" />
+			
+	</params>
+	
+	<params group="overlays" repeatcontrols="1" repeat="1" addpath="/administrator/components/com_fabrik/elements">
+		<param name="fb_gm_overlay_urls" 
+			type="text" size="100" 
+			label="PLG_VIZ_GOOGLEMAP_OVERLAYS_URL" 
+			description="PLG_VIZ_GOOGLEMAP_OVERLAYS_URL_DESC"/>
+			
+		<param name="fb_gm_overlay_labels" 
+			type="text" size="100"
+			label="PLG_VIZ_GOOGLEMAP_OVERLAYS_LABEL" 
+			description="PLG_VIZ_GOOGLEMAP_OVERLAYS_LABEL_DESC"/>
+			
+		
+	</params>
+</install>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="visualization" method="upgrade">
+	<name>chart</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Sept 2007</creationDate>
+	<copyright>(C) 2005-2006 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Show charts</description>
+	<files>
+		<filename fabrikplugin="chart">chart.js</filename>
+		<filename>index.html</filename>
+		<folder>controllers</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+	</files>
+	
+	<params group="connection" addpath="/administrator/components/com_fabrik/elements" description="CONNECTIONONLYFABRIKTABLES">
+		<param name="chart_connection" type="connections" label="PLG_VISUALIZATION_CHART_CONNECTION_LABEL" />
+	</params>
+	
+	<params repeatcontrols="1" repeat="1" addpath="/administrator/components/com_fabrik/elements">
+		<param name="chart_table" 
+			type="fabriktables" 
+			connection_in_repeat="false" 
+			repeat="0" 
+			observe="chart_connection" 
+			label="PLG_VISUALIZATION_CHART_TABLE_LABEL"/>
+			
+		<param name="chart_elementList" 
+			type="element" connection_in_repeat="false"
+			include_calculations="1" connection="chart_connection"
+			table="chart_table"
+			label="CHART_ELEMENT" 
+			description="CHART_ELEMENT_DESC" />
+			
+		<param name="chart_axis_labels" 
+			type="text" 
+			label="CHART_LABEL" 
+			description="CHART_LABEL_DESC" />
+			
+		<param name="chart_colours" 
+			type="text" 
+			label="COLOUR" 
+			description="COLOUR_DESC" />
+			
+		<param name="x_axis_label" 
+			type="element" connection_in_repeat="false" 
+			connection="chart_connection" table="chart_table" 
+			label="AXIS_LABEL" 
+			description="AXIS_LABEL_DESC" />
+			
+		<param name="x_axis_measurement_unit" 
+			type="text" size="3" 
+			label="AXIS_MEAUSREMENT_UNIT" 
+			description="AXIS_MEAUSREMENT_UNIT_DESC" />
+			
+		<param name="chart_where" 
+			type="text" size="60" 
+			label="CHART_WHERE" 
+			description="CHART_WHERE_DESC" />
+					
+	</params>
+	
+	<params group="rest">
+		<param name="chart_layout" 
+			type="folderlist" directory="/components/com_fabrik/plugins/visualization/chart/views/chart/tmpl/" 
+			label="PLG_VISUALIZATION_CHART_TEMPLATE_LABEL" />
+	
+		<param name="graph_type" type="list" default="BarChart" 
+			label="PLG_VISUALIZATION_CHART_CHART_TYPE_LABEL">
+			<option value="">None</option>
+
+			<option value="lc">Single Line Chart</option>
+			<option value="lxy">Multi Line Chart</option>
+			<option value="ls">Sparkline</option>
+			<option value="bhs">Horizontal Bar Chart</option>
+			<option value="bvs">Vertical Bar Chart</option>
+			<option value="bhg">Horizontal Bar Chart (Grouped)</option>
+			<option value="bvg">Vertical Bar Chart (Grouped)</option>
+			<option value="p">Pie chart</option>
+			<option value="p3">3D Pie chart</option>
+			<option value="s">Scatter plot</option>
+
+		</param>
+		<param name="fill_line_graph" type="radio" default="1" 
+			label="PLG_VISUALIZATION_CHART_FILL_LINE_GRAPH_LABEL">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+		</param>
+		
+		<param name="graph_show_legend" 
+			type="radio" default="0" 
+			label="PLG_VISUALIZATION_CHART_SHOW_LEGEND_LABEL">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+		</param>
+		
+		<param name="chart_width" 
+			type="text" size="5"
+			label="PLG_VISUALIZATION_CHART_WIDTH_LABEL" 
+			description="PLG_VISUALIZATION_CHART_WIDTH_DESC" />
+			
+		<param name="chart_height" type="text" size="5"
+			label="PLG_VISUALIZATION_CHART_HEIGHT_LABEL" 
+			description="PLG_VISUALIZATION_CHART_HEIGHT_DESC" />
+			
+		<param name="chart_chds" type="text" size="60" label="CHDS" description="CHDSDESC" />
+		<param name="chart_chxl" type="text" size="60" label="CHXL" description="CHXLDESC" />
+		<param name="chart_chg" type="text" size="60" label="CHG" description="CHGDESC" />
+		<param name="chart_chm" type="text" size="60" label="CHM" description="CHMDESC" />
+		<param name="chart_chma" type="text" size="60" label="CHMA" description="CHMADESC" />
+	</params>
+
+</install>

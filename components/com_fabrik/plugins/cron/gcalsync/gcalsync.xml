@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="cron" method="upgrade">
+	<name>GCal Sync</name>
+	<author>Hugh Messenger</author>
+	<creationDate>Jan 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>GCal Sync</description>
+	<files>
+		<filename fabrikplugin="gcalsync">gcalsync.php</filename>
+		<filename>admingcalsync.js</filename>
+		<filename>index.html</filename>
+	</files>
+	
+
+		<languages folder="administrator/language">
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.cron.gcalsync.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.cron.gcalsync.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.cron.gcalsync.ini</language>
+		</languages>
+
+	
+	<params repeat="0" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="gcal_sync_upload_events" type="radio" default="from" label="GCALUPLOAD" description="GCALUPLOADDESC">
+			<option value="from">From GCal</option>
+			<option value="to">To GCal</option>
+			<option value="both">Both</option>
+		</param>
+		<param name="gcal_sync_login" type="text" default="" label="GCALLOGIN" description="GCALLOGINDESC" />
+		<param name="gcal_sync_passwd" type="text" default="" label="GCALPASSWD" description="GCALPASSWDDESC" />		
+		<param name="gcal_sync_startdate_element" type="element" connection="connection" table="table" label="GCALSTARTDATEELEMENT" description="GCALSTARTDATEELEMENTDESC"/>
+		<param name="gcal_sync_enddate_element" type="element" connection="connection" table="table" label="GCALENDDATEELEMENT" description="GCALENDDATEELEMENTDESC"/>
+		<param name="gcal_sync_label_element" type="element" connection="connection" table="table" label="GCALLABELELEMENT" description="GCALLABELELEMENTDESC"/>
+		<param name="gcal_sync_desc_element" type="element" connection="connection" table="table" label="GCALDESCELEMENT" description="GCALDESCELEMENTDESC"/>
+		<param name="gcal_sync_userid_element" type="element" connection="connection" table="table" label="GCALUSERIDELEMENT" description="GCALUSERIDELEMENTDESC"/>
+		<param name="gcal_sync_id_element" type="element" connection="connection" table="table" label="GCALIDELEMENT" description="GCALIDELEMENTDESC"/>
+		<param name="gcal_sync_gcal_url" type="text" size="100" default="" label="GCALURL" description="GCALURLDESC" />
+
+	</params>
+</install>

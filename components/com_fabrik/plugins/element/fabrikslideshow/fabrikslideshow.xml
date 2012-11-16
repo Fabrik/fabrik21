@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>slideshow</name>
+	<author>Hugh Messenger</author>
+	<creationDate>March 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders related images from another table as a slideshow</description>
+	<files>
+		<filename fabrikplugin="fabrikslideshow">fabrikslideshow.php</filename>
+		<filename>index.html</filename>
+		<filename>javascript.js</filename>
+		<folder>libs</folder>
+	</files>
+	
+	<languages folder="administrator/language" >
+		<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.element.fabrikslideshow.ini</language>
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikslideshow.ini</language>
+		<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.element.fabrikslideshow.ini</language>
+		<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.element.fabrikslideshow.ini</language>
+	</languages>
+	
+	<params addpath="/administrator/components/com_fabrik/elements">
+		<param name="slideshow_type" type="radio" default="1" label="SLIDESHOWTYPE" description="SLIDESHOWTYPEDESC">
+			<option value="1">Normal</option>
+			<option value="2">Ken Burns</option>
+			<option value="3">Push</option>
+			<option value="4">Fold</option>
+		</param>
+		<param name="slideshow_thumbnails" type="radio" default="0" label="SLIDESHOWTHUMBNAILS" description="SLIDESHOWTHUMBNAILSDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="slideshow_connection" type="connections" label="Connection" />		
+		<param name="slideshow_table" observe="slideshow_connection" type="fabriktables" label="SLIDESHOWTABLE" description="SLIDESHOWTABLEDESC"/>
+		<param name="slideshow_fk" type="element" connection="slideshow_connection" table="slideshow_table" label="SLIDESHOWFK" description="SLIDESHOWFKDESC"/>
+		<param name="slideshow_file" type="element" connection="slideshow_connection" table="slideshow_table" label="SLIDESHOWFILE" description="SLIDESHOWFILEDESC"/>
+		<param name="slideshow_caption" type="element" connection="slideshow_connection" table="slideshow_table" label="SLIDESHOWCAPTION" description="SLIDESHOWCAPTIONDESC"/>
+		<param name="slideshow_width" type="text" size="4" default="400" label="SLIDESHOWWIDTH" description="SLIDESHOWWIDTHDESC" />  
+		<param name="slideshow_height" type="text" size="4" default="300" label="SLIDESHOWHEIGHT" description="SLIDESHOWHEIGHTDESC" />  
+		<param name="slideshow_delay" type="text" size="6" default="5000" label="SLIDESHOWDELAY" description="SLIDESHOWDELAYDESC" />  
+		<param name="slideshow_duration" type="text" size="6" default="2000" label="SLIDESHOWDURATION" description="SLIDESHOWDURATIONDESC" />  
+		<param name="slideshow_zoom" type="text" size="6" default="50" label="SLIDESHOWZOOM" description="SLIDESHOWZOOMDESC" />  
+		<param name="slideshow_pan" type="text" size="6" default="20" label="SLIDESHOWPAN" description="SLIDESHOWPANDESC" />  
+	</params>
+</install>

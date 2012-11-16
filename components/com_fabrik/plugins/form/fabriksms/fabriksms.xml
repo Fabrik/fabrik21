@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form">
+	<name>SMS</name>
+	<author>Rob Clayburn</author>
+	<creationDate>March 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Send SMS message to SMS gateway</description>
+	<files>
+		<filename fabrikplugin="fabriksms">fabriksms.php</filename>
+		<folder>gateway</folder>
+		<filename>index.html</filename>
+	</files>
+	<params repeat="1" repeatcontrols="0"  addpath="/administrator/components/com_fabrik/elements">
+		<param name="sms-gateway" label="GATEWAY" description="GATEWAYDESC" type="filelist" hide_none="true" hide_default="true" directory="components/com_fabrik/plugins/form/fabriksms/gateway" />
+		<param name="sms-username" type="text" size="30" default="" label="USERNAME" description=""/>
+		<param name="sms-password" type="text" size="30" default="" label="PASSWORD" description=""/>
+		<param name="sms-to" type="text" default="" size="30"  label="RECEIVERS_MOBILE_NUM" description="RECEIVERS_MOBILE_NUMDESC" />
+		<param name="sms-from" type="text" default="" size="30"  label="SENDERS_MOBILE_NUM" description="SENDERS_MOBILE_NUMDESC" />
+	</params>
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.form.fabriksms.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.fabriksms.ini</language>
+			<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.form.fabriksms.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.form.fabriksms.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.form.fabriksms.ini</language>
+		</languages>
+	</administration>
+	
+	<languages folder="language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.fabriksms.ini</language>
+	</languages>
+</install>

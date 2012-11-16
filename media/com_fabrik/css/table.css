@@ -1,0 +1,137 @@
+.fabrikDragSelected{
+	border:2px solid green;
+}
+
+#fbPackageOverlay {
+	position: absolute;
+	z-index: 9998;
+	left: 0;
+	width: 100%;
+	background-color: #000;
+}
+
+.fbPackageStatusOverlay {
+	position: absolute;
+	z-index: 9999;
+	background-color: #fff;
+	padding: 20px;
+	font-size: 2em;
+	border: 2px solid #666;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+}
+
+.fbPackageStatus img{
+	margin-right:10px;
+}
+
+.notempty {
+	background: transparent url(../images/required.png) no-repeat top right;
+}
+
+.addbutton {
+	background: transparent url(../images/add.png) no-repeat left;
+	padding: 2px 5px 0 20px;
+}
+
+.feedButton {
+	background: transparent url(../images/feed.png) no-repeat left;
+	padding: 2px 5px 0 20px;
+}
+
+.csvExportButton {
+	background: transparent url(../images/csv-export.png) no-repeat left;
+	padding: 2px 5px 0 20px;
+}
+
+.csvImportButton {
+	background: transparent url(../images/csv-import.png) no-repeat left;
+	padding: 2px 5px 0 20px;
+}
+
+.fabrikTable a.fabrikorder-desc {
+	background: transparent url(../images/orderdesc.png) no-repeat right;
+	padding-right: 9px;
+}
+
+.fabrikTable a.fabrikorder-asc {
+	background: transparent url(../images/orderasc.png) no-repeat right;
+	padding-right: 9px;
+}
+
+.fabrikTable .fabrikTag {
+	background: transparent url(../images/tag.png) no-repeat left;
+	padding: 3px 0.5em 0 19px;
+	line-height: 2.1em;
+}
+
+.fabrikElementContainer { /** for inline edit **/
+	position: relative;
+}
+
+table.fabrikTable th {
+	background-color: #e0e0e0;
+}
+
+.oddRow0 {
+	background-color: #FAFAFA;
+}
+
+.oddRow1 {
+	background-color: #Efefef;
+}
+
+table.fabrikTable {
+	border-collapse: collapse;
+	margin-top: 10px;
+}
+
+table.fabrikTable td,table.fabrikTable th {
+	padding: 5px;
+	border: 1px solid #cccccc;
+}
+
+/** bump calendar above mocha window in mootools 1.2**/
+div.calendar {
+	z-index: 115 !important;
+}
+
+.auto-complete-container {
+	overflow-y: hidden;
+	border: 1px solid #ddd;
+}
+
+.auto-complete-container ul {
+	list-style: none;
+	background-color: #fff;
+	margin: 0;
+	padding: 0;
+}
+
+.auto-complete-container li {
+	text-align: left;
+	padding: 2px 10px !important;
+	background: #fff;
+	margin: 0 !important;
+	border-top: 1px solid #ddd;
+	cursor: pointer;
+}
+
+.auto-complete-container li:hover,.auto-complete-container li.selected {
+	background-color: #DFFAFF !important;
+	cursor: pointer;
+}
+
+.fabrikForm .pagination li,.fabrikForm .list-footer li {
+	display: inline;
+}
+
+/** loader **/
+.fbPackageBg {
+	position: absolute;
+	z-index: 9998;
+	left: 0;
+	width: 100%;
+	background-color: #000;
+	cursor: pointer;
+}

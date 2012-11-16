@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form" method="upgrade">
+	<name>Logs</name>
+	<author>Peamak</author>
+	<creationDate>Jul 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>pktom64@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Create or update a log file and/or database</description>
+	<files>
+		<filename fabrikplugin="fabriklogs">fabriklogs.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="logs_record_in_db" type="radio" default="0" label="LOGSRECORDINDB" description="LOGSRECORDINDBDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="record_in" type="text" size="30" default="" label="RECORDIN" description="RECORDINDESC"/>
+		<param name="logs_date_now" type="text" size="30" default="Y-m-d H:i:s" label="LOGSDATENOW" description="LOGSDATENOWDESC"/>
+			<param name="logs_record_ip" type="radio" default="0" label="LOGSRECORDIP">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="logs_record_referer" type="radio" default="0" label="LOGSRECORDREFERER">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="logs_record_useragent" type="radio" default="0" label="LOGSRECORDUSERAGENT">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="custom_msg" type="textarea" rows="6" cols="40" default="" label="ORCUSTOM" description="ORCUSTOMDESC"/>
+		<param name="compare_data" type="radio" default="0" label="COMPAREDATA" description="COMPAREDATADESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="logs_element_list" type="textarea" rows="2" cols="40" label="PLG_FORM_LOGS_ELEMENT_LIST_LABEL" description="PLG_FORM_LOGS_ELEMENT_LIST_DESC" />
+		<param name="make_file" type="radio" default="0" label="MAKEFILE" description="MAKEFILEDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="logs_path" type="text" size="30" default="logs/" label="LOGSPATH" description="LOGSPATHDESC"/>
+		<param name="logs_file" type="text" size="30" default="mylogs" label="LOGSFILE" description="LOGSFILEDESC"/>
+		<param name="logs_random_filename" type="radio" default="0" label="LOGSRANDOMFILENAME" description="LOGSRANDOMFILENAMEDESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="logs_random_filename_length" type="text" size="9" default="30" label="LOGSRANDOMFILENAMELENGTH" description="LOGSRANDOMFILENAMELENGTHDESC"/>
+		<param name="logs_file_format" type="radio" default="htm" label="LOGSFILEFORMAT" description="LOGSFILEFORMATDESC">
+			<option value="htm">HTM</option>
+			<option value="txt">TXT</option>
+			<option value="csv">CSV</option>
+		</param>
+		<param name="logs_separator" type="text" size="30" default="-----" label="LOGSSEPARATOR" description="LOGSSEPARATORDESC"/>
+		<param name="logs_append_or_overwrite" type="radio" default="a" label="LOGSAORW" description="LOGSAORWDESC">
+			<option value="a">LOGSAPPEND</option>
+			<option value="w">LOGSOVERWRITE</option>
+		</param>
+		<param name="log_details" type="radio" default="0" label="LOGDETAILS" description="LOGDETAILSDESC">
+			<option value="0">No</option>
+			<option value="id">ID</option>
+			<option value="username">Username</option>
+			<option value="name">Name</option>
+		</param>
+		<param name="log_details_ifvisitor" type="radio" default="0" label="LOGDETAILSIFVISITOR" description="LOGDETAILSIFVISITORDESC">
+			<option value="0">No</option>
+			<option value="1">IP Address</option>
+			<option value="2">Generic</option>
+		</param>
+		<param name="log_form_load" type="radio" default="0" label="LOGFORMLOAD" description="LOGFORMLOADDESC">
+			<option value="0">No</option>
+			<option value="id">Yes</option>
+		</param>
+		<param name="log_send_email" type="radio" default="0" label="PLG_FORM_LOGS_SEND_EMAIL_LABEL" description="PLG_FORM_LOGS_SEND_EMAIL_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="log_send_email_to" type="text" size="30" label="PLG_FORM_LOGS_SEND_EMAIL_TO_LABEL" description="PLG_FORM_LOGS_SEND_EMAIL_TO_DESC" />
+		<param name="log_send_email_subject" type="text" size="30" label="PLG_FORM_LOGS_SEND_EMAIL_SUBJECT_LABEL" description="PLG_FORM_LOGS_SEND_EMAIL_SUBJECT_DESC" />
+		
+	</params>
+	
+	<languages folder="language" >
+		<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.form.fabriklogs.ini</language>
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.fabriklogs.ini</language>
+		<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.form.fabriklogs.ini</language>
+		<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.form.fabriklogs.ini</language>
+		<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.form.fabriklogs.ini</language>
+	</languages>
+
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.fabriklogs.ini</language>
+		</languages>
+	</administration>
+</install>

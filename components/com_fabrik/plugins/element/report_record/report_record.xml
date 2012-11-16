@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>Report record</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Aug 2010</creationDate>
+	<copyright>(C) 2005-2010 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Adds button allowing users to notify administrators of improper content</description>
+	<files>
+		<filename fabrikplugin="report_record">report_record.php</filename>
+		<filename>index.html</filename>
+		<filename>javascript.js</filename>
+		<filename>table-report_record.js</filename>
+	</files>
+	
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.report_record.ini</language>
+		</languages>
+	</administration>
+	
+	<languages folder="language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.report_record.ini</language>
+	</languages>
+	
+	<params repeat="1" repeatcontrols="0">
+	
+	<param name="report_record_style"
+			type="radio"
+			default="link"
+			label="PLG_FORM_REPORT_RECORD_STYLE_LABEL"
+			description="PLG_FORM_REPORT_RECORD_STYLE_DESC">
+				<option value="link">link</option>
+				<option value="button">button</option>
+		</param>
+		
+		<param name="report_record_email"
+			type="text"
+			label="PLG_FORM_REPORT_RECORD_EMAIL_LABEL"
+			description="PLG_FORM_REPORT_RECORD_EMAIL_DESC" />
+		
+		<param name="report_record_subject" 
+			type="text"
+			label="PLG_FORM_REPORT_RECORD_SUBJECT_LABEL"
+			description="PLG_FORM_REPORT_RECORD_SUBJECT_DESC" />
+			
+		<param name="report_record_message"
+			type="textarea" cols="15" rows="10"
+			label="PLG_FORM_REPORT_RECORD_MESSAGE_LABEL"
+			description="PLG_FORM_REPORT_RECORD_MESSAGE_DESC" />
+	</params>
+</install>

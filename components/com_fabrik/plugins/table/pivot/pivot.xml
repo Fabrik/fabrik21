@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="table" method="upgrade">
+	<name>Pivot</name>
+	<author>Rob Clayburn</author>
+	<creationDate>May 2011</creationDate>
+	<copyright>(C) 2005-2011 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Adds an interface to produce a pivot table</description>
+	<files>
+		<folder>controllers</folder>
+		<folder>models</folder>
+		<filename>index.html</filename>
+		<filename fabrikplugin="pivot">javascript.js</filename>
+	</files>
+	
+	<administration>
+		<languages folder="administrator/language">
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.table.pivot.ini</language>
+		</languages>
+	</administration>
+	
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		<param name="pivot_access" 
+				type="fullaccesslevel" 
+				default="100" 
+				label="PLG_LIST_PIVOT_VALUE_ACCESS_LABEL"/>
+				
+		<param name="pivot_button_label"
+				type="text"
+				size="20"
+				label="PLG_LIST_PIVOT_BUTTON_LABEL_LABEL"
+				description="PLG_LIST_PIVOT_BUTTON_LABEL_DESC" />
+				
+		<param name="pivot_heading"
+			type="text"
+			size="40"
+			label="PLG_LIST_PIVOT_TITLE_LABEL"
+			descirption="PLG_LIST_PIVOT_TITLE_DESC" />
+				
+		<param name="pivot_value"
+			type="tablefields"
+			valueformat="tableelement"
+			label="PLG_LIST_PIVOT_VALUE_FIELD_LABEL"
+			description="PLG_LIST_PIVOT_VALUE_FIELD_DESC" />
+			
+		<param name="pivot_xcol"
+			type="tablefields"
+			valueformat="tableelement"
+			label="PLG_LIST_PIVOT_XCOL_FIELD_LABEL"
+			description="PLG_LIST_PIVOT_XCOL_FIELD_DESC" />
+			
+		<param name="pivot_ycol"
+			type="tablefields"
+			valueformat="tableelement"
+			label="PLG_LIST_PIVOT_YCOL_FIELD_LABEL"
+			description="PLG_LIST_PIVOT_YCOL_FIELD_DESC" />
+			
+	</params>
+</install>

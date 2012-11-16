@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form" method="upgrade">
+	<name>Twitter</name>
+	<author>Hugh Messenger</author>
+	<creationDate>Feb 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Updates twitter status</description>
+	<files>
+		<filename fabrikplugin="fabriktwitter">fabriktwitter.php</filename>
+		<filename>README.txt</filename>
+		<filename>index.html</filename>
+	</files>
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		
+		<param name="twitter_consumer_key" 
+			type="text" size="30"
+			label="PLG_FORM_TWITTER_CONSUMER_KEY_LABEL"
+			description="PLG_FORM_TWITTER_CONSUMER_KEY_DESC" />
+			
+		<param name="twitter_consumer_secret" 
+			type="text" size="30"
+			label="PLG_FORM_TWITTER_CONSUMER_SECRET_KEY_LABEL"
+			description="PLG_FORM_TWITTER_CONSUMER_SECRET_KEY_DESC" />
+		
+		<param name="twitter_msg_field" 
+			type="tablefields" 
+			onlytablefields="0"
+			label="TWITTERMSGFIELD"
+			description="TWITTERMSGFEILDDESC"/>
+			
+		<param name="twitter_msg_tmpl"
+			type="textarea"
+			rows="6"
+			cols="30"
+			label="TWITTERTMPLFIELD"
+			description="TWITTERTMPLFEILDDESC"/>
+			
+		<param name="twitter-show-success-msg"
+			type="radio"
+			default="0"
+			label="TWITTERSHOWSUCCESSMSG"
+			description="TWITTERSHOWSUCCESSMSGDESC">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+		</param>
+		
+		<param name="twitter_bitly_api_login"
+			type="text"
+			default=""
+			size="20"
+			label="PLG_FORM_TWITTER_BITLY_API_LOGIN"
+			description="PLG_FORM_TWITTER_BITLY_API_LOGIN_DESC"
+		/>
+		
+		<param name="twitter_bitly_api_key"
+			type="text"
+			default=""
+			size="30"
+			label="PLG_FORM_TWITTER_BITLY_API_KEY"
+			description="PLG_FORM_TWITTER_BITLY_API_KEY_DESC"
+		/>
+		
+		<param name="twitter_oauth_token"
+				type="twittersignin"
+				label="PLG_FORM_TWITTER_SIGNIN_LABEL"
+				description="PLG_FORM_TWITTER_SIGNIN_DESC" />
+				
+		<param name="twitter_oauth_token_secret"
+			type="text"
+			label="PLG_FORM_TWITTER_OAUTH_TOKEN_SECRET_LABEL"
+			description="PLG_FORM_TWITTER_OAUTH_TOKEN_SECRET_DESC" />
+			
+		<param name="twitter_oauth_user"
+			type="text"
+			label="PLG_FORM_TWITTER_OAUTH_USER_LABEL"
+			description="PLG_FORM_TWITTER_OAUTH_USER_DESC" />
+
+	</params>
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.form.fabriktwitter.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.fabriktwitter.ini</language>
+			<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.form.fabriktwitter.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.form.fabriktwitter.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.form.fabriktwitter.ini</language>
+		</languages>
+	</administration>
+	
+	<languages folder="language" >
+			<language tag="de-DE">de-DE/de-DE.com_fabrik.plg.form.fabriktwitter.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.fabriktwitter.ini</language>
+			<language tag="es-ES">es-ES/es-ES.com_fabrik.plg.form.fabriktwitter.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.form.fabriktwitter.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_fabrik.plg.form.fabriktwitter.ini</language>
+	</languages>
+</install>

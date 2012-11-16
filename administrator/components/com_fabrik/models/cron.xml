@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<name>Scheduled Tasks Edit Form</name>
+
+	<params addpath="/administrator/components/com_fabrik/elements">
+		<param name="connection" type="connections" label="CONNECTION" />
+		<param name="table" type="fabriktables" observe="connection" label="TABLE"/>
+		<param name="log" type="radio" default="0" label="LOG_CRON_EVENTS" description="LOG_CRON_EVENTS_DESC">
+			<option value="0">NO</option>
+			<option value="1">YES</option>
+		</param>
+		<param name="require_qs" 
+			default="0"
+			type="radio"
+			label="COM_FABRIK_CRON_REQUIRE_QS_LABEL"
+			description="COM_FABRIK_CRON_REQUIRE_QS_DESC">
+			<option value="0">No</option>
+			<option value="1">yes</option>	
+		</param>
+	</params>
+	
+	
+
+</form>

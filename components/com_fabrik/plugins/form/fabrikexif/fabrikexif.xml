@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form" method="upgrade">
+	<name>Process image exif info</name>
+	<author>Hugh Messenger</author>
+	<creationDate>March 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Reads and processes exif info from images</description>
+	<files>
+		<filename fabrikplugin="fabrikexif">fabrikexif.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<params repeat="1" repeatcontrols="0"  addpath="/administrator/components/com_fabrik/elements">
+		<param name="exif_upload_field" type="tablefields" onlytablefields="0" default="user" label="Image field" description="The form's upload element"/>
+		<param name="exif_map_field" type="tablefields" onlytablefields="0" default="user" label="Map field" description="The form's field that contains the google map element to apply the images lat/long to"/>
+	</params>
+</install>

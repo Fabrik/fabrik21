@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form" method="upgrade">
+	<name>vBulletin forum</name>
+	<author>Hugh Messenger</author>
+	<creationDate>March 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Create a new vBulletin forum</description>
+	<files>
+		<filename fabrikplugin="fabrikvbforum">fabrikvbforum.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<params repeat="1" repeatcontrols="0"  addpath="/administrator/components/com_fabrik/elements">
+		<param name="vb_forum_field" type="tablefields" onlytablefields="0" default="forum" label="Forum" description="The form's forum name element"/>
+		<param name="vb_path" type="text" default="" label="vB Path" description="Full path to vB top level directory"/>
+		<param name="vb_parent" type="text" default="" label="Parent Forum ID" description="Internal vB ID of parent forum"/>
+	</params>
+</install>

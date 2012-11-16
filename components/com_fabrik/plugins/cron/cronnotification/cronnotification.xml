@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="cron" method="upgrade">
+	<name>Notifications</name>
+	<author>Rob Clayburn</author>
+	<creationDate>May 2009</creationDate>
+	<copyright>(C) 2005-2009 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Sends out notification messages about updated records</description>
+	<files>
+		<filename fabrikplugin="cronnotification">cronnotification.php</filename>
+		<filename>index.html</filename>
+	</files>
+	
+	<install>
+		<sql>
+			<file charset="utf8" driver="mysql">installation/queries.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file charset="utf8" driver="mysql">installation/uninstall.sql</file>
+		</sql>
+	</uninstall>
+	
+	
+	<params repeat="1" repeatcontrols="0">
+
+	</params>
+</install>

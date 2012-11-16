@@ -1,0 +1,67 @@
+.fabrikElement{
+	margin-left:112px;
+}
+
+.fabrikLabel{
+	width:100px;
+	clear:left;
+	padding-left:10px;
+	float:left;
+}
+
+
+.fabrikGroupRepeater{
+	position:absolute;
+	top:-9px;
+	right:0;
+	padding-right:20px;
+}
+
+.fabrikSubGroup{
+	position:relative;
+	border:1px dotted #E6F2FF;
+	margin:10px;
+}
+
+.fabrikForm h3{
+	background:#2e2e2e url(images/bg.gif) bottom left repeat-x;
+	font-size:1.3em;
+	line-height:20px;
+	margin:0;
+	color:#E6F2FF;
+	padding:5px;
+	padding-bottom:9px;
+	clear:left;
+}
+
+.fabrikGroup{
+	padding-bottom:10px;
+	background:#8dcff3;
+	color:white;
+	margin-bottom:10px;
+}
+
+.addoption{
+	background-color:#CFEEFF;
+	color:#333;
+}
+
+.fabrikGroup .readonly,
+.fabrikGroup .disabled{
+	background-color:#fff !important;
+	color:#8F8F8F;
+}
+
+/** used by password element */
+.fabrikSubLabel {
+	margin-left: -100px;
+	clear: left;
+	margin-top: 10px;
+	float: left;
+}
+
+.fabrikSubElement {
+	display: block;
+	margin-top: 10px;
+	margin-left: 10px;
+}

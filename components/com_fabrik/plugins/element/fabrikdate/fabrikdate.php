@@ -1,0 +1,1507 @@
+<?php
+/**
+ * Plugin element to render date picker
+ * @package fabrikar
+ * @author Rob Clayburn
+ * @copyright (C) Rob Clayburn
+ * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
+ */
+
+// Check to ensure this file is included in Joomla!
+defined('_JEXEC') or die();
+
+require_once(JPATH_SITE.DS.'components'.DS.'com_fabrik'.DS.'models'.DS.'element.php');
+
+require_once(COM_FABRIK_FRONTEND.DS.'helpers'.DS.'html.php');
+
+class FabrikModelFabrikDate extends FabrikModelElement {
+
+	//@TODO: filter code
+
+	var $_pluginName = 'fabrikdate';
+
+	/** @var bol toggle to determine if storedatabaseformat resets the date to GMT*/
+	var $_resetToGMT = true;
+	/**
+	 * Constructor
+	 */
+
+	function __construct()
+	{
+		parent::__construct();
+	}
+
+	/**
+	 * Dates are stored in database as GMT times
+	 * i.e. with no offsets
+	 * This is to allow us in the future of render dates based
+	 * on user tmezone offsets
+	 * Dates are displayed in forms and tables with the global timezone
+	 * offset applied
+	 */
+
+	private function getNullDates()
+	{
+		$db 		=& FabrikWorker::getDbo();
+		return array('0000-00-000000-00-00','0000-00-00 00:00:00','0000-00-00','', $db->getNullDate());
+	}
+
+	/**
+	 * shows the data formatted for the table view
+	 * @param string data (should be in mySQL format already)
+	 * @param string element name
+	 * @param object all the data in the tables current row
+	 * @return string formatted value
+	 */
+
+	function renderTableData($data, $oAllRowsData)
+	{
+		//@TODO: deal with time options (currently can be defined in date_table_format param).
+
+		$config =& JFactory::getConfig();
+		$tzoffset = (int)$config->getValue('config.offset');
+
+		$aNullDates = $this->getNullDates();
+		$params =& $this->getParams();
+		$store_as_local = (int)$params->get('date_store_as_local', 0);
+
+		$groupModel =& $this->getGroup();
+		if ($groupModel->canRepeat()) {
+			$data = explode(GROUPSPLITTER, $data);
+		} else {
+			$data = array($data);
+		}
+		$f = $params->get('date_table_format', '%Y-%m-%d');
+
+		if ($f == 'Y-m-d') {
+			$f = '%Y-%m-%d';
+		}
+		$format = array();
+		foreach ($data as $d) {
+			if (!in_array($d, $aNullDates)) {
+				$date 	= JFactory::getDate($d);
+				//$$$ rob - if not time selector then the date gets stored as 2009-11-13 00:00:00
+				//if we have a -1 timezone then date gets set to 2009-11-12 23:00:00
+				//then shown as 2009-11-12 which is wrong
+				if ($params->get('date_showtime') && !$store_as_local) {
+					$date->setOffset($tzoffset);
+				}
+				if ($f == '{age}') {
+					$format[] = date('Y') - $date->toFormat('%Y');
+				} else {
+					$format[] = $date->toFormat($f);
+				}
+			} else {
+				$format[] = '';
+			}
+		}
+		$data = implode(GROUPSPLITTER, $format);
+		return parent::renderTableData($data, $oAllRowsData);
+	}
+
+	/**
+	 * shows the data formatted for the CSV export view
+	 * @param string data (should be in mySQL format already)
+	 * @param string element name
+	 * @param object all the data in the tables current row
+	 * @return string formatted value
+	 */
+
+	function renderTableData_csv($data, $oAllRowsData)
+	{
+		//@TODO: deal with time options (currently can be defined in date_table_format param).
+
+		$config =& JFactory::getConfig();
+		$tzoffset = (int)$config->getValue('config.offset');
+
+		$db 		=& FabrikWorker::getDbo();
+		$aNullDates = $this->getNullDates();
+		$params =& $this->getParams();
+		$element 	=& $this->getElement();
+		$store_as_local = (int)$params->get('date_store_as_local', 0);
+
+		$groupModel =& $this->getGroup();
+		if ($groupModel->canRepeat()) {
+			$data = explode(GROUPSPLITTER, $data);
+		} else {
+			$data = array($data);
+		}
+		$f = $params->get('date_table_format', '%Y-%m-%d');
+		// $$$ hugh - see http://fabrikar.com/forums/showthread.php?p=87507
+		// Really don't think we need to worry about 'incraw' here.  The raw, GMT/MySQL data will get
+		// included in the _raw version of the element if incraw is selected.  Here we just want to output
+		// the regular non-raw, formatted, TZ'ed version.
+		// $incRaw = JRequest::getVar('incraw', true);
+		$incRaw = false;
+
+		if ($f == 'Y-m-d') {
+			$f = '%Y-%m-%d';
+		}
+		$format = array();
+		foreach ($data as $d) {
+			if (!in_array($d, $aNullDates)) {
+				if ($incRaw) {
+					$format[] = $d;
+				}
+				else {
+					$date = JFactory::getDate($d);
+					// $$$ hugh - added the showtime test so we don't get the day offset issue,
+					// as per regular table render.
+					if ($params->get('date_showtime') && !$store_as_local) {
+						$date->setOffset($tzoffset);
+					}
+					if ($f == '{age}') {
+						$format[] = date('Y') - $date->toFormat('%Y');
+					} else {
+						$format[] = $date->toFormat($f);
+					}
+				}
+			} else {
+				$format[] = '';
+			}
+		}
+		if (count($format) > 1) {
+			return implode(GROUPSPLITTER, $format);
+		} else {
+			return implode('', $format);
+		}
+	}
+
+	/**
+	 * draws the form element
+	 * @param int repeat group counter
+	 * @return string returns element html
+	 */
+
+	function render($data, $repeatCounter = 0)
+	{
+		//@TODO: deal with time picker
+		$config =& JFactory::getConfig();
+		$tzoffset = $config->getValue('config.offset');
+		$db 		=& FabrikWorker::getDbo();
+		$aNullDates = $this->getNullDates();
+		FabrikHelperHTML::loadcalendar();
+		$name 		= $this->getHTMLName($repeatCounter);
+		$id				= $this->getHTMLId($repeatCounter);
+		$params 	=& $this->getParams();
+		$element 	=& $this->getElement();
+		$format 	= $params->get('date_form_format', $params->get('date_table_format', '%Y-%m-%d'));
+		$timeformat = $params->get('date_time_format');
+		//value should be in mySQL format
+		$value = $this->getValue($data, $repeatCounter);
+		$store_as_local = (int)$params->get('date_store_as_local', 0);
+
+		if ($params->get('date_showtime', 0)) {
+			//cant have names as simply [] as json only picks up the last one
+			$timeElName = $name."[time]";
+			$name .= '[date]';
+		}
+
+		$readonly = $params->get('date_allow_typing_in_field', true) == false ? ' readonly="readonly" ' : "";
+		$calopts = array('class'=>'fabrikinput inputbox', 'size'=>$element->width, 'maxlength'=>'19');
+		if ($params->get('date_allow_typing_in_field', true) == false) {
+			$calopts['readonly'] = 'readonly';
+		}
+
+		$str = "<div class=\"fabrikSubElementContainer\" id=\"$id\">";
+		if (!in_array($value, $aNullDates)) {
+			$oDate = JFactory::getDate($value);
+			//if we are coming back from a validation then we don't want to re-offset the date
+			if (JRequest::getVar('Submit', '') == '' || $params->get('date_defaulttotoday', 0)) {
+
+				// $$$ rob - if not time selector then the date gets stored as 2009-11-13 00:00:00
+				//if we have a -1 timezone then date gets set to 2009-11-12 23:00:00
+				//then shown as 2009-11-12 which is wrong
+				if ($params->get('date_showtime') && !$store_as_local) {
+					$oDate->setOffset($tzoffset);
+				}
+			}
+			//get the formatted date
+			$date = $oDate->toFormat($format);
+
+			if (!$this->_editable) {
+				$time = ($params->get('date_showtime', 0)) ?  " " .$oDate->toFormat($timeformat) : '';
+				return $date . $time;
+			}
+
+			//get the formatted time
+			if ($params->get('date_showtime', 0)) {
+				$time = $oDate->toFormat($timeformat);
+			}
+		} else {
+			if (!$this->_editable) {
+				return '';
+			}
+			$date = '';
+			$time  = '';
+		}
+		$str .= $this->calendar($date, $name, $id ."_cal", $format, $calopts, $repeatCounter);
+		if ($params->get('date_showtime', 0)) {
+			$timelength = strlen($timeformat);
+			$str .= "\n<input class=\"inputbox fabrikinput timeField\" $readonly size=\"$timelength\" value=\"$time\" name=\"$timeElName\" />";
+			$str .= "\n".'<img src="'.COM_FABRIK_LIVESITE.'components/com_fabrik/plugins/element/fabrikdate/images/time.gif" alt="time" class="timeButton" />';
+		}
+		$str .= "</div>";
+		return $str;
+	}
+
+	/**
+	 * Enter description here...
+	 *
+	 * @param unknown_type $val
+	 * @return unknown
+	 */
+
+	private function _indStoreDBFormat($val)
+	{
+		$params =& $this->getParams();
+		$store_as_local = (int)$params->get('date_store_as_local', 0);
+		$listModel =& $this->getTableModel();
+		// $$$ hugh - offset_tz of 1 means 'in MySQL format, GMT'
+		// $$$ hugh - offset_tz of 2 means 'in MySQL format, Local TZ'
+		if ($listModel->_importingCSV && $params->get('date_csv_offset_tz', '0') == '1') {
+			return $val;
+		}
+		else if ($listModel->_importingCSV && $params->get('date_csv_offset_tz', '0') == '2') {
+			return $this->toMySQLGMT(JFactory::getDate($val));
+		}
+
+		//test if its already in correct format (or empty)
+		if ((is_string($val) && trim($val) === '') || (is_array($val) && trim(implode('', $val)) === '')) {
+			return '';
+		}
+
+		// $$$ rob moved beneath as here $val can be an array which gives errors as getDate expects a string
+		/*$orig = JFactory::getDate($val);
+		if ($val === $orig->toMySQL()) {
+		return $this->toMySQLGMT( $orig);
+		}*/
+		if ($params->get('date_showtime', 0)) {
+			$format =  $params->get('date_form_format') . ' ' . $params->get('date_time_format');
+			// $$$ hugh - no can do, getDefault already munged $val into a string
+			// $$$ rob - erm no! - its an array when submitting from the form, perhaps elsewhere its sent
+			// as a string - so added test for array
+			if (is_array($val)) {
+				// $$$ rob do url decode on time as if its passed from ajax save the : is in format %3C or something
+				$val = $val['date'] . ' ' . $this->_fixTime(urldecode($val['time']));
+			}
+		} else {
+			$format = $params->get('date_form_format', $params->get('date_table_format', '%Y-%m-%d'));
+		}
+		$orig = JFactory::getDate($val);
+		//if ($val === $orig->toMySQL()) {
+		if ($val === $orig->toMySQL() && $params->get('date_showtime', 0)) {
+			$date = $this->toMySQLGMT($orig);
+			return $date;
+		}
+
+		$datebits = FabrikWorker::strToDateTime($val, $format);
+		$date = JFactory::getDate($datebits['timestamp']);
+		if (!$params->get( 'date_showtime', 0 ) || $store_as_local) {
+			$this->_resetToGMT = false;
+		}
+		$date = $this->toMySQLGMT($date);
+		$this->_resetToGMT = true;
+		return $date;
+	}
+
+	/**
+	 * reset the date to GMT - inversing the offset
+	 *@param date object
+	 * @return string mysql formatted date
+	 */
+
+	function toMySQLGMT($date)
+	{
+		if ($this->_resetToGMT) {
+			$config =& JFactory::getConfig();
+			$tzoffset = (int)$config->getValue('config.offset') * -1;
+			$date->setOffset($tzoffset);
+			return $date->toMySQL(true);
+		}
+		return $date->toMySQL();
+	}
+
+	/**
+	 * formats the posted data for insertion into the database
+	 * @param mixed thie elements posted form data
+	 * @param array posted form data
+	 */
+
+	function storeDatabaseFormat($val, $data)
+	{
+		//@TODO: deal with failed validations
+		$groupModel =& $this->getGroup();
+		if ($groupModel->isJoin() &&  is_array($val)) {
+			if (JArrayHelper::getValue($val, 'time') !== '') {
+				$val['time'] = $this->_fixTime($val['time']);
+			}
+			$val = implode(" ", $val);
+		} else {
+			if ($groupModel->canRepeat()) {
+				if (is_array($val)) {
+					$res = array();
+					foreach ($val as $v) {
+						$res[] = $this->_indStoreDBFormat($v);
+
+					}
+					return implode(GROUPSPLITTER, $res);
+				}
+			}
+		}
+		return $this->_indStoreDBFormat($val);
+	}
+
+	/**
+	 * used to format the data when shown in the form's email
+	 * @param mixed element's data
+	 * @param array form records data
+	 * @param int repeat group counter
+	 * @return string formatted value
+	 */
+
+	protected function _getEmailValue($value, $data = array(), $repeatCounter = 0)
+	{
+		# $$$ hugh - need to convert to database format so we GMT-ified date
+		return $this->renderTableData($this->storeDatabaseFormat($value, $data), new stdClass());
+	}
+
+	/**
+	 * $$$ hugh - added 9/13/2009
+	 * determines the label used for the browser title
+	 * in the form/detail views
+	 * @param array data
+	 * @param int when repeating joinded groups we need to know what part of the array to access
+	 * @param array options
+	 * @return string default value
+	 */
+
+	function getTitlePart($data, $repeatCounter = 0, $opts = array())
+	{
+		$gmt_date = $this->getValue($data, $repeatCounter, $opts);
+		// OK, now we've got the GMT date, convert it
+		// ripped the following off from renderTableData ... SURELY we must have a func
+		// somewhere that does this?
+		$params =& $this->getParams();
+		$store_as_local = (int)$params->get('date_store_as_local', 0);
+		$config =& JFactory::getConfig();
+		$tzoffset = (int)$config->getValue('config.offset');
+		$aNullDates = $this->getNullDates();
+		$f = $params->get('date_table_format', '%Y-%m-%d');
+		if ($f == 'Y-m-d') {
+			$f = '%Y-%m-%d';
+		}
+		$tz_date = '';
+		if (!in_array($gmt_date, $aNullDates)) {
+			$date 	= JFactory::getDate($gmt_date);
+			if (!$store_as_local) {
+				$date->setOffset($tzoffset);
+			}
+			if ($f == '{age}') {
+				$tz_date = date('Y') - $date->toFormat('%Y');
+			} else {
+				$tz_date = $date->toFormat($f);
+			}
+		}
+		return $tz_date;
+	}
+
+	/**
+	 * takes a raw value and returns its label equivalent
+	 * @param string $v
+	 */
+
+	protected function toLabel(&$v)
+	{
+		$params =& $this->getParams();
+		$store_as_local = (int)$params->get('date_store_as_local', 0);
+		$f = $params->get('date_table_format', '%Y-%m-%d');
+		$tzoffset = (int)JFactory::getConfig()->getValue('config.offset');
+		$aNullDates = $this->getNullDates();
+		$format = array();
+		if (!in_array($v, $aNullDates)) {
+			$date 	= JFactory::getDate($v);
+			//$$$ rob - if not time selector then the date gets stored as 2009-11-13 00:00:00
+			//if we have a -1 timezone then date gets set to 2009-11-12 23:00:00
+			//then shown as 2009-11-12 which is wrong
+			if ($params->get('date_showtime')) {
+				$date->setOffset($tzoffset);
+			}
+			if ($f == '{age}') {
+				$v = date('Y') - $date->toFormat('%Y');
+			} else {
+				$v = $date->toFormat($f);
+			}
+		} else {
+			$v = '';
+		}
+	}
+
+	/**
+	 * ensure the time is in a full length format
+	 *
+	 * @param string $time
+	 * @return formatted time
+	 */
+
+	protected function _fixTime($time)
+	{
+		//if its 5:00 rather than 05:00
+		if (!preg_match("/^[0-9]{2}/", $time)) {
+			$time = "0".$time;
+		}
+		//if no seconds
+		if (preg_match("/[0-9]{2}:[0-9]{2}/", $time) && strlen($time) <= 5) {
+			$time .= ":00";
+		}
+		//if it doesnt match reset it to 0
+		if (!preg_match("/[0-9]{2}:[0-9]{2}:[0-9]{2}/", $time)) {
+			$time = "00:00:00";
+		}
+		return $time;
+	}
+
+	/**
+	 * Displays a calendar control field
+	 *
+	 * hacked from behaviour as you need to check if the element exists
+	 * it might not as you could be using a custom template
+	 * @param	string	The date value
+	 * @param	string	The name of the text field
+	 * @param	string	The id of the text field
+	 * @param	string	The date format
+	 * @param	array	Additional html attributes
+	 * @param int repeat group counter
+	 */
+
+	function calendar($value, $name, $id, $format = '%Y-%m-%d', $attribs = null, $repeatCounter = 0)
+	{
+		//JHTML::_('behavior.calendar'); //load the calendar behavior
+		FabrikHelperHTML::loadcalendar();
+		if (is_array($attribs)) {
+			$attribs = JArrayHelper::toString($attribs);
+		}
+
+		$document =& JFactory::getDocument();
+		$opts = $this->_CalendarJSOpts($id);
+		$opts->ifFormat = $format;
+		$opts = json_encode($opts);
+
+		$validations =& $this->getValidations();
+
+		$script = 'window.addEvent(\'domready\', function() {
+
+		if($("' . $id . '")) { ';
+
+		$subElContainerId = $this->getHTMLId($repeatCounter);
+
+		$formModel =& $this->getForm();
+		//$$$rob might we get away with just testing if the view is a form or detailed view but for now leave as it is
+		if (JRequest::getVar('task') != 'elementFilter' && JRequest::getVar('view') != 'table') {
+			$opts = rtrim($opts, "}");
+			$opts .= ',"onClose":onclose, "onSelect":onselect, "dateStatusFunc":datechange}';
+			$script .= 'var onclose = (function(e) {
+			this.hide();
+			try{
+				form_'.$formModel->_id.'.triggerEvents(\''.$subElContainerId.'\', ["blur", "click", "change"], this);
+				window.fireEvent(\'fabrik.date.close\', this);
+			}catch(err) {
+				fconsole(err);
+			};
+			';
+
+			if (!empty($validations)) {
+				//if we have a validation on the element run it when the calendar closes itself
+				//this ensures that alert messages are removed if the new data meets validation criteria
+				$script .= 'form_'.$formModel->_id.'.doElementValidation(\''.$subElContainerId.'\');' . "\n";
+			}
+			$script .= "});\n"; //end onclose function
+
+			//onselect function
+			$script .= 'var onselect = (function(calendar, date) {
+ 			$(\''.$id.'\').value = date;
+ 			 if (calendar.dateClicked) {
+   		 calendar.callCloseHandler();
+ 		 }
+			window.fireEvent(\'fabrik.date.select\', this);
+				try{
+					form_'.$formModel->_id.'.triggerEvents(\''.$subElContainerId.'\', ["click", "focus", "change"], this);
+				}catch(err) {
+					fconsole(err);
+				};
+			});';
+			//end onselect function
+
+			//date change function
+			$script .= '
+			var datechange = (function(date) {
+				try{
+					return disallowDate(this, date);
+				}catch(err) {
+					fconsole(err);
+				}
+			});
+			';
+			//end onselect function
+		}
+		$script .= 'Calendar.setup('.$opts.');'.
+		'}'. //end if id
+		"\n});"; //end domready function
+
+		FabrikHelperHTML::addScriptDeclaration($script);
+
+		return '<input type="text" name="'.$name.'" id="'.$id.'" value="'.htmlspecialchars($value, ENT_COMPAT, 'UTF-8').'" '.$attribs.' />'.
+				 '<img class="calendar" src="'.JURI::root(true).'/templates/system/images/calendar.png" alt="calendar" id="'.$id.'_img" />';
+	}
+
+	/**
+	 * get the options used for the date elements calendar
+	 * @param $id html id for subelement container
+	 * @return object ready for js encoding
+	 */
+
+	protected function _CalendarJSOpts($id = null)
+	{
+		$params =& $this->getParams();
+		if (!isset($id)) {
+			$id = $this->getHTMLId();
+		}
+		$opts = new stdClass();
+		$opts->inputField = $id;
+		$opts->ifFormat = $params->get('date_form_format');
+		$opts->button = $id."_img";
+		$opts->align = "Tl";
+		$opts->singleClick =  true;
+		$opts->firstDay = intval($params->get('date_firstday'));
+		return $opts;
+	}
+
+	/**
+	 * load the javascript class that manages interaction with the form element
+	 * should only be called once
+	 * @return string javascript class file
+	 */
+
+	function formJavascriptClass()
+	{
+		if (FabrikWorker::nativeMootools12()) {
+			FabrikHelperHTML::script('Mootools.Lang.js', 'components/com_fabrik/libs/mootools1.2/', true);
+			FabrikHelperHTML::script('date.js', 'components/com_fabrik/plugins/element/fabrikdate/', false);
+			FabrikHelperHTML::addScriptDeclaration("Date.defineParsers('%d([-./]%m([-./]%Y((T| )%X)?)?)?');");
+		}
+		FabrikHelperHTML::script('javascript.js', 'components/com_fabrik/plugins/element/fabrikdate/', false);
+	}
+
+	/**
+	 * return tehe javascript to create an instance of the class defined in formJavascriptClass
+	 * @return string javascript to create instance. Instance name must be 'el'
+	 */
+
+	function elementJavascript($repeatCounter)
+	{
+		$params =& $this->getParams();
+		$id = $this->getHTMLId($repeatCounter);
+		$opts =& $this->getElementJSOptions($repeatCounter);
+		$opts->showtime = $params->get('date_showtime', 0) ? true : false;
+		$opts->timelabel = JText::_('time');
+		$opts->typing = $params->get('date_allow_typing_in_field', true);
+		$opts->timedisplay = $params->get('date_timedisplay', 1);
+		//for reuse if element is duplicated in repeat group
+		$opts->calendarSetup = $this->_CalendarJSOpts($id);
+		$opts = json_encode($opts);
+		return "new fbDateTime('$id', $opts)";
+	}
+
+	/**
+	 * get the type of field to store the data in
+	 *
+	 * @return string field description
+	 */
+
+	function getFieldDescription()
+	{
+		$p = $this->getParams();
+		if ($this->encryptMe()) {
+			return 'BLOB';
+		}
+		$groupModel =& $this->getGroup();
+		if (is_object($groupModel) && !$groupModel->isJoin() && $groupModel->canRepeat()) {
+			return "VARCHAR(255)";
+		} else {
+			return "DATETIME";
+		}
+	}
+
+	/**
+	 *
+	 * Examples of where this would be overwritten include timedate element with time field enabled
+	 * @param int repeat group counter
+	 * @return array html ids to watch for validation
+	 */
+
+	function getValidationWatchElements($repeatCounter)
+	{
+		$params 	=& $this->getParams();
+		$return		= array();
+		$elName 	= $this->getHTMLName($repeatCounter);
+		$id 			= $this->getHTMLId($repeatCounter);
+		$return[] = array(
+			'id' 			=> $id,
+			'triggerEvent' => 'blur'
+			);
+			return $return;
+	}
+
+	/**
+	 * renders admin settings
+	 */
+
+	function renderAdminSettings()
+	{
+		$pluginParams =& $this->getPluginParams();
+		?>
+<div id="page-<?php echo $this->_name;?>" class="elementSettings"
+	style="display: none"><?php
+	echo $pluginParams->render('details');
+	echo $pluginParams->render('params', 'extra');?>
+<fieldset><legend><?php echo JText::_('TIME') ?></legend> <?php echo $pluginParams->render('params', 'time');
+?></fieldset>
+</div>
+<?php
+	}
+
+	/**
+	 * this really does get just the default value (as defined in the element's settings)
+	 * @return unknown_type
+	 */
+
+	function getDefaultValue($data = array())
+	{
+		if (!isset($this->_default)) {
+			$params =& $this->getParams();
+			$element =& $this->getElement();
+			$config =& JFactory::getConfig();
+			$tzoffset = (int)$config->getValue('config.offset');
+			$store_as_local = (int)$params->get('date_store_as_local', 0);
+			if ($params->get('date_defaulttotoday', 0)) {
+				if ($store_as_local) {
+					$localDate = date('Y-m-d H:i:s');
+					$oTmpDate = JFactory::getDate(strtotime($localDate));
+				}
+				else {
+					$oTmpDate = JFactory::getDate();
+				}
+				$default = $oTmpDate->toMySQL();
+			}
+			else {
+				// deafult date should always be entered as gmt date e.g. eval'd default of:
+				$default = $element->default;
+				if ($element->eval == "1") {
+					$default = @eval(stripslashes($default));
+					FabrikWorker::logEval($default, 'Caught exception on eval in '.$element->name.'::getDefaultValue() : %s');
+				}
+				if (trim($default) != '') {
+					$oTmpDate = JFactory::getDate($default);
+					$default = $oTmpDate->toMySQL();
+				}
+			}
+			$this->_default = $default;
+		}
+		return $this->_default;
+	}
+
+	/**
+	 * can be overwritten by plugin class
+	 * determines the value for the element in the form view
+	 * @param array data
+	 * @param int when repeating joinded groups we need to know what part of the array to access
+	 * @param array options
+	 * @return string default date value in GMT time
+	 */
+
+	function getValue($data, $repeatCounter = 0, $opts = array())
+	{
+		//@TODO: allow {now} and {today} to be replaced with current datetime
+		if (!isset($this->defaults) || is_null($this->defaults)) {
+			$this->defaults = array();
+		}
+		if (!array_key_exists($repeatCounter, $this->defaults)) {
+			$groupModel =& $this->getGroup();
+			$group			=& $groupModel->getGroup();
+			$joinid			= $group->join_id;
+			$element		=& $this->getElement();
+			$params			=& $this->getParams();
+			$store_as_local = (int)$params->get('date_store_as_local', 0);
+			if ($params->get('date_alwaystoday', false)) {
+				//$value = JFactory::getDate()->toMySQL(false);
+				// $$$ rob fix for http://fabrik.unfuddle.com/projects/17220/tickets/by_number/700?cycle=true
+				if ($store_as_local) {
+					$localDate = date('Y-m-d H:i:s');
+					$date = JFactory::getDate(strtotime($localDate));
+				}
+				else {
+					$date = JFactory::getDate();
+				}
+				//bea: different than original date_time, local
+				//$date = JFactory::getDate();
+				//$config =& JFactory::getConfig();
+				//$tzoffset = (int)$config->getValue('config.offset');
+				//$date->setOffset( $tzoffset );
+				$value = $date->toMySQL();
+			} else {
+				// $$$rob - if no search form data submitted for the search element then the default
+				// selecton was being applied instead
+				if (array_key_exists('use_default', $opts) && $opts['use_default'] == false) {
+					$value = '';
+				} else {
+					$value = $this->getDefaultValue($data);
+				}
+
+				// $$$ hugh - as we now run removeTableNameFromSaveData(), I think we just need the short name?
+				$name = $this->getFullName(false, true, false);
+				//$name = $element->name;
+				if ($groupModel->isJoin()) {
+					if ($groupModel->canRepeat()) {
+						if (array_key_exists('join', $data) && array_key_exists($joinid, $data['join']) && is_array($data['join'][$joinid]) &&  array_key_exists($name, $data['join'][$joinid]) && array_key_exists($repeatCounter, $data['join'][$joinid][$name])) {
+							$value = $data['join'][$joinid][$name][$repeatCounter];
+						}
+					} else {
+						if (array_key_exists('join', $data) && array_key_exists($joinid, $data['join']) && is_array($data['join'][$joinid]) && array_key_exists($name, $data['join'][$joinid])) {
+							$value = $data['join'][$joinid][$name];
+						}
+					}
+				} else {
+					if ($groupModel->canRepeat()) {
+						//repeat group NO join
+						if (array_key_exists($name, $data)) {
+							if (is_array($data[$name])) {
+								//occurs on form submission for fields at least
+								$a = $data[$name];
+
+							} else {
+								//occurs when getting from the db
+								$a = 	explode(GROUPSPLITTER, $data[$name]);
+							}
+							if (array_key_exists($repeatCounter, $a)) {
+								$value = $a[$repeatCounter];
+							}
+						}
+
+					} else {
+						$value = JArrayHelper::getValue($data, $name, $value);
+					}
+				}
+
+				if (is_array($value)) {
+					//TIMEDATE option set - explode with space rather than comma
+					//url decode if it comes from ajax calendar form
+
+					if (array_key_exists('time', $value) && $value['time'] != '' && JArrayHelper::getValue($value, 'date') != '') {
+						$value['time'] = $this->_fixTime(urldecode($value['time']));
+						$value = implode(' ', $value);
+					}
+					else {
+						//$value = '';
+						$value = implode('', $value); //for validations in repeat groups with no time selector
+					}
+				}
+				$formModel =& $this->getForm();
+				//stops this getting called from form validation code as it messes up repeated/join group validations
+				if (array_key_exists('runplugins', $opts) && $opts['runplugins'] == 1) {
+					$formModel->getPluginManager()->runPlugins('onGetElementDefault', $formModel, 'form', $this);
+				}
+				//for validations (empty time and date element gives ' ')
+				if ($value == ' ') {
+					$value = '';
+				}
+			}
+			$this->defaults[$repeatCounter] = $value;
+		}
+		return $this->defaults[$repeatCounter];
+	}
+
+	/**
+	 * Can be overwritten by plugin - see fabrikdate
+	 * called on failed form validation.
+	 * Ensures submitted form data is converted back into the format
+	 * that the form would expect to get it in, if the data had been
+	 * draw from the database record
+	 * @param string submitted form value
+	 * @return string formated value
+	 */
+
+	function toDbVal($str, $repeatCounter)
+	{
+		//only format if not empty otherwise search forms will filter
+		//for todays date even when no date entered
+		$this->_resetToGMT = false;
+		if ($str != '') {
+			$str =  $this->storeDatabaseFormat($str, array());
+		}
+		$this->_resetToGMT = true;
+		return $str;
+	}
+
+	/**
+	 * @since 2.1.1
+	 * does the format string contain time formatting options
+	 * @param string date $format
+	 */
+
+	protected function formatContainsTime($format)
+	{
+		$times = array('%H','%I','%l','%M','%p','%P','%r','%R','%S','%T','%X','%z','%Z');
+		foreach ($times as $t) {
+			if (strpos($format, $t)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * this builds an array containing the filters value and condition
+	 * If no date time option, then we change the filter into a ranged filter to search
+	 * the whole day for records.
+	 * @param string initial $value
+	 * @param string intial $condition
+	 * @param string eval - how the value should be handled
+	 * @return array (value condition) values should be in mySQL format
+	 */
+
+	function getFilterValue($value, $condition, $eval)
+	{
+		$params =& $this->getParams();
+		$store_as_local = (int)$params->get('date_store_as_local', 0);
+		if (!$params->get('date_showtime', 0) || $store_as_local) {
+			$this->_resetToGMT = false;
+		}
+
+		$exactTime = $this->formatContainsTime($params->get('date_table_format'));
+
+		$filterType =& $this->getElement()->filter_type;
+		switch ($filterType) {
+			case 'field':
+			case 'dropdown':
+				$mysql = $this->tableDateToMySQL($value);
+				if ($mysql !== false) {
+					$value = $mysql;
+				}
+
+				if (!$params->get('date_showtime', 0) || $exactTime == false) {
+					//$$$ rob turn into a ranged filter to search the entire day
+					$value = (array)$value;
+					$condition = 'BETWEEN';
+					$value[1] = date("Y-m-d H:i:s", strtotime($this->addDays($value[0], 1)) - 1);
+				}
+				break;
+
+			case 'ranged':
+				$value = (array)$value;
+				foreach ($value as &$v) {
+					$mysql = $this->tableDateToMySQL($v);
+					if ($mysql !== false) {
+						$v = $mysql;
+					}
+				}
+				break;
+		}
+		$this->_resetToGMT = true;
+		return parent::getFilterValue($value, $condition, $eval);
+	}
+
+	/**
+	 * Get the table filter for the element
+	 * @param int repeat group counter
+	 * @param bol do we render as a normal filter or as an advanced search filter
+	 * if normal include the hidden fields as well (default true, use false for advanced filter rendering)
+	 * @return string filter html
+	 */
+
+	function &getFilter($counter, $normal = true)
+	{
+		$params 		=& $this->getParams();
+		$listModel =& $this->getTableModel();
+		$table 			=& $listModel->getTable();
+		$element 		=& $this->getElement();
+		$origTable 	= $table->db_table_name;
+		$fabrikDb 	=& $listModel->getDb();
+		$elName 			= $this->getFullName(false, true, false);
+		$elName2 		= $this->getFullName(false, false, false);
+
+		$v = 'fabrik___filter[table_'.$table->id.'][value]['.$counter.']';
+
+		//corect default got
+		$default = $this->getDefaultFilterVal($normal, $counter);
+
+		$format = $params->get('date_table_format', '%Y-%m-%d');
+
+		$fromTable = $origTable;
+		$joinStr = '';
+		// $$$ hugh - in advanced search, _aJoins wasn't getting set
+		$joins =& $listModel->getJoins();
+		foreach ($joins as $aJoin) {
+			// not sure why the group id key wasnt found - but put here to remove error
+			if (array_key_exists('group_id', $aJoin)) {
+				if ($aJoin->group_id == $element->group_id && $aJoin->element_id == 0) {
+					$fromTable = $aJoin->table_join;
+					$joinStr = " LEFT JOIN $fromTable ON " . $aJoin->table_join . "." . $aJoin->table_join_key . " = " . $aJoin->join_from_table . "." . $aJoin->table_key;
+					$elName = str_replace($origTable . '.', $fromTable . '.', $elName);
+				}
+			}
+		}
+		$where = $listModel->_buildQueryPrefilterWhere($this);
+		$elName = FabrikString::safeColName($elName);
+
+		$requestName = $elName."___filter";
+		if (array_key_exists($elName, $_REQUEST)) {
+			if (is_array($_REQUEST[$elName]) && array_key_exists('value', $_REQUEST[$elName])) {
+				$_REQUEST[$requestName] = $_REQUEST[$elName]['value'];
+			}
+		}
+		$htmlid = $this->getHTMLId();
+
+		if (in_array($element->filter_type, array('dropdown'))) {
+			$rows = $this->filterValueList($normal);
+		}
+		$calOpts = array('class'=>'inputbox fabrik_filter', 'maxlength'=>'19', 'size'=>16);
+		switch ($element->filter_type)
+		{
+			case "range":
+				FabrikHelperHTML::loadcalendar();
+				//@TODO: this messes up if the table date format is different to the form date format
+				if (empty($default)) {
+					$default = array('', '');
+				}
+				$v = 'fabrik___filter[table_'.$table->id.'][value]['.$counter.']';
+				$return = JText::_('DATE RANGE BETWEEN') .
+				$this->calendar($default[0], $v.'[0]', $this->getHTMLId() . "_filter_range_0_" . JRequest::getVar('task'), $format, $calOpts);
+				$return .= "<br />" . JText::_('DATE RANGE AND') .
+				$this->calendar($default[1], $v.'[1]', $this->getHTMLId() . "_filter_range_1" . JRequest::getVar('task'), $format, $calOpts);
+
+				break;
+
+			case "dropdown":
+
+				// cant do the format in the MySQL query as its not the same formatting
+				// e.g. M in mysql is month and J's date code its minute
+				jimport('joomla.utilities.date');
+				$ddData = array();
+				foreach ($rows as $k => $o) {
+					if ($fabrikDb->getNullDate() === $o->text) {
+						$o->text = '';
+						$o->value = '';
+					} else {
+
+						$d = new JDate($o->text);
+						//@TODO add an option as to whether we format values or not (if records as timestamps we don't want to format the filter value as running
+						// the filter will result in no records found. see http://fabrikar.com/forums/showthread.php?t=10964
+
+						$o->value = $d->toFormat($format); //if we have a table format like %m-%d then we want to remove duplicate full times
+						$o->text = $d->toFormat($format);
+					}
+					if (!array_key_exists($o->value, $ddData)) {
+						$ddData[$o->value] = $o;
+					}
+				}
+
+				array_unshift($ddData, JHTML::_('select.option', '', $this->filterSelectLabel()));
+
+				$return = JHTML::_('select.genericlist', $ddData, $v, 'class="inputbox fabrik_filter" size="1" maxlength="19"', 'value', 'text', $default,  $htmlid . "_filter_range_0");
+				break;
+			default:
+			case "field":
+				FabrikHelperHTML::loadcalendar();
+				if (is_array($default)) {
+					$default = array_shift($default);
+				}
+				if (get_magic_quotes_gpc()) {
+					$default = stripslashes($default);
+				}
+				$default = htmlspecialchars($default);
+
+				$return = $this->calendar($default, $v, $htmlid . "_filter_range_0_" . JRequest::getVar('task'), $format, $calOpts);
+				break;
+
+			case 'auto-complete':
+				if (get_magic_quotes_gpc()) {
+					$default = stripslashes($default);
+				}
+				$default = htmlspecialchars($default);
+				$return = "<input type=\"hidden\" name=\"$v\" class=\"inputbox fabrik_filter\" value=\"$default\" id=\"$htmlid\" />";
+				$return .= "<input type=\"text\" name=\"$v-auto-complete\" class=\"inputbox fabrik_filter autocomplete-trigger\" value=\"$default\" id=\"$htmlid-auto-complete\"  />";
+				$autoId = $htmlid;
+				if (!$normal) {
+					$autoId = '#advanced-search-table .autocomplete-trigger';
+				}
+				FabrikHelperHTML::autoComplete($autoId, $this->getElement()->id, $this->_pluginName);
+				break;
+		}
+		if ($normal) {
+			$return .= $this->getFilterHiddenFields($counter, $elName);
+		} else {
+			$return .= $this->getAdvancedFilterHiddenFields();
+		}
+		return $return;
+	}
+
+	public function autocomplete_options()
+	{
+		$listModel =& $this->getTableModel();
+		$table =& $listModel->getTable();
+		$db =& $listModel->getDb();
+		$name = $this->getFullName(false, false, false);
+		$db->setQuery("SELECT DISTINCT($name) AS value, $name AS text FROM $table->db_table_name WHERE $name LIKE " . $db->Quote('%'.addslashes(JRequest::getVar('value').'%')));
+		$tmp =& $db->loadObjectList();
+		$ddData = array();
+		foreach ($tmp as &$t) {
+			$this->toLabel($t->text);
+			if (!array_key_exists($t->text, $ddData)) {
+				$ddData[$t->text] = $t;
+			}
+		}
+		$ddData = array_values($ddData);
+		echo json_encode($ddData);
+	}
+
+	/**
+	 * when importing csv data you can run this function on all the data to
+	 * format it into the format that the form would have submitted the date
+	 *
+	 * @param array data
+	 * @param string table column heading
+	 * @param bool data is raw
+	 */
+
+	function prepareCSVData(&$data, $key, $is_raw = false)
+	{
+		if ($is_raw) {
+			return;
+		}
+		$params =& $this->getParams();
+		$format 	= $params->get('date_form_format', '%Y-%m-%d %H:%S:%I');
+		//go through data and turn any dates into unix timestamps
+		for ($j=0; $j < count($data); $j++) {
+			$orig_data = $data[$j][$key];
+			$date 	= JFactory::getDate($data[$j][$key]);
+			$data[$j][$key] = $date->toFormat($format);
+			// $$$ hugh - bit of a hack specific to a customer who needs to import dates with year as 1899,
+			// which we then change to 1999 using a tablecsv import script (don't ask!).  But of course JDate doesn't
+			// like dates outside of UNIX timestamp range, so the previous line was zapping them.  So I'm just restoring
+			// the date as found in the CSV file.  This could have side effects if someone else tries to import invalid dates,
+			// but ... ah well.
+			if (empty($data[$j][$key]) && !empty($orig_data)) {
+				$data[$j][$key] = $orig_data;
+			}
+		}
+	}
+
+	/**
+	 * can be overwritten by plugin class
+	 *
+	 * Examples of where this would be overwritten include drop downs whos "please select" value might be "-1"
+	 * @param string data posted from form to check
+	 * @param int repeat group counter
+	 * @return bol if data is considered empty then returns true
+	 */
+
+	function dataConsideredEmpty($data, $repeatCounter)
+	{
+		return ($data == '') ? true : false;
+	}
+
+	/**
+	 * format the filter date range into a mySQL format
+	 * @see components/com_fabrik/models/FabrikModelElement#getRangedFilterValue($value)
+	 */
+
+	function getRangedFilterValue($value)
+	{
+		$db = FabrikWorker::getDbo();
+		$params =& $this->getParams();
+		// $$$ hugh - need to convert dates to MySQL format for the query
+		$value[0] = $this->tableDateToMySQL($value[0]);
+		$value[1] = $this->tableDateToMySQL($value[1]);
+
+		// $$$ hugh - if the first date is later than the second, swap 'em round
+		// to keep 'BETWEEN' in the query happy
+		if (strtotime($value[0]) > strtotime($value[1])) {
+			$tmp_value = $value[0];
+			$value[0] = $value[1];
+			$value[1] = $tmp_value;
+		}
+
+		$exactTime = $this->formatContainsTime($params->get('date_table_format'));
+		if (!$params->get('date_showtime', 0) || $exactTime == false) {
+			// $$$ hugh - need to back this out by one second, otherwise we're including next day.
+			// So ... say we are searching from '2009-07-17' to '2009-07-21', the
+			// addDays(1) changes '2009-07-21 00:00:00' to '2009-07-22 00:00:00',
+			// but what we really want is '2009-07-21 23:59:59'
+			$value[1] = date("Y-m-d H:i:s", strtotime($this->addDays($value[1], 1)) - 1);
+		}
+		$value = $db->Quote($value[0]) . " AND " . $db->Quote($value[1]);
+		$condition = 'BETWEEN';
+		return array($value, $condition);
+	}
+
+	/**
+	 * convert a table formatted date string into a mySQL formatted date string
+	 * (if already in mySQL format returns the date)
+	 * @param string date in table view format
+	 * @return string date in mySQL format or false if string date could not be converted
+	 */
+
+	function tableDateToMySQL($v)
+	{
+		$params =& $this->getParams();
+		$store_as_local = (int)$params->get('date_store_as_local', 0);
+		if (in_array($v, $this->getNullDates()) || $v === JFactory::getDate($v)->toMySQL()) {
+			return $v;
+		}
+		$format = $params->get('date_table_format', '%Y-%m-%d');
+		$datebits = FabrikWorker::strToDateTime($v, $format);
+		if (!is_array($datebits)) {
+			return false;
+		}
+		$date =& JFactory::getDate($datebits['timestamp']);
+		if ($store_as_local) {
+			$this->_resetToGMT = false;
+		}
+		$retval = $this->toMySQLGMT($date);
+		$this->_resetToGMT = true;
+		return $retval;
+	}
+
+	/**
+	 * $$$ rob - not used??? 9/11/2010
+	 * set a dates time to 00:00:00
+	 * @param mixed $time The initial time for the JDate object
+	 * @return string mysql formatted date
+	 */
+	function setTimeToZero($date)
+	{
+		$date =& JFactory::getDate($date);
+		$thePHPDate = getdate($date->toUnix());
+		$thePHPDate['hours'] = 0;
+		$thePHPDate['minutes'] = 0;
+		$thePHPDate['seconds'] = 0;
+		$v = mktime($thePHPDate['hours'], $thePHPDate['minutes'], $thePHPDate['seconds'], $thePHPDate['mon'], $thePHPDate['mday'], $thePHPDate['year']);
+		$date =& JFactory::getDate($v);
+		return $date->toMySQL($v);
+	}
+
+	/**
+	 * add days to a date
+	 * @param mixed $time The initial time for the JDate object
+	 * @param integer number of days to add (negtive to remove days)
+	 * @return string mysql formatted date
+	 */
+
+	function addDays($date, $add = 0)
+	{
+		$date =& JFactory::getDate($date);
+		$thePHPDate = getdate($date->toUnix());
+		$thePHPDate['mday'] = $thePHPDate['mday']+$add;
+		$v = mktime($thePHPDate['hours'], $thePHPDate['minutes'], $thePHPDate['seconds'], $thePHPDate['mon'], $thePHPDate['mday'], $thePHPDate['year']);
+		$date =& JFactory::getDate($v);
+		return $date->toMySQL($v);
+	}
+
+	/**
+	 * add hours to a date
+	 * @param mixed $time The initial time for the JDate object
+	 * @param integer number of days to add (negtive to remove days)
+	 * @return string mysql formatted date
+	 */
+
+	function addHours($date, $add = 0)
+	{
+		$date =& JFactory::getDate($date);
+		$thePHPDate = getdate($date->toUnix());
+		if ($thePHPDate['hours']+$add >= 24) {
+			$thePHPDate['hours'] = 0;
+			$thePHPDate['mday']++;
+		} else if ($thePHPDate['hours']+$add < 0) {
+			$thePHPDate['hours'] = 0;
+			$thePHPDate['mday']--;
+		} else {
+			$thePHPDate['hours'] = $thePHPDate['hours']+$add;
+		}
+		$v = mktime($thePHPDate['hours'], $thePHPDate['minutes'], $thePHPDate['seconds'], $thePHPDate['mon'], $thePHPDate['mday'], $thePHPDate['year']);
+		$date =& JFactory::getDate($v);
+		return $date->toMySQL($v);
+	}
+
+	/**
+	 * build the query for the avg caclculation - can be overwritten in plugin class (see date element for eg)
+	 * @param model $listModel
+	 * @param string $label the label to apply to each avg
+	 * @return string sql statement
+	 */
+
+	protected function getAvgQuery(&$listModel, $label = "'calc'")
+	{
+		$table 			=& $listModel->getTable();
+		$joinSQL 		= $listModel->_buildQueryJoin();
+		$whereSQL 	= $listModel->_buildQueryWhere();
+		$name 			= $this->getFullName(false, false, false);
+		return "SELECT FROM_UNIXTIME(AVG(UNIX_TIMESTAMP($name))) AS value, $label AS label FROM `$table->db_table_name` $joinSQL $whereSQL";
+	}
+
+	protected function getSumQuery(&$listModel, $label = "'calc'")
+	{
+		$table 			=& $listModel->getTable();
+		$joinSQL 		= $listModel->_buildQueryJoin();
+		$whereSQL 	= $listModel->_buildQueryWhere();
+		$name 			= $this->getFullName(false, false, false);
+		//$$$rob not actaully likely to work due to the query easily exceeding mySQL's  TIMESTAMP_MAX_VALUE value but the query in itself is correct
+		return "SELECT FROM_UNIXTIME(SUM(UNIX_TIMESTAMP($name))) AS value, $label AS label FROM `$table->db_table_name` $joinSQL $whereSQL";
+	}
+
+	public function simpleAvg($data)
+	{
+		$avg = $this->simpleSum($data)/count($data);
+		return JFactory::getDate($avg)->toMySQL();
+	}
+
+	/**
+	 * find the sum from a set of data
+	 * can be overwritten in plugin - see date for example of averaging dates
+	 * @param array $data to sum
+	 * @return string sum result
+	 */
+
+	public function simpleSum($data)
+	{
+		$sum = 0;
+		foreach ($data as $d) {
+			$date =& JFactory::getDate($d);
+			$sum += $date->toUnix();
+		}
+		return $sum;
+	}
+
+	/**
+	 * takes date's time value and turns it into seconds
+	 * @param date object $date
+	 * @return int seconds
+	 */
+
+	protected function toSeconds($date)
+	{
+		return (int)($date->toFormat('%H') * 60 * 60)  + (int)($date->toFormat('%M') * 60) + (int)$date->toFormat('%S');
+	}
+
+	/**
+	 * takes strftime time formatting - http://fr.php.net/manual/en/function.strftime.php
+	 * and converts to format used in mySQL DATE_FORMAT http://dev.mysql.com/doc/refman/5.1/en/date-and-time-functions.html
+	 */
+
+	protected function strftimeTFormatToMySQL(&$format)
+	{
+		//PHP -> MySQL
+
+		// $$$ hugh - can't do direct %x to %y, because str_replace's left to right processing,
+		// so (for instance) %B translates to %M, which then gets translated again to %i
+		// So ... do %x to ^@y (hopefully nobody will ever use ^@ in their format string!),
+		// then replace all ^@'s with %'s.
+
+		$search = array('%e', '%j', '%u', '%V', '%W', '%h', '%B', '%C', '%g',
+'%G', '%M', '%P', '%r', '%R', '%T', '%X', '%z', '%Z', '%D', '%F', '%s', '%x', '%A');
+
+		//$replace = array('%c', '%j', '%w', '%U', '%U', '%b', '%M', '', '%y',
+		//'%Y', '%i', '%p', '%I:%i:%S %p', '%H:%i', '%H:%i:%S', '', '', '%H:%i:%S', '%m/%c/%y', '%Y-%m-%c', '', '%Y-%m-%c', '%W');
+		$replace = array('^@e', '^@j', '^@w', '^@U', '^@U', '^@b', '^@M', '', '^@y',
+'^@Y', '^@i', '^@p', '^@I:^@i:^@S ^@p', '^@H:^@i', '^@H:^@i:^@S', '', '', '^@H:^@i:^@S', '^@m/^@c/^@y', '^@Y-^@m-^@c', '', '^@Y-^@m-^@c', '^@W');
+
+		$format = str_replace($search, $replace, $format);
+		$format = str_replace('^@', '%', $format);
+
+	}
+
+	/**
+	 * build the filter query for the given element.
+	 * Can be overwritten in plugin - e.g. see checkbox element which checks for partial matches
+	 * @param $key element name in format `tablename`.`elementname`
+	 * @param $condition =/like etc
+	 * @param $value search string - already quoted if specified in filter array options
+	 * @param $originalValue - original filter value without quotes or %'s applied
+	 * @param string filter type advanced/normal/prefilter/search/querystring/searchall
+	 * @return string sql query part e,g, "key = value"
+	 */
+
+	function getFilterQuery($key, $condition, $value, $originalValue, $type = 'normal')
+	{
+		$this->encryptFieldName($key);
+		switch ($condition) {
+			case 'earlierthisyear':
+				$query = " DAYOFYEAR($key) <= DAYOFYEAR($value) ";
+				break;
+			case 'laterthisyear':
+				$query = " DAYOFYEAR($key) >= DAYOFYEAR($value) ";
+				break;
+			default:
+				$params =& $this->getParams();
+				$format = $params->get('date_table_format');
+				if ($format == '%a' || $format == '%A') { //special cases where we want to search on a given day of the week
+					//note it wont work with ranged searches
+					$this->strftimeTFormatToMySQL($format);
+					$key = "DATE_FORMAT( $key , '$format')";
+				}
+				else if ($format == '%Y %B') {
+					// $$$ hugh - testing horrible hack for different languages, initially for andorapro's site
+					// Problem is, he has multiple language versions of the site, and needs to filter tables by "%Y %B" dropdown (i.e. "2010 November") in multiple languages.
+					// JDate automagically uses the selected language when we render the date
+					// but when we get to this point, month names are still localized, i.e. in French or German
+					// which MySQL won't grok (until 5.1.12)
+					// So we need to translate them back again, *sigh*
+					// FIXME - need to make all this more generic, so we can handle any date format which uses
+					// month or day names.
+					$matches = array();
+					if (preg_match('#\d\d\d\d\s+(\S+)\b#', $value, $matches)) {
+						$this_month = $matches[1];
+						$en_month = $this->_monthToEnglish($this_month);
+						$value = str_replace($this_month, $en_month, $value);
+						$this->strftimeTFormatToMySQL($format);
+						$key = "DATE_FORMAT( $key , '$format')";
+					}
+				}
+				$query =  " $key $condition $value ";
+				break;
+		}
+		return $query;
+	}
+
+	/**
+	 * called when copy row table plugin called
+	 * @param mixed value to copy into new record
+	 * @return mixed value to copy into new record
+	 */
+	public function onCopyRow($val)
+	{
+		$aNullDates = $this->getNullDates();
+		if (empty($val) || in_array($val, $aNullDates)) {
+			return $val;
+		}
+		$params =& $this->getParams();
+		if ($params->get('date_showtime', 0)) {
+			$store_as_local = (int)$params->get('date_store_as_local', 0);
+			if (!$store_as_local) {
+				$date = JFactory::getDate($val);
+				$config =& JFactory::getConfig();
+				$tzoffset = (int)$config->getValue('config.offset');
+				$date->setOffset($tzoffset);
+				$val = $date->toMySQL(true);
+			}
+		}
+		return $val;
+	}
+
+	/**
+	 * used by validations
+	 * @param string this elements data
+	 * @param string what condiion to apply
+	 * @param string data to compare element's data to (if date already set to Y-m-d H:I:S so no need to apply storeDatabaseForm() on it
+	 */
+
+	public function greaterOrLessThan($data, $cond, $compare)
+	{
+		$data = $this->storeDatabaseFormat($data, null);
+		// $$$ rob 30/06/2011 the line below was commented out - but if doing date compare on 2 fields formatting %d/%m/%Y then the compare unix time was not right
+		$compare = $this->storeDatabaseFormat($compare, null);
+		$data = JFactory::getDate($data)->toUnix();
+		$compare = JFactory::getDate($compare)->toUnix();
+		if ($cond == '>') {
+			return $data > $compare;
+		} else {
+			return $data < $compare;
+		}
+	}
+
+	/**
+	 * Part of horrible hack for translating non-English words back
+	 * to something MySQL will understand.
+	 */
+	private function _monthToEnglish($month, $abbr = false) {
+		//$lang =& JFactory::getLanguage();
+		if ($abbr) {
+			if (strcmp($month, JText::_('JANUARY_SHORT')) === 0) {
+				return 'Jan';
+			}
+			if (strcmp($month, JText::_('FEBRUARY_SHORT')) === 0) {
+				return 'Feb';
+			}
+			if (strcmp($month, JText::_('MARCH_SHORT')) === 0) {
+				return 'Mar';
+			}
+			if (strcmp($month, JText::_('APRIL_SHORT')) === 0) {
+				return 'Apr';
+			}
+			if (strcmp($month, JText::_('MAY_SHORT')) === 0) {
+				return 'May';
+			}
+			if (strcmp($month, JText::_('JUNE_SHORT')) === 0) {
+				return 'Jun';
+			}
+			if (strcmp($month, JText::_('JULY_SHORT')) === 0) {
+				return 'Jul';
+			}
+			if (strcmp($month, JText::_('AUGUST_SHORT')) === 0) {
+				return 'Aug';
+			}
+			if (strcmp($month, JText::_('SEPTEMBER_SHORT')) === 0) {
+				return 'Sep';
+			}
+			if (strcmp($month, JText::_('OCTOBER_SHORT')) === 0) {
+				return 'Oct';
+			}
+			if (strcmp($month, JText::_('NOVEMBER_SHORT')) === 0) {
+				return 'Nov';
+			}
+			if (strcmp($month, JText::_('DECEMBER_SHORT')) === 0) {
+				return 'Dec';
+			}
+		}
+		else {
+			if (strcmp($month, JText::_('JANUARY')) === 0) {
+				return 'January';
+			}
+			if (strcmp($month, JText::_('FEBRUARY')) === 0) {
+				return 'February';
+			}
+			if (strcmp($month, JText::_('MARCH')) === 0) {
+				return 'March';
+			}
+			if (strcmp($month, JText::_('APRIL')) === 0) {
+				return 'April';
+			}
+			if (strcmp($month, JText::_('MAY')) === 0) {
+				return 'May';
+			}
+			if (strcmp($month, JText::_('JUNE')) === 0) {
+				return 'June';
+			}
+			if (strcmp($month, JText::_('JULY')) === 0) {
+				return 'July';
+			}
+			if (strcmp($month, JText::_('AUGUST')) === 0) {
+				return 'August';
+			}
+			if (strcmp($month, JText::_('SEPTEMBER')) === 0) {
+				return 'September';
+			}
+			if (strcmp($month, JText::_('OCTOBER')) === 0) {
+				return 'October';
+			}
+			if (strcmp($month, JText::_('NOVEMBER')) === 0) {
+				return 'November';
+			}
+			if (strcmp($month, JText::_('DECEMBER')) === 0) {
+				return 'December';
+			}
+		}
+		return $month;
+	}
+
+}
+?>

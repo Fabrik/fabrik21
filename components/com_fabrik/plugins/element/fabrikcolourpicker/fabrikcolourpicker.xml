@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>colour picker</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Jan 2007</creationDate>
+	<copyright>(C) 2005-2011 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Renders a colour picker</description>
+	<files>
+		<filename fabrikplugin="fabrikcolourpicker">fabrikcolourpicker.php</filename>
+		<filename>index.html</filename>
+		<filename>colour-picker.js</filename>
+		<folder>images</folder>
+		<folder>swatches</folder>
+	</files>
+	
+	<params group="extra">
+		<param name="colourpicker-swatch" 
+			type="filelist" directory="components/com_fabrik/plugins/element/fabrikcolourpicker/swatches/" 
+			hide_default="1" 
+			label="PLG_ELEMENT_COLOURPICKER_SWATCH_LABEL"
+			description="PLG_ELEMENT_COLOURPICKER_SWATCH_DESC" />
+	</params>
+	
+	<languages folder="administrator/language">
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikcolourpicker.ini</language>
+	</languages>
+	
+	
+</install>

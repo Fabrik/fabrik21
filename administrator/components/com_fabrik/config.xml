@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<params>
+		<param name="fbConf_wysiwyg_label" menu="hide" type="radio" default="0" label="WYSIWYG_FOR_ELEMENT_LABELS" description="">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fbConf_alter_existing_db_cols" menu="hide" type="radio" default="1" label="ALERT_EXISTING_FIELD_TYPES" description="ALERT_EXISTING_FIELD_TYPES_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="remove_tables_on_unistall" menu="hide" type="radio" default="1" label="REMOVE_TABLES_ON_UNISTALL" description="REMOVE_TABLES_ON_UNISTALL_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="usefabrik_mootools" type="radio" menu="hide" default="0" label="MOOTOOLS_VERSION" description="MOOTOOLS_VERSION_DESC">
+			<option value="-1">None</option>
+			<option value="0">1.1</option>
+			<option value="1">1.2</option>
+		</param>
+		<param name="use_mediabox" type="radio" default="0" label="MEDIA_BOX" description="MEDIA_BOX_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="include_lightbox_js" type="radio" default="1" label="LIGHTBOX_JS">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="merge_js" type="radio" default="0" label="MERGE_JS_FILES" description="MERGE_JS_FILES_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="compress_js" type="list" default="none" label="COMPRESS_JS" description="COMPRESS_JS_DESC">
+			<option value="none">None</option>
+			<option value="jsmin">JS Min</option>
+			<option value="packer">Dean Edwards packer</option>
+		</param>
+		<param name="spoofcheck_on_formsubmission" type="radio" default="1" label="SPOOF_CHECK" description="SPOOF_CHECK_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="use_wip" menu="hide" type="radio" default="0" label="USE_WORK_IN_PROGRESS" description="USE_WORK_IN_PROGRESS_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="use_fabrikdebug" type="radio" default="0" label="FABRIK_DEBUG" description="FABRIK_DEBUG_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="user_elements_as_related_data" type="radio" default="0" label="USER_ELEMENTS_AS_RELATED_DATA" description="USER_ELEMENTS_AS_RELATED_DATA_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="filter_build_method" type="list" default="1" label="FILTER_BUILD_METHOD" description="FILTER_BUILD_METHOD_DESC">
+			<option value="1">SHOW_DATA_RECORDED_IN_TABLE</option>
+			<option value="2">SHOW_ALL_OPTIONS</option>
+		</param>
+		
+		<param name="filter_list_max" 
+			type="text"
+			size="3"
+			default="100"
+			label="COM_FABRIK_FILTER_LIST_MAX_LABEL"
+			description="COM_FABRIK_FILTER_LIST_MAX_DESC" />
+			
+		<param name="enable_single_sorting" type="radio" default="0" label="ENABLE_SINGLE_ORDERING" description="ENABLE_SINGLE_ORDERING_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+
+                <param name="@spacer" type="spacer" />
+                <param name="@spacer" type="spacer" default="&lt;b&gt;Settings for SEF components&lt;/b&gt;"  />
+                <param name="fabrik_sef_prepend_menu_title" type="radio" default="0" label="FABRIK_SEF_PREPEND_MENU_TITLE" description="FABRIK_SEF_PREPEND_MENU_TITLE_DESC">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                </param>
+                <param name="fabrik_sef_tablename_on_forms" type="radio" default="0" label="FABRIK_SEF_TABLENAME_ON_FORMS" description="FABRIK_SEF_TABLENAME_ON_FORMS_DESC">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                </param>
+                <param name="fabrik_sef_format_records" type="list" default="param_id" label="FABRIK_SEF_FORMAT_RECORDS" description="FABRIK_SEF_FORMAT_RECORDS_DESC">
+                        <option value="param_id">PARAM_ID</option>
+                        <option value="id_only">ID_ONLY</option>
+                        <option value="id_slug">ID-SLUG</option>
+                        <option value="slug_id">SLUG-ID</option>
+                        <option value="slug_only">SLUG_ONLY</option>
+                </param>
+                <param name="fabrik_sef_customtxt_form" type="text" label="FABRIK_SEF_CUSTOMTXT_FORM" description="FABRIK_SEF_CUSTOMTXT_FORM_DESC"/>
+		<param name="fabrik_sef_customtxt_new" type="text" label="FABRIK_SEF_CUSTOMTXT_NEW" description="FABRIK_SEF_CUSTOMTXT_NEW_DESC"/>
+		<param name="fabrik_sef_customtxt_edit" type="text" label="FABRIK_SEF_CUSTOMTXT_EDIT" description="FABRIK_SEF_CUSTOMTXT_EDIT_DESC"/>
+		<param name="fabrik_sef_customtxt_details" type="text" label="FABRIK_SEF_CUSTOMTXT_DETAILS" description="FABRIK_SEF_CUSTOMTXT_DETAILS_DESC"/>
+                <param name="fabrik_sef_customtxt_own" type="text" label="FABRIK_SEF_CUSTOMTXT_OWN" description="FABRIK_SEF_CUSTOMTXT_OWN_DESC"/>
+		<param name="fabrik_sef_format_viz" type="list" default="param_id" label="FABRIK_SEF_FORMAT_VIZ" description="FABRIK_SEF_FORMAT_VIZ_DESC">
+                        <option value="param_id">PARAM_ID</option>
+                        <option value="viz-id">VIZ-ID</option>
+                        <option value="id-viz">ID-VIZ</option>
+                        <option value="label-id">LABEL-ID</option>
+                        <option value="id-label">ID-LABEL</option>
+                        <option value="label_only">LABEL_ONLY</option>
+                </param>
+                <param name="fabrik_sef_customtxt_viz" type="text" label="FABRIK_SEF_CUSTOMTXT_VIZ" description="FABRIK_SEF_CUSTOMTXT_VIZ_DESC"/>
+
+	</params>
+</config>

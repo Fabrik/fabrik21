@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>database join</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Jan 2007</creationDate>
+	<copyright>(C) 2005-2007 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Drop down or radio lists containing data looked up in another table</description>
+	
+	<files>
+		<filename fabrikplugin="fabrikdatabasejoin">fabrikdatabasejoin.php</filename>
+		<filename fabrikplugin="fabrikdatabasejoin">javascript.js</filename>
+		<filename>index.html</filename>
+	</files>
+	
+  <languages folder="administrator/language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.element.fabrikdatabasejoin.ini</language>
+	</languages>
+
+	<params addpath="/administrator/components/com_fabrik/elements">
+		<param name="hidden" type="hidden" default="" size="3" label="HIDDEN" />
+	</params>
+		
+	<params group="intro" addpath="/administrator/components/com_fabrik/elements">
+		<param name="database_join_display_type" type="list" default="dropdown" label="RENDERJOIN" description="RENDERJOINDESC">
+			<option value="dropdown">Drop down list</option>
+			<option value="radio">Radio Buttons</option>
+			<option value="auto-complete">Auto-complete</option>
+			<option value="checkbox">Checkbox</option>
+		</param>
+
+		<param name="join_conn_id" type="connections" default="" label="Connection" /> 
+	</params>
+	
+	<params group="xtra">
+		<param name="database_join_noselectionvalue" type="text" size="5" default="" label="NOSELECTIONVALUE" description="NOSELECTIONVALUEDESC" />
+		<param name="database_join_noselectionlabel" type="text" size="35" default="" label="NOSELECTIONLABEL" description="NOSELECTIONLABELDESC" />
+		<param name="database_join_show_please_select" type="radio" default="1" label="COM_FABRIK_SHOW_PLEASE_SELECT_LABEL" description="COM_FABRIK_SHOW_PLEASE_SELECT_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		
+		  
+		<param name="eval" type="eval" default="0" label="Eval" />
+		<param name="default" type="default" default="" label="Default" />
+	</params>
+	
+
+	<params group="frontend">
+		<param name="fabrikdatabasejoin_frontend_add" type="radio" default="0" label="FABRIKDATABASEJOIN_FRONTEND_ADD" description="FABRIKDATABASEJOIN_FRONTEND_ADD_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="yoffset" type="text" size="3" deafult="0" label="YOFFSET" description="YOFFSETDESC" />
+		<param name="join_popupwidth" type="text" size="3" deafult="0" label="POPUPWINDOWWIDTH" description="POPUPWINDOWWIDTHDESC" />
+		<param name="databasejoin_readonly_link" type="radio" default="0" label="FABRIKDATABASEJOIN_READONLY_LINK" description="FABRIKDATABASEJOIN_READONLY_LINK_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fabrikdatabasejoin_frontend_select" type="radio" default="0" label="FABRIKDATABASEJOIN_FRONTEND_SELECT" description="FABRIKDATABASEJOIN_FRONTEND_SELECT_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+	
+	<params group="simple">
+		<param name="join_db_name" type="tables" label="TABLE" observe="join_conn_id" />
+		<param name="join_key_column" type="tablefields" label="KEY" table="join_db_name" connection="join_conn_id" description="JOIN KEY DESC"/>
+		<param name="join_val_column" type="tablefields" label="LABEL" table="join_db_name" connection="join_conn_id" description="JOIN LABEL DESCRIPTION"/>
+		<param name="join_val_column_concat" type="text" size="35" default="" label="OR CONCAT LABEL" description="OR CONCAT LABEL DESC" />
+		<param name="database_join_where_sql" type="text" size="35" default="" label="JOINWHERESTATEMENT" description="JOINWHERESTATEMENTDESC" />
+		<param name="database_join_where_access" type="fullaccesslevel" default="0" label="JOINWHEREACCESS" description="JOINWHEREACCESSDESC" />
+		<param name="database_join_where_when" type="radio" default="3" label="JOINWHEREWHEN" description="JOINWHEREWHENDESC">
+			<option value="1">New</option>
+			<option value="2">Edit</option>
+			<option value="3">Both</option>
+		</param>
+	</params>
+	
+	<params group="advanced">
+		<param name="dabase_join_label_eval" type="textarea" rows="8" cols="40" default="" label="OPTIONSEVAL" description="OPTIONSEVALDESC" />
+		<param name="join_desc_column" type="tablefields" label="DESCRIPTIONFIELD" table="join_db_name" connection="join_conn_id" description="DESCRIPTIONFIELDDESC"/>
+		<param name="append_table_where" 
+			type="radio" 
+			default="0" 
+			label="PLG_ELEMENT_DBJOIN_APPLYWHERE_TO_TABLE_LABEL"
+			descrption="PLG_ELEMENT_DBJOIN_APPLYWHERE_TO_TABLE_DESC">
+				<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		
+		<param name="dbjoin_options_per_row" type="width" default="4" 
+			label="PLG_ELEMENT_DBJOIN_OPTIONS_PER_ROW_LABEL"
+			description="PLG_ELEMENT_DBJOIN_OPTIONS_PER_ROW_DESC" />
+			
+		<param name="dbjoin_autocomplete_size" 
+			default="20" 
+			description="PLG_ELEMENT_DBJOIN_AUTOCOMPLETE_SIZE_DESC" 
+			label="PLG_ELEMENT_DBJOIN_AUTOCOMPLETE_SIZE_LABEL" 
+			size="3" 
+			type="text" />
+		
+	</params>
+</install>

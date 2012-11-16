@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- to update plugins image run this query -->
+<!-- UPDATE downloads d, (SELECT description, title, image AS selected_image 
+FROM downloads where image IS NOT NULL ) AS d2 SET d.image = d2.selected_image,
+d.description = d2.description
+WHERE d.title = d2.title -->
+<project name="fabrik2-sql" default="fabrik.build_all_plugins">
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+	
+	<import file="./build_one_plugin.xml"/>
+	<import file="./plugin_list.xml"/>
+		
+	<property file="build-plugins_config.ini" />
+	<property file="build-plugins_private.ini" />
+		
+	<path id="svnant.class.path">
+		<pathelement location="lib/svnant.jar" />
+		<pathelement location="lib/svnClientAdapter.jar" />
+		<pathelement location="lib/svnjavahl.jar" />
+		<pathelement location="lib/svnkit.jar" />
+	</path>
+
+	<typedef resource="org/tigris/subversion/svnant/svnantlib.xml" classpathref="svnant.class.path" />
+
+	<target name="svn">
+		<svn username="${cfg.svn_user}" password="${cfg.svn_password}">
+			<update revision="HEAD" dir="${cfg.rootdir}" />
+		</svn>
+		<property name="plugin.svn-done" value="1" />
+	</target>
+
+	
+	<target name="fabrik.build_all_plugins">
+		    <propertyselector property="plugin.list"
+                         delimiter=","
+                         match="^plg_fabrik_(.*)"
+                         select="\1"
+                         casesensitive="false" />
+
+	   <foreach list="${plugin.list}"
+                delimiter=","
+                target="plugin.build_this_plugin"
+                param="plugin.type_slug" />
+	</target>
+	
+
+
+<target name="plugin.build_this_plugin">
+   <propertyregex property="plugin.slug"
+              input="${plugin.type_slug}"
+              regexp="[a-z]+_(\w+)"
+              select="\1"
+              casesensitive="false" />
+   <propertyregex property="plugin.type"
+              input="${plugin.type_slug}"
+              regexp="([a-z]+)_\w+"
+              select="\1"
+              casesensitive="false" />
+   <echo message="Type: ${plugin.type}, Slug: ${plugin.slug}" />
+   <propertycopy name="plugin.title" from="plg_fabrik_${plugin.type}_${plugin.slug}" />
+   <antcall target="fabrik.build_one_plugin" />
+</target>
+
+
+</project>
+	

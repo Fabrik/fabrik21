@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="visualization" method="upgrade">
+	<name>Approvals</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Feb 2011</creationDate>
+	<copyright>(C) 2005-2011 pollen-8.co.uk</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>1.0.0</version>
+	<description>Shows a summary of records that need approval</description>
+	<files>
+		<filename fabrikplugin="approvals">index.html</filename>
+		<filename>index.html</filename>
+		<folder>controllers</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+	</files>
+	
+	<administration>
+	  <languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.visualization.approvals.ini</language>
+		</languages>
+	</administration>
+	
+	<params addpath="/administrator/components/com_fabrik/elements">
+		
+	</params>
+
+	<params group="fields" repeatcontrols="1" repeat="1" repeatmin="1">
+		<param name="approvals_connection[]" 
+			type="connections"
+			label="PLG_VIZ_APPROVALS_CONNECTION_LABEL"
+			description="PLG_VIZ_APPROVALS_CONNECTION_DESC" />
+			
+		<param name="approvals_table[]"
+			type="fabriktables"
+			connection_in_repeat="true"
+			observe="approvals_connection"
+			label="PLG_VIZ_APPROVALS_TABLE_LABEL"
+			description="PLG_VIZ_APPROVALS_TABLE_DESC"/>
+			
+		<param name="approvals_approve_element[]"
+			type="element"
+			connection_in_repeat="true"
+			connection="approvals_connection"
+			table="approvals_table" label="PLG_VIZ_APPROVALS_APPROVE_ELEMENT_LABEL"
+			description="PLG_VIZ_APPROVALS_APPROVE_ELEMENT_DESC"/>
+			
+	</params>
+	
+</install>

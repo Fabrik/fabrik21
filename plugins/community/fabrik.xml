@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="community" method="upgrade">
+	<name>Fabrik for JomSocial</name>
+	<author>Hugh Messenger</author>
+	<creationDate>12 December 2008</creationDate>
+	<copyright>Copyright (C) 2008. All rights reserved.</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>support@azrul.com</authorEmail>
+	<authorUrl>fabrikar.com</authorUrl>
+	<version>1.0</version>
+	<isapplication>true</isapplication>
+	<isbrowseable>true</isbrowseable>
+	<description>
+		Fabrik integration for JomSocial
+	</description>
+	<files>
+		<file plugin="fabrik">fabrik.php</file>
+		<file>fabrik/favicon.png</file>
+		<file>fabrik/api_class.php</file>
+		<file>fabrik/config.xml</file>
+	</files>
+	
+	<menuitem>
+		<menu label="Groups" position="toolbar">
+			<link label="Groups">task=groups</link>
+		</menu>
+	</menuitem>
+	
+	<params>
+		<param name="cache" type="list" default="0" label="Enable caching" description="Cache data">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="coreapp" type="list" default="0" label="Core Application" description="Causes this application to not appearin the users applications list but it will allow this application to appear in the user profile automatically if selected.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="fabrik_view" type="list" default="0" label="Fabrik View type" description="Fabrik View type">
+			<option value="0">Please select...</option>
+			<option value="form">Form</option>
+			<option value="details">Details</option>
+			<option value="table">Table</option>
+			<option value="visualization">Visualization</option>
+			<option value="element">Element</option>
+		</param>
+		<param name="fabrik_view_id" type="text" default="" label="View ID" description="Numeric Fabrik table, form or visualization ID" />
+		<param name="fabrik_row_id" type="Text" default="" label="Row ID" description="Numeric Fabrik rowid, if using Form or Details view.  Set to -1 for logged on userid, or -2 for userid of profile being viewed" />
+		<param name="fabrik_usekey" type="Text" default="" label="Usekey" description="Fabrik element name containing userid to use as search key if using rowid -1 or -2" />
+		<param name="fabrik_layout" type="Text" default="" label="Layout" description="Fabrik layout to use (optional)" />
+		<param name="fabrik_element" type="Text" default="" label="Element" description="If using Element view, full element name to show." />
+		<param name="fabrik_additional" type="Text" default="" label="Additional" description="Additional plugin parameters, such as element filters like table___element=foo, in a space separated list" />
+	</params>
+
+</install>

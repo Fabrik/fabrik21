@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Fabrik version layout">
+		<message>
+			<![CDATA[STANDARD Fabrik version layout]]>
+		</message>
+	</layout>
+	<state>
+		<name>Fabrik Version</name>
+		<description>Shows Fabrik version info</description>
+		<params>
+		</params>
+	</state>
+</metadata>

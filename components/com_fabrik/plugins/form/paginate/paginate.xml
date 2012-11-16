@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="form" method="upgrade">
+	<name>Paginate</name>
+	<author>Rob Clayburn</author>
+	<creationDate>Aug 2010</creationDate>
+	<copyright>(C) 2005-2010 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>rob@pollen-8.co.uk</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Add scroll buttons to form to allow for pagination between records</description>
+	<files>
+		<filename fabrikplugin="paginate">paginate.php</filename>
+		<filename>index.html</filename>
+		<filename>scroller.js</filename>
+	</files>
+	
+	<administration>
+		<languages folder="administrator/language" >
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.form.paginate.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_fabrik.plg.form.paginate.ini</language>
+		</languages>
+	</administration>
+	
+	<params repeat="1" repeatcontrols="0">
+		<param name="paginate_where"
+			type="list" default="both"
+			label="PLG_FORM_PAGINATE_WHERE_LABEL"
+			description="PLG_FORM_PAGINATE_WHERE_DESC">
+				<option value="both">PLG_FORM_PAGINATE_BOTH</option>
+				<option value="form">PLG_FORM_PAGINATE_FORM</option>
+				<option value="details">PLG_FORM_PAGINATE_DETAILS</option>
+		</param>
+		
+		<param name="paginate_ajax"
+			type="radio"
+			default="1"
+			label="PLG_FORM_PAGINATE_AJAX_LABEL"
+			description="PLG_FORM_PAGINATE_AJAX_DESC">
+				<option value="0">NO</option>
+				<option value="1">YES</option>	
+		</param>
+	</params>
+</install>

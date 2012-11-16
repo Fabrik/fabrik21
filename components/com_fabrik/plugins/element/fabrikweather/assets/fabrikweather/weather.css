@@ -1,0 +1,89 @@
+@CHARSET "ISO-8859-1";
+.fabrikweather_main {
+    overflow: hidden;
+}
+.fabrikweather_current {
+    overflow: hidden;
+}
+.fabrikweather_main_left {
+    float: left;
+    width: auto;
+}
+.fabrikweather_temp {
+    font-size: 18px;
+    margin: 8px 0 0;
+    text-align: center;
+}
+.fabrikweather_main_right {
+    float: left;
+    margin: 0 0 0 16px;
+    width: auto;
+}
+.fabrikweather_main_right h2 {
+    margin: 4px 0;
+}
+.fabrikweather_condition {
+}
+.fabrikweather_humidity {
+}
+.fabrikweather_wind {
+}
+ul.fabrikweather_next_days {
+    clear: both;
+    float: left;
+    list-style-image: none;
+    list-style-type: none;
+    margin: 12px 0;
+    padding: 0;
+    width: 100%;
+}
+ul.fabrikweather_next_days li {
+    background: none repeat scroll 0 0 transparent;
+    float: left;
+}
+ul.fabrikweather_next_days li.aitems-1 {
+    width: 100%;
+}
+ul.fabrikweather_next_days li.aitems-2 {
+    width: 49%;
+}
+ul.fabrikweather_next_days li.aitems-3 {
+    width: 33%;
+}
+ul.fabrikweather_next_days li.aitems-4 {
+    width: 24%;
+}
+.fabrikweather_day {
+    display: block;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+}
+ul.fabrikweather_next_days li img {
+    clear: both;
+    display: block;
+    margin: 0 auto;
+}
+p.fabrikweather_day_temp {
+    margin: 6px 0 0;
+    text-align: center;
+    white-space: nowrap;
+}
+span.fabrikweather_day_day {
+    font-size: 10px;
+    padding: 2px;
+}
+span.fabrikweather_day_night {
+    background: none repeat scroll 0 0 #666666;
+    color: #FFFFFF;
+    font-size: 10px;
+    padding: 2px;
+}
+div.fabrikweather_fday {
+    border-left: 1px solid #DDDDDD;
+    margin: 0 6px 0 0;
+    padding: 0 0 0 6px;
+}
+ul.fabrikweather_next_days li:first-child div.fabrikweather_fday {
+    border-left: medium none;
+}

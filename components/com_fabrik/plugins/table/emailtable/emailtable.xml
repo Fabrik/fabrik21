@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="table" method="upgrade">
+	<name>Email Table</name>
+	<author>Hugh Messenger</author>
+	<creationDate>October 2008</creationDate>
+	<copyright>(C) 2005-2008 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh@alaweb.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Adds a button to the table, allowing users to email rows</description>
+	<files>
+		<filename fabrikplugin="emailtable">javascript.js</filename>
+		<filename>index.html</filename>
+		<filename>controllers/emailtable.php</filename>
+		<filename>models/emailtable.php</filename>
+		<filename>views/popupwin/view.html.php</filename>
+		<filename>views/popupwin/tmpl/default.php</filename>
+	</files>
+	
+	<languages folder="language" >
+		<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.table.emailtable.ini</language>
+	</languages>
+	
+	<administration>
+		<languages folder="administrator/language">
+			<language tag="en-GB">en-GB/en-GB.com_fabrik.plg.table.emailtable.ini</language>
+		</languages>
+	</administration>
+	
+	
+	<params repeat="1" repeatcontrols="0" addpath="/administrator/components/com_fabrik/elements">
+		
+		<param name="emailtable_access" type="fullaccesslevel" default="100" label="ACCESS"/>
+		
+		<param name="emailtable_button_location" type="list" default="bottom"
+			label="PLG_LIST_EMAIL_BUTTON_LOCATION_LABEL"
+			description="PLG_LIST_EMAIL_BUTTON_LOCATION_DESC">
+			<option value="bottom">Bottom</option>
+			<option value="perrow">Per row</option>
+			<option value="both">Both</option>			
+		</param>
+		
+		<param name="emailtable_from_user" type="radio" default="0" 
+			label="PLG_LIST_EMAIL_SEND_FROM_USER_LABEL" 
+			description="PLG_LIST_EMAIL_SEND_FROM_USER_DESC">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+		</param>
+		
+		<param name="emailtable_to_how"
+			type="list"
+			default="multi"
+			label="PLG_LIST_EMAIL_TO_HOW_LABEL"
+			description="PLG_LIST_EMAIL_TO_HOW_DESC">
+				<option value="multi">PLG_LIST_EMAIL_TO_HOW_MULTI</option>
+				<option value="single">PLG_LIST_EMAIL_TO_HOW_SINGLE</option>
+		</param>
+				
+		<param name="emailtable_to_type"
+			type="list"
+			default="list"
+			label="PLG_LIST_EMAIL_TO_TYPE_LABEL"
+			description="PLG_LIST_EMAIL_TO_TYPE_DESC">
+				<option value="list">Select from elements</option>
+				<option value="field">Defined in 'email to' field</option>
+				<option value="table">From table (multiselect)</option>
+				<option value="table_picklist">From table (picklist)</option>
+		</param>
+		
+		<param name="emailtable_to"
+			type="text"
+			size="40"
+			label="PLG_LIST_EMAIL_TO_LABEL"
+			description="PLG_LIST_EMAIL_TO_DESC" />
+
+		<param name="emailtable_to_table_connection" type="connections" label="PLG_EMAILTABLE_TO_TABLE_CONNECTION_LABEL" description="PLG_EMAILTABLE_TO_TABLE_CONNECTION_DESC"/>
+		<param name="emailtable_to_table_table" observe="emailtable_to_table_connection" type="fabriktables" label="PLG_EMAILTABLE_TO_TABLE_TABLE_LABEL" description="PLG_EMAILTABLE_TO_TABLE_TABLE_DESC"/>
+		<param name="emailtable_to_table_email" type="element" connection="emailtable_to_table_connection" table="emailtable_to_table_table" label="PLG_EMAILTABLE_TO_TABLE_EMAIL_LABEL"  description="PLG_EMAILTABLE_TO_TABLE_EMAIL_DESC"/>
+		<param name="emailtable_to_table_name" type="element" connection="emailtable_to_table_connection" table="emailtable_to_table_table" label="PLG_EMAILTABLE_TO_TABLE_NAME_LABEL" description="PLG_EMAILTABLE_TO_TABLE_NAME_DESC"/>
+			
+		<param name="email_button_label"
+			type="text"
+			size="30"
+			label="PLG_LIST_EMAIL_BUTTON_LABEL_LABEL"
+			description="PLG_LIST_EMAIL_BUTTON_LABEL_DESC" />
+			
+		<param name="email_subject"
+			type="text"
+			size="30"
+			label="PLG_LIST_EMAIL_SUBJECT_LABEL"
+			description="PLG_LIST_EMAIL_SUBJECT_DESC" />
+
+		<param name="emailtable_hide_subject" type="radio" default="0" 
+			label="PLG_LIST_EMAIL_HIDE_SUBJECT_LABEL" 
+			description="PLG_LIST_EMAIL_HIDE_SUBJECT_DESC">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+		</param>		
+		
+		<param name="email_message"
+			type="textarea"
+			rows="4"
+			cols="60"
+			label="PLG_LIST_MESSAGE_LABEL"
+			description="PLG_LIST_MESSAGE_DESC" />
+			
+		<param name="emailtable_template"
+			type="filelist"
+			directory="components/com_fabrik/plugins/table/emailtable/tmpl/"
+			hide_default="1"
+			label="PLG_LIST_EMAIL_TEMPLATE_LABEL"
+			description="PLG_LIST_EMAIL_TEMPLATE_DESC"/>
+			
+		<param name="emailtable_template_content"
+			add_select="true"
+			default=""
+			type="sql2"
+			query="SELECT id AS value, title AS emailtable_template_content FROM #__content"
+			label="PLG_LIST_EMAIL_CONTENT_TEMPLATE_LABEL"
+			description="PLG_LIST_EMAIL_CONTENT_TEMPLATE_DESC" />
+			
+		<param name="emailtable_allow_attachment"
+			type="radio"
+			default="1"
+			label="PLG_LIST_EMAIL_ALLOW_ATTACHMENT_LABEL"
+			description="PLG_LIST_EMAIL_ALLOW_ATTACHMENT_DESC">
+				<option value="0">NO</option>
+				<option value="1">YES</option>	
+		</param>
+		
+		<param name="emailtable_condition"
+			type="textarea"
+			rows="4"
+			cols="60"
+			label="PLG_LIST_EMAIL_CONDITION_LABEL"
+			description="PLG_LIST_EMAIL_CONDITION_DESC" />
+			
+		<param name="emailtable_mergemessages" 
+			type="radio" default="0"
+			label="PLG_LIST_EMAIL_MERGE_MESSAGES_LABEL"
+			description="PLG_LIST_EMAIL_MERGE_MESSAGES_DESC">
+			<option value="0">NO</option>
+			<option value="1">YES</option>
+		</param>
+		
+		<param name="emailtable_message_preamble"
+			type="textarea"
+			default=""
+			rows="3"
+			cols="60"
+			label="PLG_LIST_EMAIL_MESSAGE_PREAMBLE_LABEL"
+			description="PLG_LIST_EMAIL_MESSAGE_PREAMBLE_DESC" />
+			
+		<param name="emailtable_message_postamble"
+			type="textarea"
+			default=""
+			rows="3"
+			cols="60"
+			label="PLG_LIST_EMAIL_MESSAGE_POSTAMBLE_LABEL"
+			description="PLG_LIST_EMAIL_MESSAGE_POSTAMBLE_DESC" />
+			
+		<param name="emailtable_update_field"
+			type="tablefields"
+			valueformat="tableelement"
+			label="PLG_LIST_EMAIL_UPDATE_FIELD_LABEL"
+			description="PLG_LIST_EMAIL_UPDATE_FIELD_DESC" />
+		
+		<param name="emailtable_update_value"
+			type="text"
+			label="PLG_LIST_EMAIL_UPDATE_VALUE_LABEL"
+			description="PLG_LIST_EMAIL_UPDATE_VALUE_DESC" />
+			
+		<param name="emailtable_update_field2"
+			type="tablefields"
+			valueformat="tableelement"
+			label="PLG_LIST_EMAIL_UPDATE_FIELD_LABEL"
+			description="PLG_LIST_EMAIL_UPDATE_FIELD_DESC" />
+		
+		<param name="emailtable_update_value2"
+			type="text"
+			label="PLG_LIST_EMAIL_UPDATE_VALUE_LABEL"
+			description="PLG_LIST_EMAIL_UPDATE_VALUE_DESC" />
+	</params>
+</install>
