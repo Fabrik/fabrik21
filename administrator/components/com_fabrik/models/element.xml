@@ -82,6 +82,7 @@
 			<option value="field">FIELD</option>
 			<option value="dropdown">DROPDOWN</option>
 			<option value="range">RANGE</option>
+			<option value="field_range">FIELD_RANGE</option>
 			<option value="auto-complete">AUTOCOMPLETE</option>
 		</param>
 		<param name="filter_exact_match" type="radio" default="1" label="EXACT MATCH" description="EXACT MATCH DESC" >

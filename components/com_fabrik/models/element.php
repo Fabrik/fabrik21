@@ -1697,7 +1697,7 @@ class FabrikModelElement extends JModel {
 		}
 
 		$default = $app->getUserStateFromRequest($context, $elid, $default);
-		if ($this->getElement()->filter_type !== 'range') {
+		if ($this->getElement()->filter_type !== 'range' && $this->getElement()->filter_type !== 'field_range') {
 			$default = (is_array($default) && array_key_exists('value', $default)) ? $default['value'] : $default;
 			$default = stripslashes($default);
 		}
@@ -1746,7 +1746,7 @@ class FabrikModelElement extends JModel {
 		$default = $this->getDefaultFilterVal($normal, $counter);
 		$return = '';
 
-		if (in_array($element->filter_type, array('range', 'dropdown'))) {
+		if (in_array($element->filter_type, array('range', 'field_range', 'dropdown'))) {
 			$rows = $this->filterValueList($normal);
 			$this->unmergeFilterSplits($rows);
 			array_unshift($rows, JHTML::_('select.option',  '', $this->filterSelectLabel()));
@@ -1773,6 +1773,27 @@ class FabrikModelElement extends JModel {
 				$return 	 = JText::_('BETWEEN') . JHTML::_('select.genericlist', $rows, $v.'[0]', $attribs, 'value', 'text', $default1, $element->name . "_filter_range_0");
 				//$default1 = is_array($default) ? $default['value'][1] : '';
 				$return 	 .= "<br /> " . JText::_('and') . ' ' . JHTML::_('select.genericlist', $rows, $v.'[1]', $attribs, 'value', 'text', $default2, $element->name . "_filter_range_1");
+				break;
+
+			case "field_range":
+				$attribs = 'class="inputbox fabrik_filter" size="1" ';
+				$default1 = $default;
+				$default2 = $default;
+				if (is_array($default)) {
+					if (array_key_exists('value', $default)) {
+						$default1 = $default['value'][0];
+						$default2 = $default['value'][1];
+					}
+					else {
+						$default1 = $default[0];
+						$default2 = $default[1];
+					}
+				}
+				//$default1 = is_array($default) ? $default['value'][0] : '';
+				//$return 	 = JText::_('BETWEEN') . JHTML::_('select.genericlist', $rows, $v.'[0]', $attribs, 'value', 'text', $default1, $element->name . "_filter_range_0");
+				$return = JText::_('BETWEEN') . "<input type=\"text\" name=\"" . $v . "[0]\" class=\"inputbox fabrik_filter\" size=\"$size\" value=\"$default1\" id=\"" . $element->name . "_filter_range_0\"  />";
+				//$default1 = is_array($default) ? $default['value'][1] : '';
+				$return 	 .= "<br /> " . JText::_('and') . ' ' . "<input type=\"text\" name=\"" . $v . "[1]\" class=\"inputbox fabrik_filter\" size=\"$size\" value=\"$default2\" id=\"" . $element->name . "_filter_range_1\"  />";
 				break;
 
 			case "dropdown":

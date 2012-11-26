@@ -3331,7 +3331,7 @@ class FabrikModelTable extends JModel {
 					$element =& $elementModel->getElement();
 					if (isset($element->filter_type) && $element->filter_type <> '') {
 						if ($elementModel->canView() && $elementModel->canUseFilter() && $element->show_in_table_summary == '1') {
-							if ($element->filter_type == 'range' || $element->filter_type == 'auto-complete') {
+							if ($element->filter_type == 'range' || $element->filter_type == 'field_range' || $element->filter_type == 'auto-complete') {
 								$this->_real_filter_action = 'submitform';
 								return $this->_real_filter_action;
 							}
