@@ -29,7 +29,7 @@ class FabrikModelCaneditrow extends FabrikModelTablePlugin {
 	{
 	// If $row is null, we were called from the table's canEdit() in a per-table rather than per-row context,
 		// and we don't have an opinion on per-table edit permissions, so just return true.
-		if (is_null($row) || is_null($row[0])) 
+		if (is_null($row) || is_null($row[0]))
 		{
 			return true;
 		}
@@ -44,12 +44,12 @@ class FabrikModelCaneditrow extends FabrikModelTablePlugin {
 		//$field = str_replace('.', '___', $params->get('caneditrow_field'));
 		$field = $params->get('caneditrow_field');
 		$field = FabrikString::safeColnameToArrayKey($field);
+		$caneditrow_eval = $params->get('caneditrow_eval', '');
 		// $$$ rob if no can edit field selected in admin return true
-		if (trim($field) == '') {
+		if (trim($field) == '' && trim($caneditrow_eval) == '') {
 			return true;
 		}
 		// If they provided some PHP to eval, we ignore the other settings and just run their code
-		$caneditrow_eval = $params->get('caneditrow_eval', '');
 		if (!empty($caneditrow_eval)) {
 			$w = new FabrikWorker();
 			$data = JArrayHelper::fromObject($data);
