@@ -13,6 +13,7 @@ var fbSlider = FbElement.extend({
 				if ($type(this.element) === false) {
 					return;
 				}
+				var init_value = this.options.value;
 				var output = this.element.getElement('.fabrikinput');
 				var output2 = this.element.getElement('.slider_output');
 				this.mySlide = new Slider(this.element.getElement('.fabrikslider-line'), this.element.getElement('.knob'), {
@@ -30,9 +31,9 @@ var fbSlider = FbElement.extend({
 					steps:this.options.steps
 				}).set(0);
 				
-				this.mySlide.set(this.options.value);
-				output.value = this.options.value;
-				output2.setText(this.options.value);
+				this.mySlide.set(init_value);
+				output.value = init_value;
+				output2.setText(init_value);
 				var clear = this.element.getElement('.clearslider');
 				if ($type(clear)!==false) {
 					clear.addEvent('click', function(e) {
