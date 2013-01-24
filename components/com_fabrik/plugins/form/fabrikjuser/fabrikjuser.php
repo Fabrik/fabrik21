@@ -286,8 +286,10 @@ class FabrikModelfabrikjuser extends FabrikModelFormPlugin {
 		$usertype_max = (int)$params->get('juser_usertype_max', 18);
 
 		// load in the com_user language file
+		// and our backend language file (for the email phrases)
 		$lang =& JFactory::getLanguage();
 		$lang->load('com_user');
+		$lang->load('com_fabrik.plg.form.fabrikjuser', JPATH_ADMINISTRATOR, null, true);
 
 		$data =& $formModel->_formData;
 
@@ -545,22 +547,28 @@ class FabrikModelfabrikjuser extends FabrikModelFormPlugin {
 			$subject 	= sprintf(JText::_('PLG_FABRIK_FORM_JUSER_ACCOUNT_DETAILS_FOR'), $name, $SiteName);
 			$subject 	= html_entity_decode($subject, ENT_QUOTES);
 
-			if ($useractivation == 1 && !$bypassActivation) {
-
-				$message = sprintf(JText::_('PLG_FABRIK_FORM_JUSER_SEND_MSG_ACTIVATE'), $name, $SiteName, $siteURL."index.php?option=com_user&task=activate&activation=".$user->get('activation'), $siteURL, $username, $user->password_clear);
-			} else if ($params->get('juser_bypass_accountdetails', 0) != 1) { //$$$tom adding Bypass Joomla's "Account details for..." email
-				$message = sprintf(JText::_('PLG_FABRIK_FORM_JUSER_SEND_MSG'), $name, $SiteName, $siteURL);
-			}
-			$message = html_entity_decode($message, ENT_QUOTES);
-
 			if ($MailFrom != '' && $FromName != '')
 			{
 				$adminName 	= $FromName;
 				$adminEmail = $MailFrom;
 			}
-			if ($message) { //$$$tom see comment above about bypassing Joomla's email
-				JUtility::sendMail($adminEmail, $adminName, $user->get('email'), $subject, $message);
+
+			if ($useractivation == 1 && !$bypassActivation) {
+				$message = sprintf(JText::_('PLG_FABRIK_FORM_JUSER_SEND_MSG_ACTIVATE'), $name, $SiteName, $siteURL."index.php?option=com_user&task=activate&activation=".$user->get('activation'), $siteURL, $username, $user->password_clear);
+				$message = html_entity_decode($message, ENT_QUOTES);
+				if (!empty($message)) {
+					JUtility::sendMail($adminEmail, $adminName, $user->get('email'), $subject, $message);
+				}
 			}
+
+			if ($params->get('juser_bypass_accountdetails', 0) != 1) {
+				$message = sprintf(JText::_('PLG_FABRIK_FORM_JUSER_SEND_MSG'), $name, $SiteName, $siteURL);
+				$message = html_entity_decode($message, ENT_QUOTES);
+				if (!empty($message)) {
+					JUtility::sendMail($adminEmail, $adminName, $user->get('email'), $subject, $message);
+				}
+			}
+
 		}
 
 		// If updating self, load the new user object into the session
