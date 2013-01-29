@@ -146,13 +146,17 @@ Element.implement({
 		}
 		return el;
 	},
-		
+
+	hasExactClass: function(classname) {
+		return (" " + this.className + " ").replace(/[\n\t\r]/g, " ").indexOf(" " + classname + " ") > -1;
+	},
+	
 	findClassUp: function(classname) {
-		if(this.hasClass(classname)) {
+		if(this.hasExactClass(classname)) {
 			return this;
 		}
 		var el = $(this);
-		while(el && !el.hasClass(classname)) {
+		while(el && !el.hasExactClass(classname)) {
 			if($type(el.getParent()) != 'element') {
 				return false;
 			}
