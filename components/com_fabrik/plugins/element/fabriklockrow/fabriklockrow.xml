@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="fabrikplugin" group="element" method="upgrade">
+	<name>Locak Row</name>
+	<author>Hugh Messenger</author>
+	<creationDate>Feb 2013</creationDate>
+	<copyright>(C) 2005-2013 fabrikar.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>hugh.messenger@gmail.com</authorEmail>
+	<authorUrl>www.fabrikar.com</authorUrl>
+	<version>2.1</version>
+	<description>Provides row locking</description>
+	<files>
+		<filename fabrikplugin="fabriklockrow">fabriklockrow.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<params>
+		<param name="lockrow_ttl" type="text" size="5" default="24" label="PLG_ELEMENT_LOCKROW_TTL_LABEL" description="PLG_ELEMENT_LOCKROW_TTL_DESC"/>
+	</params>
+</install>

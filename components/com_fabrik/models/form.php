@@ -3579,6 +3579,43 @@ WHERE $table->db_primary_key $c $rowid $order $limit");
 		return array_key_exists($fullname, $this->_pluginUpdatedElements);
 	}
 
+	/**
+	* Does the form contain user errors
+	*
+	* @return  bool
+	*/
+
+	public function hasErrors()
+	{
+
+		$errorsFound = !empty($this->_arErrors);
+
+		if ($this->saveMultiPage(false))
+		{
+			$srow = $this->getSessionData();
+			/*
+			 * Test if its a resumed paged form
+			* if so _arErrors will be filled so check all elements had no errors
+			*/
+			$multiPageErrors = false;
+			if ($srow->data != '')
+			{
+				foreach ($this->_arErrors as $err)
+				{
+					if (!empty($err[0]))
+					{
+						$multiPageErrors = true;
+					}
+				}
+				if (!$multiPageErrors)
+				{
+					$errorsFound = false;
+				}
+			}
+		}
+		return $errorsFound;
+	}
+
 }
 
 ?>
