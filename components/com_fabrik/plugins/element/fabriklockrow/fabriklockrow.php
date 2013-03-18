@@ -29,9 +29,9 @@ class FabrikModelFabrikLockrow extends FabrikModelElement {
 	{
 		if (!empty($value)) {
 			list($time,$user) = explode(';', $value);
-			$user = JFactory::getUser();
+			$this_user = JFactory::getUser();
 			// $$$ decide what to do about guests
-			$userid = $user->get('id');
+			$userid = $this_user->get('id');
 			if ((int)$userid === (int)$user)
 			{
 				return false;
@@ -134,19 +134,22 @@ class FabrikModelFabrikLockrow extends FabrikModelElement {
 	{
 		$icon = '';
 		$alt = '';
+		$class = '';
 		$imagepath = COM_FABRIK_LIVESITE.'components/com_fabrik/plugins/element/fabriklockrow/images/';
 		if ($this->isLocked($data))
 		{
 			$icon = 'locked.png';
 			$alt = 'Locked';
+			$class = 'fabrikElement_lockrow_locked';
 		}
 		else
 		{
 			$icon = 'unlocked.png';
 			$alt = 'Not Locked';
+			$class = 'fabrikElement_lockrow_unlocked';
 		}
 
-		$str = "<img src='" . $imagepath . $icon . "' alt='" . $alt . "' class='fabrikElement_lockrow' />";
+		$str = "<img src='" . $imagepath . $icon . "' alt='" . $alt . "' class='fabrikElement_lockrow " . $class . "' />";
 		return $str;
 	}
 
