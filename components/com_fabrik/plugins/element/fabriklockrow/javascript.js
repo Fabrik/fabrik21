@@ -1,7 +1,7 @@
-var fbInternalId = FbElement.extend({
+var fbLockrow = FbElement.extend({
 	initialize: function(element, options) {
 		this.parent(element, options);
-		this.plugin = 'fbInternalId';
+		this.plugin = 'fbLockrow';
 		this.setOptions(element, options);
 	}
 });

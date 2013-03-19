@@ -28,11 +28,11 @@ class FabrikModelFabrikLockrow extends FabrikModelElement {
 	public function isLocked($value)
 	{
 		if (!empty($value)) {
-			list($time,$user) = explode(';', $value);
+			list($time,$locking_user_id) = explode(';', $value);
 			$this_user = JFactory::getUser();
 			// $$$ decide what to do about guests
-			$userid = $this_user->get('id');
-			if ((int)$userid === (int)$user)
+			$this_user_id = $this_user->get('id');
+			if ((int)$this_user_id === (int)$locking_user_id)
 			{
 				return false;
 			}
@@ -75,11 +75,11 @@ class FabrikModelFabrikLockrow extends FabrikModelElement {
 
 		$ttl_unlock = false;
 		if ($value != 0) {
-			list($time,$user) = explode(';', $value);
-			$user = JFactory::getUser();
+			list($time,$locking_user_id) = explode(';', $value);
+			$this_user = JFactory::getUser();
 			// $$$ decide what to do about guests
-			$userid = $user->get('id');
-			if ((int)$userid === (int)$user)
+			$this_user_id = $this_user->get('id');
+			if ((int)$this_user_id === (int)$locking_user_id)
 			{
 				return "";
 			}
