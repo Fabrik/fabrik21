@@ -137,16 +137,21 @@ class FabrikControllerForm extends JController
 
 		$this->_isMambot = JRequest::getVar('_isMambot', 0);
 		$model->getForm();
-		//$model->_rowId = JRequest::getVar('rowid', '');
+
 		$model->getRowId();
+
 		// Check for request forgeries
 		$fbConfig =& JComponentHelper::getParams('com_fabrik');
-		if ($model->getParams()->get('spoof_check', $fbConfig->get('spoofcheck_on_formsubmission', true)) == true) {
+		if ($model->getParams()->get('spoof_check', $fbConfig->get('spoofcheck_on_formsubmission', true)) == true)
+		{
 			JRequest::checkToken() or die('Invalid Token');
 		}
 
-		if (JRequest::getVar('fabrik_ignorevalidation', 0) != 1) { //put in when saving page of form
-			if (!$model->validate()) {
+		// Put in when saving page of form
+		if (JRequest::getVar('fabrik_ignorevalidation', 0) != 1)
+		{
+			if (!$model->validate())
+			{
 				//if its in a module with ajax or in a package
 				if (JRequest::getInt('_packageId') !== 0) {
 					$data = array('modified' => $model->_modifiedValidationData);
@@ -155,8 +160,9 @@ class FabrikControllerForm extends JController
 					echo json_encode($data);
 					return;
 				}
-				if ($this->_isMambot) {
-					//store errors in session
+				if ($this->_isMambot)
+				{
+					// Store errors in session
 					$_SESSION['fabrik']['mambot_errors'][$model->_id] = $model->_arErrors;
 					//JRequest::setVar('fabrik_referrer', JArrayHelper::getValue($_SERVER, 'HTTP_REFERER', ''), 'post');
 					// $$$ hugh - testing way of preserving form values after validation fails with form plugin
@@ -164,7 +170,9 @@ class FabrikControllerForm extends JController
 					$session->set('com_fabrik.form.'.$model->_id.'.session.on', true);
 					$this->savepage();
 					$this->makeRedirect('', $model);
-				} else {
+				}
+				else
+				{
 					// $$$ rob - http://fabrikar.com/forums/showthread.php?t=17962
 					// couldn't determine the exact set up that triggered this, but we need to reset the rowid to -1
 					// if reshowing the form, otherwise it may not be editable, but rather show as a detailed view
@@ -177,12 +185,14 @@ class FabrikControllerForm extends JController
 			}
 		}
 
-		//reset errors as validate() now returns ok validations as empty arrays
+		// Reset errors as validate() now returns ok validations as empty arrays
 		$model->_arErrors = array();
 
 		$defaultAction = $model->process();
-		//check if any plugin has created a new validation error
-		if (!empty($model->_arErrors)) {
+
+		// Check if any plugin has created a new validation error
+		if (!empty($model->_arErrors))
+		{
 			$pluginManager 	=& $model->getPluginManager();
 			$pluginManager->runPlugins('onError', $model);
 			$view->display();

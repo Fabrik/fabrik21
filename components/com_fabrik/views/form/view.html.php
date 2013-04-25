@@ -157,6 +157,7 @@ class fabrikViewForm extends JView
 		$text = $this->loadTemplate();
 		if ($params->get('process-jplugins') == 1 || ($params->get('process-jplugins') == 2 && $model->_editable === false)) {
 			$opt = JRequest::getVar('option');
+			JRequest::setVar('originalOption', $opt);
 			JRequest::setVar('option', 'com_content');
 			jimport('joomla.html.html.content');
 			$text .= '{emailcloak=off}';

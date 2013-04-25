@@ -201,8 +201,11 @@ class plgContentFabrik extends JPlugin
 		JRequest::setVar('usekey', $usekey);
 		//$$$rob for table views in category blog layouts when no layout specified in {} the blog layout
 		// was being used to render the table - which was not found which gave a 500 error
-		if (!$layoutFound) {
-			if (JRequest::getVar('option') === 'com_content' && JRequest::getVar('layout') === 'blog') {
+		$option = JRequest::getCmd('originalOption', JRequest::getCmd('option', 'com_content'));
+		if (!$layoutFound)
+		{
+			if ($option === 'com_content' && JRequest::getVar('layout') === 'blog')
+			{
 				$layout = 'default';
 				JRequest::setVar('layout', $layout);
 			}

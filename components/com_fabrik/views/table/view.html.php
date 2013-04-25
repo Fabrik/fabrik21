@@ -545,15 +545,18 @@ class FabrikViewTable extends JView
 		$reffer = JRequest::getVar('REQUEST_URI', '', 'server');
 		$this->hiddenFields = array();
 
-		$this->hiddenFields[] = "<input type=\"hidden\" name=\"option\" value=\"".JRequest::getCmd('option', 'com_fabrik'). "\" id = \"table_".$table->id."_option\" />";
+		$option = JRequest::getCmd('originalOption', JRequest::getCmd('option', 'com_fabrik'));
+
+		$this->hiddenFields[] = "<input type=\"hidden\" name=\"option\" value=\"" . $option . "\" id = \"table_".$table->id."_option\" />";
 		$this->hiddenFields[] = "<input type=\"hidden\" name=\"orderdir\" value=\"\" id =\"table_".$table->id."_orderdir\" />";
 		$this->hiddenFields[] = "<input type=\"hidden\" name=\"orderby\" value=\"\" id = \"table_".$table->id."_orderby\" />";
 		if (!$this->_isMambot) {
 			$this->hiddenFields[] = "<input type=\"hidden\" name=\"controller\" value=\"table\" />";
 		}
-		//$$$rob if the content plugin has temporarily set the view to table then get view from origview var, if that doesn't exist
+		// $$$rob if the content plugin has temporarily set the view to table then get view from origview var, if that doesn't exist
 		//revert to view var. Used when showing table in article/blog layouts
-		$view = JRequest::getVar('origview', JRequest::getVar('view', 'table'));
+		$view = JRequest::getVar('view', 'table');
+		$view = $option == 'com_content' ? JRequest::getVar('origview', $view) : $view;
 		$this->hiddenFields[] = "<input type=\"hidden\" name=\"view\" value=\"" . $view . "\" id = \"table_".$table->id."_view\" />";
 
 		$this->hiddenFields[] = "<input type=\"hidden\" name=\"tableid\" value=\"" . $model->_id . "\" id = \"table_".$table->id."_tableid\" />";
