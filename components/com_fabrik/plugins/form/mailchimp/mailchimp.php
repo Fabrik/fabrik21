@@ -67,16 +67,19 @@ class FabrikModelMailchimp extends FabrikModelFormPlugin
 		$this->formModel =& $formModel;
 		$emailData =& $this->getEmailData();
 		$post = JRequest::get('post');
-		if (!array_key_exists('fabrik_mailchimp_signup', $post)) {
+		if (!array_key_exists('fabrik_mailchimp_signup', $post))
+		{
 			return;
 		}
 		$listId = $params->get('mailchimp_listid');
 		$apiKey = $params->get('mailchimp_apikey');
-		if ($apiKey == '') {
+		if ($apiKey == '')
+		{
 			JError::raiseNotice(500, 'Mailchimp: no api key specified');
 			return;
 		}
-		if ($listId == '') {
+		if ($listId == '')
+		{
 			JError::raiseNotice(500, 'Mailchimp: no list id specified');
 			return;
 		}
@@ -87,7 +90,8 @@ class FabrikModelMailchimp extends FabrikModelFormPlugin
 
 		$emailKey = $formModel->getElement($params->get('mailchimp_email'), true)->getFullName();
 		$firstNameKey = $formModel->getElement($params->get('mailchimp_firstname'), true)->getFullName();
-		if ($params->get('mailchimp_lastname') !== '') {
+		if ($params->get('mailchimp_lastname') !== '')
+		{
 			$lastNameKey = $formModel->getElement($params->get('mailchimp_lastname'), true)->getFullName();
 			$lname = $formModel->_formDataWithTableName[$lastNameKey];
 			$opts['LNAME'] = $lname;
@@ -97,14 +101,16 @@ class FabrikModelMailchimp extends FabrikModelFormPlugin
 
 		$opts['FNAME'] = $fname;
 
-
 		$w = new FabrikWorker();
 
 		$groupOpts = json_decode($params->get('mailchimp_groupopts', "[]"));
-		if (!empty($groupOpts)) {
-			foreach ($groupOpts as $groupOpt) {
+		if (!empty($groupOpts))
+		{
+			foreach ($groupOpts as $groupOpt)
+			{
 				$groups = array();
-				if (isset($groupOpt->groups)) {
+				if (isset($groupOpt->groups))
+				{
 					$groupOpt->groups = $w->parseMessageForPlaceHolder($groupOpt->groups, $emailData);
 		 			$groups[] = JArrayHelper::fromObject($groupOpt);//array('name'=>'Your Interests:', 'groups'=>'Bananas,Apples')
 				}
@@ -119,14 +125,21 @@ class FabrikModelMailchimp extends FabrikModelFormPlugin
 		$doubleOptin = (bool)$params->get('mailchimp_double_optin', true);
 		$updateExisting = (bool)$params->get('mailchimp_update_existing');
 		$retval = $api->listSubscribe($listId, $email, $opts, $emailType, $doubleOptin, $updateExisting);
-		if ($api->errorCode) {
+		if ($api->errorCode)
+		{
+			// Don't return error for existing email address in mailchimp
+			if ($api->errorCode == 502)
+			{
+				return true;
+			}
 			$formModel->_arErrors['mailchimp_error'] = true;
-			JError::raiseNotice(500, $api->errorCode.':'.$api->errorMessage);
+			JError::raiseNotice(500, $api->errorCode . ':' . $api->errorMessage);
 			return false;
-		} else {
+		}
+		else
+		{
 			return true;
 		}
 
 	}
 }
-?>
