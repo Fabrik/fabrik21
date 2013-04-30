@@ -37,7 +37,8 @@
 		</param>
 		<param name="update_on_edit" type="radio" default="0" label="Update on edit" description="UPDATEONEDITDESC">
 			<option value="0">No</option>
-			<option value="1">Yes</option>
+			<option value="1">Update if element not hidden or not accessible</option>
+			<option value="2">Always</option>
 		</param>
 		<param name="update_on_copy" type="radio" default="0" label="Update on copy" description="UPDATEONCOPYDESC">
 			<option value="0">No</option>

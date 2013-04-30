@@ -272,15 +272,35 @@ class FabrikModelFabrikUser extends FabrikModelFabrikDatabasejoin {
 		// otherwise selected dropdown option is not taken into account
 
 		// $$$ hugh - so how come we don't do the same thing on a new row?  Seems inconsistant to me?
-		else {
-			if ($params->get('update_on_edit',0)) {
-				if (!$this->canUse() || $this->getElement()->hidden == 1) {
-					$user		=& JFactory::getUser();
+		else
+		{
+			if ($this->updateOnEdit())
+			{
+					$user =& JFactory::getUser();
 					$data[$element->name] = $user->get('id');
 					$data[$element->name . '_raw'] = $data[$element->name];
-				}
 			}
 		}
+	}
+
+	/**
+	 * Should the element's value be replaced with the current user's id
+	 *
+	 * @return  bool
+	 */
+	protected function updateOnEdit()
+	{
+		$params = $this->getParams();
+		$updaeOnEdit = $params->get('update_on_edit', 0);
+		if ($updaeOnEdit == 1)
+		{
+			$updaeOnEdit = !$this->canUse() || $this->getElement()->hidden == 1;
+		}
+		if ($updaeOnEdit == 2)
+		{
+			$updaeOnEdit = true;
+		}
+		return $updaeOnEdit;
 	}
 
 	/**
